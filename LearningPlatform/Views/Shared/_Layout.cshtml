@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - .learning platform</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/header-style.css")
+    @Styles.Render("~/Content/home-page-style.css")
+    @Styles.Render("~/Content/site-structure-style.css")
+    @Styles.Render("~/Content/login-style.css")
+    @Styles.Render("~/Content/courses-page-style.css")
+    @Styles.Render("~/Content/course-details-style.css")
+</head>
+<body>
+    <div class="page-header-container">
+        <div class="title-section">
+            @Html.ActionLink(".learning platform", "Index", "Home", new { area = "" }, new { @class = "header-element" })
+        </div>
+        <div>
+            <div class="tabs-section">
+                <div class="tab-container">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "header-element" })</div>
+                <div class="tab-container">@Html.ActionLink("Courses", "GetCourses", "Courses", new { area = "" }, new { @class = "header-element" })</div>
+                <div class="tab-container">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "header-element" })</div>
+                <div class="tab-container">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "header-element" })</div>
+            </div>
+            <div class="login-section">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        @RenderBody()
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; @DateTime.Now.Year - .learning platform</p>
+    </footer>
+</body>
+</html>

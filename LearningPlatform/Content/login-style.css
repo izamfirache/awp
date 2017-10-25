@@ -1,0 +1,81 @@
+﻿.email-container {
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.password-container {
+    width: 20%;
+    height: 100%;
+    float: left;
+    margin-left: 27px;
+}
+
+.signup-button {
+    width: 100px;
+    background-color: #eee;
+    padding: 7px;
+    padding-left: 24px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+    height: 36px;
+    margin-left: 2px;
+}
+
+.login-button {
+    width: 100px;
+    height: 36px;
+    float: left;
+    background-color: #eee;
+    padding: 7px;
+    padding-left: 32px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+}
+
+.email-input {
+    width: 143px;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 36px;
+    padding-left: 3px;
+}
+
+.password-input {
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid black;
+    height: 36px;
+    padding-left: 3px;
+}
+
+.login-link{
+    color:black;
+}
+.login-link:hover{
+    text-decoration:none;
+}
+
+.register-link{
+    color:black;
+}
+.register-link:hover {
+    text-decoration: none;
+}
+
+.inputs-container {
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+}
+
+.buttons-container {
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    display:flex;
+    padding-top:0;
+}
+

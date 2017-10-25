@@ -1,0 +1,113 @@
+﻿.courses-list-page {
+    width: 77%;
+    height: 100%;
+    margin-left: 153px;
+    margin-top: 78px;
+}
+
+.courses-container {
+    width: 100%;
+    height: 89%;
+    padding: 10px;
+}
+
+.search-courses-container {
+    height: 8%;
+    width: 98%;
+    float: right;
+    margin-right: 167px;
+    margin-bottom: 5px;
+}
+
+.course-row {
+    width: 100%;
+    height: 40px;
+    background-color: #eee;
+    padding-top: 5px;
+    padding-left: 40px;
+    font-size: 17px;
+}
+.course-row:hover {
+    background-color: #1398B2;
+}
+
+.course-separator {
+    border-top: 1px solid black;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.courses-list {
+    width: 100%;
+    height: 90%;
+    border-radius: 10px;
+    overflow-y: overlay;
+    border:1px solid black;
+    border-top:none;
+}
+
+.class-list-header{
+    width:100%;
+    height:5%;
+}
+
+.courses-name-header {
+    width: 65%;
+    height: 100%;
+    font-size: 20px;
+    float: left;
+    padding-left: 40px;
+    font-weight: bolder;
+}
+
+.courses-date-header {
+    width: 30%;
+    float: left;
+    padding-left: 20px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.course-title-container{
+    width:65%;
+    height:100%;
+    float:left;
+}
+
+.course-date-container {
+    width: 30%;
+    height: 100%;
+    float:left;
+}
+
+.search-option-dropdown {
+    width: 143px;
+    float: right;
+    margin-top: 8px;
+    height: 34px;
+    background-color: #eee;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px solid black;
+}
+.search-option-dropdown:hover {
+    cursor:pointer;
+}
+
+.search-course {
+    width: 190px;
+    float: right;
+    height: 34px;
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+.search-group {
+    width: 31%;
+    height: 100%;
+    float: right;
+    border-radius:15px;
+    border:1px solid black;
+}
+
+

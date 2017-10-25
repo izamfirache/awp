@@ -1,0 +1,46 @@
+﻿.page-header-container {
+    height: 105px;
+    width: 99%;
+    top: 0;
+    background-color: #1398B2;
+    color: white;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-top: 0.2%;
+    border-radius: 20px;
+    position: absolute;
+    border: 1px solid black;
+}
+
+.page-content {
+    height: 85%;
+    width: 99%;
+    margin: 0.5%;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 3%;
+}
+
+.page-footer {
+    height: 3%;
+    width: 99%;
+    bottom: 0;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-bottom: 0.2%;
+    font-size: 15px;
+    padding-left: 41%;
+    position: fixed;
+    background-color: #1398B2;
+    color: white;
+}
+
+.separator {
+    border-top: 1px solid black;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+

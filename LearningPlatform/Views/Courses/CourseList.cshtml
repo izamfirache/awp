@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model LearningPlatform.Models.CoursesListPageModel
+
+<div class="courses-list-page">
+
+    <div class="search-courses-container">
+
+        <div class="search-group">
+
+            <div class="search-option-dropdown" onclick="location.href='@Url.Action("GetFilteredCourses", "Courses", new { filter = "date"})'">
+                Sort by Publish Date
+            </div> 
+
+            @Html.TextBoxFor(m => Model.Filter, new { @class = "search-course" })
+        </div>
+        </div>
+
+    <div class="courses-container">
+
+        <div class="class-list-header">
+            <div class="courses-name-header">Title</div>
+            <div class="courses-date-header">Publish Date</div>
+        </div>
+
+        <div class="courses-list">
+            @foreach (LearningPlatform.Models.Courses.Course course in Model.Courses)
+            {
+                <hr class="course-separator" />
+
+                <div class="course-row" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+                    <div class="course-title-container">@Html.DisplayFor(m => course.Title)</div>
+                    <div class="course-date-container">@Html.DisplayFor(m => course.PublishDate)</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function GetFilteredCourses() {
+        alert('working');
+        document.location.href = '/Courses/GetFilteredCourses?filter=' + @Model.Filter;
+    }
+</script>
+
+
+
+
+
