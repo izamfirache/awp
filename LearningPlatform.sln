@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlatform", "LearningPlatform\LearningPlatform.csproj", "{4067D7E1-E87D-4BA9-B268-DA4F1E7473A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlatform.Tests", "LearningPlatform.Tests\LearningPlatform.Tests.csproj", "{296C48C0-EC29-4CB3-9BFC-B8829C9CC43B}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LearningPlatform.SQL", "LearningPlatform.SQL\LearningPlatform.SQL.sqlproj", "{85AEA530-ED22-4871-B571-547BCD7AD01B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlatform.Core", "LearningPlatform.Core\LearningPlatform.Core.csproj", "{225F2579-E5CA-4A2F-87F6-154156514A17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlatform.DAL", "LearningPlatform.DAL\LearningPlatform.DAL.csproj", "{DB21EA51-0499-435A-814C-1716D155A0EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArusTest", "ArusTest\ArusTest.csproj", "{75B32D34-55DA-4C9E-852D-CE40D957717F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,24 @@ Global
 		{296C48C0-EC29-4CB3-9BFC-B8829C9CC43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{296C48C0-EC29-4CB3-9BFC-B8829C9CC43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{296C48C0-EC29-4CB3-9BFC-B8829C9CC43B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85AEA530-ED22-4871-B571-547BCD7AD01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85AEA530-ED22-4871-B571-547BCD7AD01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85AEA530-ED22-4871-B571-547BCD7AD01B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{85AEA530-ED22-4871-B571-547BCD7AD01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85AEA530-ED22-4871-B571-547BCD7AD01B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85AEA530-ED22-4871-B571-547BCD7AD01B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{225F2579-E5CA-4A2F-87F6-154156514A17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225F2579-E5CA-4A2F-87F6-154156514A17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225F2579-E5CA-4A2F-87F6-154156514A17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225F2579-E5CA-4A2F-87F6-154156514A17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB21EA51-0499-435A-814C-1716D155A0EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB21EA51-0499-435A-814C-1716D155A0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB21EA51-0499-435A-814C-1716D155A0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB21EA51-0499-435A-814C-1716D155A0EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
