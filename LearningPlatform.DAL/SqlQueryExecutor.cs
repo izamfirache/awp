@@ -17,12 +17,14 @@ namespace LearningPlatform.DAL
 
 		}
 
-		public void ExecuteSql(string sqlQuery)
+		public int ExecuteSql(string sqlQuery)
 		{
 			using (var connection = new SqlConnection(CONNECTION_STRING))
 			{
+				connection.Open();
 				var command = new SqlCommand(sqlQuery, connection);
-				command.ExecuteNonQuery();
+				var changedRows = command.ExecuteNonQuery();
+				return changedRows;
 			}
 		}
 

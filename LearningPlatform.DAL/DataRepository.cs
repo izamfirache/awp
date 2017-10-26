@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace LearningPlatform.DAL
 {
+	// Generic class for retrieving database entities defined in LearningPlatform.Core that extend "DatabaseEntity" class
+	// TODO: configure connection string from a environment variable
 	public class DataRepository<T> where T : DatabaseEntity
 	{
 		private string _databaseTableName;
@@ -18,10 +20,12 @@ namespace LearningPlatform.DAL
 			_queryExecutor = new SqlQueryExecutor();
 			SqlQueryExecutor.CONNECTION_STRING = "Server=ISS3\\SQLEXPRESS;Initial Catalog=LearningPlatform.SQL;Integrated Security=true;MultipleActiveResultSets=False;Connection Timeout=30;";
 
-			_databaseTableName = ((DatabaseEntity)Activator.CreateInstance(typeof(T))).GetDatabaseTableName();
+			var instance = (DatabaseEntity)Activator.CreateInstance(typeof(T));
+			_databaseTableName = instance.GetDatabaseTableName();
 		}
 
-		public List<T> GetById(int id)
+		// Get by primary key ID
+		public T GetById(int id)
 		{
 			var queryBuilder = new SqlQueryBuilder();
 
@@ -29,10 +33,12 @@ namespace LearningPlatform.DAL
 			queryBuilder.AddWhere($"Id = {id}");
 
 			var results = _queryExecutor.ExecuteSqlReturnDataTable(queryBuilder.GetQuery());
-			return GetListFromDataTableRows(results);
+			return GetListFromDataTableRows(results).FirstOrDefault();
 		}
 
-		public List<T> GetByProperty(string propertyName, string value)
+		// Get by property
+		// e.g. coursesRepo.GetByProperty("Name", "Radical American Symbols Since 1881");
+		public IEnumerable<T> GetByProperty(string propertyName, string value)
 		{
 			var queryBuilder = new SqlQueryBuilder();
 
@@ -43,7 +49,9 @@ namespace LearningPlatform.DAL
 			return GetListFromDataTableRows(results);
 		}
 
-		public List<T> GetByProperty(string propertyName, int value)
+		// Get by integer property
+		// e.g. coursesRepo.GetByProperty("UserId", "2");
+		public IEnumerable<T> GetByProperty(string propertyName, int value)
 		{
 			var queryBuilder = new SqlQueryBuilder();
 
@@ -54,7 +62,8 @@ namespace LearningPlatform.DAL
 			return GetListFromDataTableRows(results);
 		}
 
-		public List<T> GetAll()
+		// Get all rows of a table
+		public IEnumerable<T> GetAll()
 		{			
 			var queryBuilder = new SqlQueryBuilder();
 
@@ -62,9 +71,38 @@ namespace LearningPlatform.DAL
 			var results = _queryExecutor.ExecuteSqlReturnDataTable(queryBuilder.GetQuery());
 
 			return GetListFromDataTableRows(results);
+		}				
+
+		// create a new row with values from the value parameter
+		public int Insert(T value)
+		{
+			var queryBuilder = new SqlQueryBuilder();
+			queryBuilder.AddInsert(_databaseTableName, value.GetInsertStatement());
+
+			return _queryExecutor.ExecuteSql(queryBuilder.GetQuery());
 		}
 
-		private List<T> GetListFromDataTableRows(DataTable dataTable)
+		// id = primary key id
+		// value = object with all fields defined
+		// DOES NOT SUPPORT PARTIAL UPDATES
+		public int Update(int id, T value)
+		{
+			var queryBuilder = new SqlQueryBuilder();
+			queryBuilder.AddUpdate(_databaseTableName, id, value.GetUpdateStatement());
+
+			return _queryExecutor.ExecuteSql(queryBuilder.GetQuery());
+		}
+
+		// id = primary key id
+		public int Delete(int id)
+		{
+			var queryBuilder = new SqlQueryBuilder();
+			queryBuilder.AddDelete(_databaseTableName, id);
+
+			return _queryExecutor.ExecuteSql(queryBuilder.GetQuery());
+		}
+
+		private IEnumerable<T> GetListFromDataTableRows(DataTable dataTable)
 		{
 			var resultList = new List<T>();
 

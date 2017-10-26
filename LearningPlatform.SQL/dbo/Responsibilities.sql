@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Responsibilities]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY, 
 		[UserId] INT NOT NULL, 
 		[CourseId] INT NOT NULL, 
 		[ResponsibilityTypeId] INT NOT NULL, 

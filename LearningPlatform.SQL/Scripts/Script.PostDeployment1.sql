@@ -12,6 +12,9 @@ Post-Deployment Script Template
 
 /*** MERGE-Statement for table [dbo].[Users] ***/
 
+SET IDENTITY_INSERT [dbo].[Users] ON;
+GO
+
 MERGE INTO [dbo].[Users] AS Target USING(VALUES 
 
 (1,N'arus',N'123',N'arus@bestemail.eu')
@@ -31,6 +34,13 @@ INSERT ([Id],[Username],[Password],[Email])
 VALUES ([Id],[Username],[Password],[Email])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
+
+SET IDENTITY_INSERT [dbo].[Users] OFF;
+GO
+
+
+SET IDENTITY_INSERT [dbo].[Courses] ON;
+GO
 
 /*** MERGE-Statement for table [dbo].[Courses] ***/
 
@@ -57,6 +67,12 @@ VALUES ([Id],[Name],[Description],[CreationDate],[UpdateDate])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
 
+SET IDENTITY_INSERT [dbo].[Courses] OFF;
+GO
+
+SET IDENTITY_INSERT [dbo].[ResponsibilityTypes] ON;
+GO
+
 /*** MERGE-Statement for table [dbo].[ResponsibilityTypes] ***/
 
 MERGE INTO [dbo].[ResponsibilityTypes] AS Target USING(VALUES 
@@ -76,6 +92,13 @@ INSERT ([Id],[Name],[Description])
 VALUES ([Id],[Name],[Description])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
+
+SET IDENTITY_INSERT [dbo].[ResponsibilityTypes] OFF;
+GO
+
+SET IDENTITY_INSERT [dbo].[Responsibilities] ON;
+GO
+
 
 /*** MERGE-Statement for table [dbo].[Responsibilities] ***/
 
@@ -103,3 +126,6 @@ INSERT ([Id],[UserId],[CourseId],[ResponsibilityTypeId])
 VALUES ([Id],[UserId],[CourseId],[ResponsibilityTypeId])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
+
+SET IDENTITY_INSERT [dbo].[Responsibilities] OFF;
+GO

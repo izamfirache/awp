@@ -31,5 +31,28 @@ namespace LearningPlatform.Core.Entities
 		{
 			return "dbo.Responsibilities";
 		}
+
+		public override string GetInsertStatement()
+		{
+			var stringBuilder = new StringBuilder();
+
+			stringBuilder.Append($"({UserId}, {CourseId}, {ResponsibilityTypeId})");
+
+			return stringBuilder.ToString();
+		}
+
+		public override string GetUpdateStatement()
+		{
+			var stringBuilder = new StringBuilder();
+
+			stringBuilder.Append($" UserId = {UserId}, CourseId = {CourseId}, ResponsibilityTypeId =  {ResponsibilityTypeId} ");
+
+			return stringBuilder.ToString();
+		}
+
+		public override string GetInsertFields()
+		{
+			return "(UserId, CourseId, ResponsibilityTypeId)";
+		}
 	}
 }

@@ -33,5 +33,28 @@ namespace LearningPlatform.Core.Entities
 		{
 			return "dbo.Courses";
 		}
+
+		public override string GetInsertStatement()
+		{
+			var stringBuilder = new StringBuilder();
+
+			stringBuilder.Append($"('{Name}', '{Description}', '{CreationDate.ToString()}', '{UpdateDate}')");
+
+			return stringBuilder.ToString();
+		}
+
+		public override string GetUpdateStatement()
+		{
+			var stringBuilder = new StringBuilder();
+
+			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', CreationDate =  '{CreationDate.ToString()}', UpdateDate = '{UpdateDate}' ");
+
+			return stringBuilder.ToString();
+		}
+
+		public override string GetInsertFields()
+		{
+			return "(Name, Description, CreationDate, UpdateDate)";
+		}
 	}
 }

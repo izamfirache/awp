@@ -30,5 +30,28 @@ namespace LearningPlatform.Core.Entities
 		{
 			return "dbo.Users";
 		}
+
+		public override string GetInsertStatement()
+		{
+			var stringBuilder = new StringBuilder();
+
+			stringBuilder.Append($"('{Username}', '{Password}', '{Email}')");
+
+			return stringBuilder.ToString();
+		}
+
+		public override string GetUpdateStatement()
+		{
+			var stringBuilder = new StringBuilder();
+
+			stringBuilder.Append($" Username = '{Username}', Password = '{Password}', Email = '{Email}' ");
+
+			return stringBuilder.ToString();
+		}
+
+		public override string GetInsertFields()
+		{
+			return "(Username, Password, Email)";
+		}
 	}
 }

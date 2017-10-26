@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlatform.DAL", "Lea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArusTest", "ArusTest\ArusTest.csproj", "{75B32D34-55DA-4C9E-852D-CE40D957717F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningPlatform.API", "LearningPlatform.API\LearningPlatform.API.csproj", "{5859C4DD-4E82-48F8-B303-E6209DBB7B66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75B32D34-55DA-4C9E-852D-CE40D957717F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5859C4DD-4E82-48F8-B303-E6209DBB7B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5859C4DD-4E82-48F8-B303-E6209DBB7B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5859C4DD-4E82-48F8-B303-E6209DBB7B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5859C4DD-4E82-48F8-B303-E6209DBB7B66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
