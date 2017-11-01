@@ -153,16 +153,16 @@ MERGE INTO [dbo].[Tags] AS Target USING(VALUES
 ,(11,N'Prolog')
 ,(12,N'OOP')
 ,(13,N'C++')
-) AS Source ([Id],[TagName])
+) AS Source ([Id],[Name])
  ON 
 Target.[Id] = Source.[Id] 
 
  WHEN MATCHED THEN UPDATE SET 
-[TagName] = Source.[TagName] 
+[Name] = Source.[Name] 
 
  WHEN NOT MATCHED BY TARGET THEN 
-INSERT ([Id],[TagName])
-VALUES ([Id],[TagName])
+INSERT ([Id],[Name])
+VALUES ([Id],[Name])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
 
