@@ -179,8 +179,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CourseTagController.cs" />
     <Compile Include="Controllers\ResponsibilityController.cs" />
     <Compile Include="Controllers\ResponsibilityTypesController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -39,18 +39,23 @@ SET IDENTITY_INSERT [dbo].[Users] OFF;
 GO
 
 
+/*** MERGE-Statement for table [dbo].[Courses] ***/
+
 SET IDENTITY_INSERT [dbo].[Courses] ON;
 GO
 
-/*** MERGE-Statement for table [dbo].[Courses] ***/
-
 MERGE INTO [dbo].[Courses] AS Target USING(VALUES 
 
-(1,N'Humanist Civilization: Synthesis and Development',N'','20171025 13:55:36.000','20171025 13:55:36.000')
-,(2,N'Radical American Symbols Since 1881',N'','20171025 13:55:36.000','20171025 13:55:36.000')
-,(3,N'Foundations Of World War II: The Jenkins Theory At Work',N'','20171025 13:55:36.000','20171025 13:55:36.000')
-,(4,N'Radical Evolution In Recent Times',N'','20171025 13:55:36.000','20171025 13:55:36.000')
-,(5,N'Contemporary Japanese Images & Traditions',N'','20171025 13:55:36.000','20171025 13:55:36.000')
+(1,N'.net Framework. C# fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(2,N'Object Oriented Programing. Java fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(3,N'Procedural programming.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(4,N'C++ used in the OO way.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(6,N'Javascript fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(7,N'Functional Programming aspects. Prolog.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(8,N'Haskell for begginers.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(9,N'Ruby fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
+,(10,N'HTML and CSS advanced.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
 ) AS Source ([Id],[Name],[Description],[CreationDate],[UpdateDate])
  ON 
 Target.[Id] = Source.[Id] 
@@ -128,4 +133,74 @@ VALUES ([Id],[UserId],[CourseId],[ResponsibilityTypeId])
 ;
 
 SET IDENTITY_INSERT [dbo].[Responsibilities] OFF;
+GO
+
+SET IDENTITY_INSERT [dbo].[Tags] ON;
+GO
+
+MERGE INTO [dbo].[Tags] AS Target USING(VALUES 
+
+(1,N'C#')
+,(2,N'Javascript')
+,(3,N'Java')
+,(4,N'Python')
+,(5,N'C')
+,(6,N'SQL')
+,(7,N'HTML')
+,(8,N'CSS')
+,(9,N'Ruby')
+,(10,N'Haskell')
+,(11,N'Prolog')
+,(12,N'OOP')
+,(13,N'C++')
+) AS Source ([Id],[TagName])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[TagName] = Source.[TagName] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[TagName])
+VALUES ([Id],[TagName])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[Tags] OFF;
+GO
+
+/*** MERGE-Statement for table [dbo].[CoursesTags] ***/
+
+SET IDENTITY_INSERT [dbo].[CoursesTags] ON;
+GO
+
+MERGE INTO [dbo].[CoursesTags] AS Target USING(VALUES 
+
+(1,1,1)
+,(2,1,12)
+,(3,2,12)
+,(4,4,13)
+,(5,4,12)
+,(6,5,4)
+,(7,6,2)
+,(8,7,11)
+,(9,8,10)
+,(10,9,9)
+,(11,10,7)
+,(12,10,8)
+) AS Source ([Id],[CourseId],[TagId])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[CourseId] = Source.[CourseId] 
+,[TagId] = Source.[TagId] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[CourseId],[TagId])
+VALUES ([Id],[CourseId],[TagId])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[CoursesTags] OFF;
 GO

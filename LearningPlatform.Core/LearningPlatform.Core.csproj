@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\CourseTag.cs" />
     <Compile Include="Entities\DatabaseEntity.cs" />
     <Compile Include="Entities\Responsibility.cs" />
     <Compile Include="Entities\ResponsibilityType.cs" />
+    <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

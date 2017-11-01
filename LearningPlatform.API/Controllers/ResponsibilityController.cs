@@ -65,7 +65,7 @@ namespace LearningPlatform.API.Controllers
 			}
 			else
 			{
-				return BadRequest();
+				return BadRequest("Error when adding the new responsibility");
 			}
 		}
 
@@ -85,7 +85,7 @@ namespace LearningPlatform.API.Controllers
 				}
 				else
 				{
-					return BadRequest();
+					return BadRequest("Error when updating responsibility");
 				}
 			}
 			else
@@ -110,7 +110,7 @@ namespace LearningPlatform.API.Controllers
 				}
 				else
 				{
-					return BadRequest();
+					return BadRequest("Error when deleting responsibility");
 				}
 			}
 			else

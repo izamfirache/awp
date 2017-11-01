@@ -44,7 +44,7 @@ namespace LearningPlatform.API.Controllers
 			}
 			else
 			{
-				return BadRequest();
+				return BadRequest("Error when inserting new responsibility type");
 			}
 		}
 
@@ -64,7 +64,7 @@ namespace LearningPlatform.API.Controllers
 				}
 				else
 				{
-					return BadRequest();
+					return BadRequest("Error when updating responsibility type");
 				}
 			}
 			else
