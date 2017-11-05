@@ -12,13 +12,13 @@ namespace ArusTest
 	{
 		static void Main(string[] args)
 		{
-			var repo = new DataRepository<User>();
+			var repo = new DataRepository<User>(Environment.GetEnvironmentVariable("AWP_DB"));
 
 			var all = repo.GetAll();
 
 			var justAFew = repo.GetById(2);
 
-			var coursesRepo = new DataRepository<Course>();
+			var coursesRepo = new DataRepository<Course>(Environment.GetEnvironmentVariable("AWP_DB"));
 
 			var onlysome = coursesRepo.GetByProperty("Name", "Radical American Symbols Since 1881");
 		}

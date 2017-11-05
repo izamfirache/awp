@@ -15,11 +15,11 @@ namespace LearningPlatform.DAL
 		private string _databaseTableName;
 		private SqlQueryExecutor _queryExecutor;
 
-		public DataRepository()
-		{
-			_queryExecutor = new SqlQueryExecutor();
-			SqlQueryExecutor.CONNECTION_STRING = "Server=ISS3\\SQLEXPRESS;Initial Catalog=LearningPlatform.SQL;Integrated Security=true;MultipleActiveResultSets=False;Connection Timeout=30;";
+		public DataRepository(string connectionString)
+		{            
+			SqlQueryExecutor.CONNECTION_STRING = connectionString;
 
+			_queryExecutor = new SqlQueryExecutor();
 			var instance = (DatabaseEntity)Activator.CreateInstance(typeof(T));
 			_databaseTableName = instance.GetDatabaseTableName();
 		}

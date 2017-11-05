@@ -15,7 +15,7 @@ namespace LearningPlatform.API.Controllers
 
 		public ResponsibilityController()
 		{
-			_repository = new DataRepository<Responsibility>();
+			_repository = new DataRepository<Responsibility>(Environment.GetEnvironmentVariable("AWP_DB"));
 		}
 
 		// GET: api/Users
@@ -36,21 +36,21 @@ namespace LearningPlatform.API.Controllers
 		[HttpPost]
 		public IHttpActionResult Post([FromBody]Responsibility responsibility)
 		{
-			var user = new DataRepository<User>().GetById(responsibility.UserId);
+			var user = new DataRepository<User>(Environment.GetEnvironmentVariable("AWP_DB")).GetById(responsibility.UserId);
 
 			if(user == null)
 			{
 				return BadRequest($"Could not find user with ID {responsibility.UserId}");
 			}
 
-			var course = new DataRepository<Course>().GetById(responsibility.CourseId);
+			var course = new DataRepository<Course>(Environment.GetEnvironmentVariable("AWP_DB")).GetById(responsibility.CourseId);
 
 			if(course == null)
 			{
 				return BadRequest($"Could not find course with ID {responsibility.CourseId}");
 			}
 
-			var responsibilityType = new DataRepository<ResponsibilityType>().GetById(responsibility.ResponsibilityTypeId);
+			var responsibilityType = new DataRepository<ResponsibilityType>(Environment.GetEnvironmentVariable("AWP_DB")).GetById(responsibility.ResponsibilityTypeId);
 
 			if(responsibilityType == null)
 			{
