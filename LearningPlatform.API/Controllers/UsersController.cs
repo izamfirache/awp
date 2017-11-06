@@ -15,7 +15,7 @@ namespace LearningPlatform.API.Controllers
 
 		public UsersController()
 		{
-			_repository = new DataRepository<User>(Environment.GetEnvironmentVariable("AWP_DB"));
+			_repository = new DataRepository<User>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
 		}
 
 		// GET: api/Users
@@ -36,11 +36,46 @@ namespace LearningPlatform.API.Controllers
 		[HttpPost]
 		public IHttpActionResult Post([FromBody]User user)
 		{
+			var checkExistingUser = _repository.GetByProperty("Username", user.Username);
+
+			if(checkExistingUser?.Count() > 0)
+			{
+				return BadRequest("Username already used");
+			}
+
+			var checkExistingEmail = _repository.GetByProperty("Email", user.Email);
+
+			if(checkExistingEmail?.Count() > 0)
+			{
+				return BadRequest("Email already used");
+			}
+
 			var result = _repository.Insert(user);
 
 			if(result == 1)
 			{
 				return Ok();
+			}
+			else
+			{
+				return BadRequest("Could not create user");
+			}
+		}
+
+		[HttpPost]
+		[Route("users/token")]
+		public IHttpActionResult Token([FromBody]User user)
+		{
+			var dictionary = new Dictionary<string, string>();
+
+			dictionary.Add("Username", user.Username);
+			dictionary.Add("Password", user.Password);
+
+			var results = _repository.GetByProprieties(dictionary);
+
+			if (results.Count() == 1)
+			{
+				return Json(results.ElementAt(0));
 			}
 			else
 			{

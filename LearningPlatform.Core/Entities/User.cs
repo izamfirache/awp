@@ -18,6 +18,17 @@ namespace LearningPlatform.Core.Entities
 		{			
 		}
 
+		public User(string username, string password)
+		{
+			Username = username;
+			Password = password;
+		}
+
+		public User(string username, string password, string email) : this(username, password)
+		{
+			Email = email;
+		}
+
 		public User(DataRow row)
 		{
 			Id = Int32.Parse(row["Id"].ToString());

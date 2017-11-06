@@ -196,12 +196,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Http\BadRequestResponse.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CoursesListPageModel.cs" />
     <Compile Include="Models\Courses\Course.cs" />
     <Compile Include="Models\Courses\CourseCollection.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Users\LoginUserModel.cs" />
+    <Compile Include="Models\Users\RegisterUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CourseProvider.cs" />
     <Compile Include="Startup.cs" />

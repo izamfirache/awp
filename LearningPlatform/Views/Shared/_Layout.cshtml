@@ -26,7 +26,7 @@
                 <div class="tab-container">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "header-element" })</div>
             </div>
             <div class="login-section">
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial", new LearningPlatform.Models.Users.LoginUserModel())
             </div>
         </div>
     </div>
