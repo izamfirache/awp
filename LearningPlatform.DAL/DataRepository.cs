@@ -12,6 +12,8 @@ namespace LearningPlatform.DAL
 	// TODO: configure connection string from a environment variable
 	public class DataRepository<T> where T : DatabaseEntity
 	{
+		// Connection string example: "Server=ISS3\\SQLEXPRESS;Initial Catalog=LearningPlatform.SQL;Integrated Security=true;MultipleActiveResultSets=False;Connection Timeout=30;"
+
 		private string _databaseTableName;
 		private SqlQueryExecutor _queryExecutor;
 
