@@ -15,7 +15,7 @@ namespace LearningPlatform.API.Controllers
 
 		public CoursesController()
 		{
-			_repository = new DataRepository<Course>();
+			_repository = new DataRepository<Course>(Environment.GetEnvironmentVariable("AWP_DB"));
 		}
 
 		// GET: api/Users
