@@ -59,14 +59,18 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="Scripts" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Users.sql" />
-    <Build Include="dbo\Courses.sql" />
-    <Build Include="dbo\ResponsibilityTypes.sql" />
-    <Build Include="dbo\Responsibilities.sql" />
-    <Build Include="dbo\Tags.sql" />
-    <Build Include="dbo\CoursesTags.sql" />
+    <Build Include="dbo\Tables\Courses.sql" />
+    <Build Include="dbo\Tables\CoursesTags.sql" />
+    <Build Include="dbo\Tables\Responsibilities.sql" />
+    <Build Include="dbo\Tables\ResponsibilityTypes.sql" />
+    <Build Include="dbo\Tables\Tags.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Stored Procedures\GetCoursesByOwnerId.sql" />
+    <Build Include="dbo\Stored Procedures\GetCoursesByTag.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

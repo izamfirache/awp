@@ -2,6 +2,7 @@
 using LearningPlatform.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,20 +21,68 @@ namespace LearningPlatform.API.Controllers
 
 		// GET: api/Users
 		[HttpGet]
-		public IHttpActionResult Get()
+		public IHttpActionResult GetAllCourses()
 		{
 			return Json(_repository.GetAll());
 		}
 
 		// GET: api/Users/5
 		[HttpGet]
-		public IHttpActionResult Get(int id)
+		public IHttpActionResult GetCourseById(int id)
 		{
 			return Json(_repository.GetById(id));
 		}
 
-		// POST: api/Users
-		[HttpPost]
+		[HttpGet]
+		public IHttpActionResult GetCourseByName(string courseName)
+		{
+			return Json(_repository.GetByProperty("Name", courseName));
+		}
+
+        [HttpGet]
+        public IHttpActionResult GetCoursesByOwnerId([FromUri]string ownerId)
+        {
+            // call DAL directly because it doesnt not return a single entity
+            var queryExecutor = new SqlQueryExecutor();
+
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("ownerId", ownerId);
+
+            var dataTable = queryExecutor.ExecuteStoredProcReturnDataTable("dbo.GetCoursesByOwnerId", parameters);
+
+            var resultList = new List<Course>();
+
+            foreach (var row in dataTable.Rows)
+            {
+                resultList.Add(new Course((DataRow)row));
+            }
+
+            return Json(resultList);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCoursesByTag([FromUri]string tagName)
+        {
+            // call DAL directly because it doesnt not return a single entity
+            var queryExecutor = new SqlQueryExecutor();
+
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("tagName", tagName);
+
+            var dataTable = queryExecutor.ExecuteStoredProcReturnDataTable("dbo.GetCoursesByTag", parameters);
+
+            var resultList = new List<Course>();
+
+            foreach (var row in dataTable.Rows)
+            {
+                resultList.Add(new Course((DataRow)row));
+            }
+
+            return Json(resultList);
+        }
+
+        // POST: api/Users
+        [HttpPost]
 		public IHttpActionResult Post([FromBody]Course course)
 		{
 			var result = _repository.Insert(course);

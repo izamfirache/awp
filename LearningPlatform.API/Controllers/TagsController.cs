@@ -32,6 +32,12 @@ namespace LearningPlatform.API.Controllers
 			return Json(_repository.GetById(id));
 		}
 
+		[HttpGet]
+		public IHttpActionResult Get(string tagName)
+		{
+			return Json(_repository.GetByProperty("Name", tagName));
+		}
+
 		// POST: api/Tags
 		[HttpPost]
 		public IHttpActionResult Post([FromBody]Tag tag)

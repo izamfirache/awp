@@ -88,7 +88,7 @@ namespace LearningPlatform.Controllers
 				var request = new HttpRequestMessage(HttpMethod.Post, baseUrl + "api/users/token");
 				var serializedObject = JsonConvert.SerializeObject(user);
 				request.Content = new StringContent(serializedObject, System.Text.Encoding.UTF8, "application/json");
-				var result = httpClient.SendAsync(request).Result;
+				var result = await httpClient.SendAsync(request);
 
 				var resultUserJson = result.Content.ReadAsStringAsync().Result;
 				var resultUser = JsonConvert.DeserializeObject<User>(resultUserJson);

@@ -40,5 +40,25 @@ namespace LearningPlatform.DAL
 				return dataTable;
 			}
 		}
+
+        public DataTable ExecuteStoredProcReturnDataTable(string storedProcedureName, Dictionary<string, object> parameters)
+        {
+            using (var connection = new SqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+                var command = new SqlCommand(storedProcedureName, connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                foreach(var parameter in parameters)
+                {
+                    command.Parameters.Add(new SqlParameter(parameter.Key, parameter.Value));
+                }                
+
+                var results = command.ExecuteReader();
+                var dataTable = new DataTable();
+                dataTable.Load(results);
+                return dataTable;
+            }
+        }
 	}
 }
