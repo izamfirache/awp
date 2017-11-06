@@ -214,7 +214,7 @@
     <Content Include="Content\header-style.css" />
     <Content Include="Content\home-page-style.css" />
     <Content Include="Content\login-style.css" />
-    <Content Include="Content\site-structure-style.css" />
+    <Content Include="Content\site-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -270,6 +270,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Courses\CourseList.cshtml" />
     <Content Include="Views\Courses\CourseDetails.cshtml" />
+    <Content Include="Views\Shared\_LoginModalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

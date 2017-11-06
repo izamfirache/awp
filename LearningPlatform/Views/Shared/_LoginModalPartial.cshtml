@@ -1,0 +1,27 @@
+﻿@if (!Request.IsAuthenticated)
+{
+    <!-- Login modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="loginModalLabel">Sign In to your account</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <input name="email" placeholder="Email" class="input-lg" />
+                    <input name="password" placeholder="Password" class="input-lg" />
+                    <div class="text-right">
+                        @Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary clearfix" })
+                    </div>
+                 </div>
+
+                <div class="modal-footer">
+                    <span>Don't have an account?&nbsp;</span>
+                    @Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-info" })
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}

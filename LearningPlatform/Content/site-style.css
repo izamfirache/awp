@@ -1,0 +1,118 @@
+﻿/***********************
+ * Bootstrap overrides
+ ***********************/
+
+.page-header {
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+}
+
+/***********************
+ * Header styles
+ ***********************/
+
+/* On hover effect */
+.navbar-brand span {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 7px;
+    transition: 0.5s;
+}
+    
+    .navbar-brand:hover {
+        font-weight: bold;
+    }
+
+    .navbar-brand span:before,
+    .navbar-brand span::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        transition: 0.5s;
+        transform: scale(0);
+    }
+
+    .navbar-brand span:hover::before,
+    .navbar-brand span:hover::after {
+        transform: scale(1);
+    }
+
+    .navbar-brand span:before {
+        border-bottom: 2px solid #444;
+        border-left: 2px solid #444;
+        transform-origin: 100% 0%;
+    }
+
+    .navbar-brand span:after {
+        border-top: 2px solid #444;
+        border-right: 2px solid #444;
+        transform-origin: 0% 100%;
+    }
+
+
+/***********************
+ * Page Content styles
+ ***********************/
+
+.page-content {
+    padding: 2em 0;
+    margin: 1em 0;
+}
+
+/***********************
+ * Footer styles
+ ***********************/
+
+.page-footer {
+    padding-top: 20px;
+    color: #fafafa;
+    background-color: #424242;
+    box-shadow: 0 500px 0 500px #3e3e3e;
+}
+
+    .page-footer .footer-copyright {
+        display: flex;
+        align-items: center;
+        min-height: 50px;
+        padding: 10px 0;
+        margin-top: 20px;
+        color: rgba(255,255,255,0.8);
+        background-color: rgba(51, 51, 51, 0.25);
+    }
+
+/***********************
+ * Login Modal
+ ***********************/
+
+#login-modal .modal-dialog {
+    position: absolute;
+    top: 40%;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+}
+
+#login-modal .modal-body {
+    width: 80%;
+    margin: 15px auto;
+}
+
+#login-modal input {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+/***********************
+ * Utility classes
+ ***********************/
+
+.full-width {
+    width: 100%;
+}
