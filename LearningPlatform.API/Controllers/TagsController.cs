@@ -15,7 +15,7 @@ namespace LearningPlatform.API.Controllers
 
 		public TagsController()
 		{
-			_repository = new DataRepository<Tag>(Environment.GetEnvironmentVariable("AWP_DB"));
+			_repository = new DataRepository<Tag>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
 		}
 
 		// GET: api/Tags

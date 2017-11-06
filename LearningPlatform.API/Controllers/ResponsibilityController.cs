@@ -15,7 +15,7 @@ namespace LearningPlatform.API.Controllers
 
 		public ResponsibilityController()
 		{
-			_repository = new DataRepository<Responsibility>(Environment.GetEnvironmentVariable("AWP_DB"));
+			_repository = new DataRepository<Responsibility>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
 		}
 
 		// GET: api/Users
