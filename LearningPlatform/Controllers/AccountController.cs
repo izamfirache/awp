@@ -71,6 +71,7 @@ namespace LearningPlatform.Controllers
 		// POST: /Account/Login
 		[HttpPost]
 		[AllowAnonymous]
+		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Login(LoginUserModel model, string returnUrl)
 		{
 			if (!ModelState.IsValid)
@@ -180,6 +181,7 @@ namespace LearningPlatform.Controllers
 		// POST: /Account/Register
 		[HttpPost]
 		[AllowAnonymous]
+		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Register(RegisterUserModel model)
 		{
 			if (ModelState.IsValid)
