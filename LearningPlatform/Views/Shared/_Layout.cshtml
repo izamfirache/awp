@@ -4,39 +4,68 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - .learning platform</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/styles")
+    
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/header-style.css")
-    @Styles.Render("~/Content/home-page-style.css")
-    @Styles.Render("~/Content/site-structure-style.css")
-    @Styles.Render("~/Content/login-style.css")
-    @Styles.Render("~/Content/courses-page-style.css")
-    @Styles.Render("~/Content/course-details-style.css")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-    <div class="page-header-container">
-        <div class="title-section">
-            @Html.ActionLink(".learning platform", "Index", "Home", new { area = "" }, new { @class = "header-element" })
-        </div>
-        <div>
-            <div class="tabs-section">
-                <div class="tab-container">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "header-element" })</div>
-                <div class="tab-container">@Html.ActionLink("Courses", "GetCourses", "Courses", new { area = "" }, new { @class = "header-element" })</div>
-                <div class="tab-container">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "header-element" })</div>
-                <div class="tab-container">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "header-element" })</div>
-            </div>
-            <div class="login-section">
-                @Html.Partial("_LoginPartial", new LearningPlatform.Models.Users.LoginUserModel())
-            </div>
-        </div>
-    </div>
+    <header id="header" class="page-header">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Logo and Mobile Menu button -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index", "Home")" class="navbar-brand"><span>C#.Heap</span></a>
+                </div>
 
-    <div class="page-content">
+                <!-- Collapsible Navbar -->
+                <div id="navbar-collapse" class="collapse navbar-collapse">
+                    <div class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Courses", "GetCourses", "Courses")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                        <div class="navbar-login pull-right">
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header><!-- /#header -->
+
+    <div id="content" class="page-content">
         @RenderBody()
-    </div>
+    </div><!-- /#content -->
 
-    <footer class="page-footer">
-        <p>&copy; @DateTime.Now.Year - .learning platform</p>
-    </footer>
+    <footer id="#footer" class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-12 col-md-6 col-lg-3">
+                    <h4 class="footer-title">Contributors</h4>
+                    <ul class="footer-list">
+                        <li>Alexandru Rus</li>
+                        <li>Mihai Patrascoiu</li>
+                        <li>Iuliu Zamfirache</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container full-width">
+                &copy; @DateTime.Now.Year C#.Heap
+            </div>
+        </div>
+    </footer><!-- /#footer -->
+    @Html.Partial("_LoginModalPartial", new LearningPlatform.Models.Users.LoginUserModel())
 </body>
 </html>

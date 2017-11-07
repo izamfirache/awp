@@ -1,47 +1,17 @@
 ﻿@if (Request.IsAuthenticated)
 {
-	using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-	{
-		@Html.AntiForgeryToken()
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
 
-		<ul class="nav navbar-nav navbar-right">
-			<li>
-				@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "header-element" })
-			</li>
-			<li>
-				<a href="javascript:document.getElementById('logoutForm').submit()" class="header-element">Log off</a>
-				@*@Html.ActionLink("Logout", "LogOff", "Account", routeValues: null, htmlAttributes: new { @class = "header-element" })*@
-			</li>
-		</ul>
-	}
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
+        </ul>
+    }
 }
 else
 {
-	@model LearningPlatform.Models.Users.LoginUserModel
-
-	using (Html.BeginForm("Login", "Account", FormMethod.Post))
-	{
-		@Html.AntiForgeryToken()
-		<div class="inputs-container">
-			<div class="email-container">
-				@Html.TextBoxFor(m => m.Username, null, new { @class = "email-input" })
-				@*<input placeholder="Email" class="email-input" />*@
-			</div>
-
-			<div class="password-container">
-				@Html.PasswordFor(m => m.Password, new { @class = "password-input" })
-				@*<input placeholder="Password" class="password-input" />*@
-			</div>
-		</div>
-
-		<div class="buttons-container">
-			<div class="login-button">
-				@*@Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "login-link", type = "submit" })*@
-				<input type="submit" value="Sign In" />
-			</div>
-			<div class="signup-button">
-				@Html.ActionLink("Sign up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "register-link" })
-			</div>
-		</div>
-	}
+    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#login-modal">Sign In</button>
+    @Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-default navbar-btn" })
 }
