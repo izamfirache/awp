@@ -1,51 +1,73 @@
-﻿.home-page-intro {
-    width: 86%;
-    height: 30%;
-    background-color: #eee;
-    border-radius: 20px;
+﻿/**
+ *  Styles applying to the Home Page
+ */
+
+/*********************************
+ * Intro description
+ *********************************/
+
+.home-page-intro {
+    width: 80%;
+    padding: 0 20px 25px;
+    margin: auto;
     color: #333;
-    padding: 2%;
-    margin-left: 4.5%;
-    margin-top: 2%;
-    border:1px solid;
-}
-
-.featured-courses {
-    width: 45%;
-    float: left;
+    border: 1px solid #000;
+    border-radius: 8px;
     background-color: #eee;
-    height: 80%;
-    margin-left: 2%;
-    margin-top: 3%;
-    border: 1px solid;
 }
 
-.new-courses {
-    width: 45%;
-    float: left;
-    background-color: #eee;
-    height: 80%;
-    margin-left: 5%;
-    margin-top: 3%;
-    border: 1px solid;
+/*********************************
+ * General courses box styles
+ *********************************/
+
+.courses-container {
+    margin-top: 3em;
 }
 
-.course-title {
-    height: 20%;
+@media only screen and (max-width: 991px) {
+    .courses-box-wrapper + .courses-box-wrapper {
+        margin-top: 2em;
+    }
+}
+
+.courses-box {
+    border: 1px solid #000;
+}
+
+.courses-title {
     font-size: 20px;
-    padding-left: 36%;
-    padding-top: 3%;
-    background-color: #36736C;
+    text-align: center;
+    padding: 12px 0;
     color: white;
+    border-bottom: 2px solid #2c5e58;
+    background-color: #36736C;
 }
 
-.home-page-courses-container{
-    height:70%;
-    width:100%;
+.courses-list {
+    overflow-y: auto;
+    max-height: 1200px;
 }
 
-.course-list {
-    width: 100%;
-    height: 80%;
-    overflow: overlay;
+.course-item {
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: #eee;
 }
+
+.course-item + .course-item {
+    border-top: 1px solid #ddd;
+}
+
+    .course-item:hover {
+        color: #fafafa;
+        background-color: #1398B2;
+    }
+
+    .course-item:hover .course-item-date {
+        border-left: 2px solid #fff;
+    }
+
+/*********************************
+ * Particular courses box styles
+ *********************************/

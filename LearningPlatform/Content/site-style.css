@@ -20,7 +20,7 @@
     height: 40px;
     line-height: 40px;
     padding: 0 7px;
-    transition: 0.5s;
+    transition: 0.4s;
 }
     
     .navbar-brand:hover {
@@ -36,7 +36,7 @@
         width: 100%;
         height: 100%;
         z-index: 5;
-        transition: 0.5s;
+        transition: 0.4s;
         transform: scale(0);
     }
 
@@ -56,7 +56,6 @@
         border-right: 2px solid #444;
         transform-origin: 0% 100%;
     }
-
 
 /***********************
  * Page Content styles
@@ -120,4 +119,12 @@
 
 .full-width {
     width: 100%;
+}
+
+
+@media only screen and (min-width: 992px) {
+    .valign-center {
+        display: flex;
+        align-items: center;
+    }
 }
