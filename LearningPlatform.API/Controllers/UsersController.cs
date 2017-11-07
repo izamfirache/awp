@@ -1,10 +1,14 @@
 ﻿using LearningPlatform.Core.Entities;
 using LearningPlatform.DAL;
+using LearningPlatform.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web.Http;
 
 namespace LearningPlatform.API.Controllers
@@ -30,6 +34,26 @@ namespace LearningPlatform.API.Controllers
 		public IHttpActionResult Get(int id)
 		{
 			return Json(_repository.GetById(id));
+		}
+
+		[HttpGet]
+		[Route("users/{id}/avatar")]
+		public HttpResponseMessage GetAvatar(int id)
+		{
+			var user = _repository.GetById(id);
+
+			if(user == null)
+			{
+				return new HttpResponseMessage(HttpStatusCode.NotFound);
+			}
+
+			var avatar = _repository.GetById(id).Avatar;
+
+			var imageStream = avatar.StringToByteArray().ToStream();
+			var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StreamContent(imageStream) };
+			//response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+			response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+			return response;
 		}
 
 		// POST: api/Users

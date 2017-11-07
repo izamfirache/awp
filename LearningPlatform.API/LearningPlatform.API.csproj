@@ -270,6 +270,10 @@
       <Project>{db21ea51-0499-435a-814c-1716d155a0ec}</Project>
       <Name>LearningPlatform.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LearningPlatform.Helpers\LearningPlatform.Helpers.csproj">
+      <Project>{23A3CFB4-1EC3-4479-A2E1-36434C820F7D}</Project>
+      <Name>LearningPlatform.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

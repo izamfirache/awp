@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearningPlatform.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace LearningPlatform.Core.Entities
 		public string Username { get; set; }
 		public string Password { get; set; }
 		public string Email { get; set; }		
+		public string Avatar { get; set; }
 
 		public User()
 		{			
@@ -35,6 +37,11 @@ namespace LearningPlatform.Core.Entities
 			Username = row["Username"].ToString();
 			Password = row["Password"].ToString();
 			Email = row["Email"].ToString();
+
+			if(!(row["Avatar"] is DBNull))
+			{
+				Avatar = ((byte[])row["Avatar"]).ByteArrayToString();
+			}			
 		}
 
 		public override string GetDatabaseTableName()
@@ -46,7 +53,7 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($"('{Username}', '{Password}', '{Email}')");
+			stringBuilder.Append($"('{Username}', '{Password}', '{Email}', 0x{Avatar})");
 
 			return stringBuilder.ToString();
 		}
@@ -55,7 +62,7 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($" Username = '{Username}', Password = '{Password}', Email = '{Email}' ");
+			stringBuilder.Append($" Username = '{Username}', Password = '{Password}', Email = '{Email}', Avatar = 0x{Avatar} ");
 
 			return stringBuilder.ToString();
 		}

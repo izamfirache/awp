@@ -203,6 +203,8 @@
     <Compile Include="Models\Courses\CourseCollection.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Users\EditProfileUserModel.cs" />
+    <Compile Include="Models\Users\LoggedInUserModel.cs" />
     <Compile Include="Models\Users\LoginUserModel.cs" />
     <Compile Include="Models\Users\RegisterUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
