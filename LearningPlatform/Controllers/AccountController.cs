@@ -440,7 +440,8 @@ namespace LearningPlatform.Controllers
 
 		//
 		// POST: /Account/LogOff
-		[HttpGet]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult LogOff()
 		{
 			FormsAuthentication.SignOut();

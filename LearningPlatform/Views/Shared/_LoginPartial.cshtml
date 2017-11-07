@@ -9,8 +9,8 @@
 				@Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "header-element" })
 			</li>
 			<li>
-				@*<a href="javascript:document.getElementById('logoutForm').submit()" class="header-element">Log off</a>*@
-				@Html.ActionLink("Logout", "LogOff", "Account", routeValues: null, htmlAttributes: new { @class = "header-element" })
+				<a href="javascript:document.getElementById('logoutForm').submit()" class="header-element">Log off</a>
+				@*@Html.ActionLink("Logout", "LogOff", "Account", routeValues: null, htmlAttributes: new { @class = "header-element" })*@
 			</li>
 		</ul>
 	}
