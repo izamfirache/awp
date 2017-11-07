@@ -7,7 +7,7 @@
 <div class="home-page-intro">
     <h1>.knowledge base</h1>
     <div>
-        This is a site for software engineers. It covers a lot of topics related to Computer Science. 
+        This is a site for software engineers. It covers a lot of topics related to Computer Science.
         If you want to contribute to this free site please contact me.
     </div>
 </div>
@@ -18,7 +18,7 @@
 
         <div class="course-list">
             @foreach (LearningPlatform.Models.Courses.Course course in Model.FeaturedCourses)
-            {
+        {
                 <hr class="course-separator" />
 
                 <div class="course-row" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
@@ -29,13 +29,13 @@
         </div>
 
     </div>
-    
+
     <div class="new-courses">
         <div class="course-title"> .new Courses </div>
 
         <div class="course-list">
             @foreach (LearningPlatform.Models.Courses.Course course in Model.NewCourses)
-            {
+        {
                 <hr class="course-separator" />
 
                 <div class="course-row" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
