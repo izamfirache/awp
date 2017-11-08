@@ -88,14 +88,15 @@ namespace LearningPlatform.Controllers
 				var request = new HttpRequestMessage(HttpMethod.Post, baseUrl + "api/users/token");
 				var serializedObject = JsonConvert.SerializeObject(user);
 				request.Content = new StringContent(serializedObject, System.Text.Encoding.UTF8, "application/json");
-				var result = await httpClient.SendAsync(request);
-
-				var resultUserJson = result.Content.ReadAsStringAsync().Result;
-				var resultUser = JsonConvert.DeserializeObject<User>(resultUserJson);
+				var result = await httpClient.SendAsync(request);				
 
 				if (result.IsSuccessStatusCode)
 				{
+					var resultUserJson = result.Content.ReadAsStringAsync().Result;
+					var resultUser = JsonConvert.DeserializeObject<User>(resultUserJson);
+
 					FormsAuthentication.SetAuthCookie(resultUser.Username, false);
+					Session["LoggedInUserId"] = resultUser.Id;
 
 					//Session["LoggedInUser"] = resultUser;
 					return RedirectToAction("Index", "Home");
