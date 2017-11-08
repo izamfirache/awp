@@ -99,6 +99,13 @@ namespace LearningPlatform.DAL
 			return this;
 		}
 
+		public SqlQueryBuilder AddFreeSql(string sql)
+		{
+			_query += sql;
+
+			return this;
+		}
+
 		public string GetQuery()
 		{
 			return _query;

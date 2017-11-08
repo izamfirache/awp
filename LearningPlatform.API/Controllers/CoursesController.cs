@@ -39,50 +39,66 @@ namespace LearningPlatform.API.Controllers
 			return Json(_repository.GetByProperty("Name", courseName));
 		}
 
-        [HttpGet]
-        public IHttpActionResult GetCoursesByOwnerId([FromUri]string ownerId)
-        {
-            // call DAL directly because it doesnt not return a single entity
-            var queryExecutor = new SqlQueryExecutor();
+		[HttpGet]
+		public IHttpActionResult GetCoursesByOwnerId([FromUri]string ownerId)
+		{
+			// call DAL directly because it doesnt not return a single entity
+			var queryExecutor = new SqlQueryExecutor();
 
-            var parameters = new Dictionary<string, object>();
-            parameters.Add("ownerId", ownerId);
+			var parameters = new Dictionary<string, object>();
+			parameters.Add("ownerId", ownerId);
 
-            var dataTable = queryExecutor.ExecuteStoredProcReturnDataTable("dbo.GetCoursesByOwnerId", parameters);
+			var dataTable = queryExecutor.ExecuteStoredProcReturnDataTable("dbo.GetCoursesByOwnerId", parameters);
 
-            var resultList = new List<Course>();
+			var resultList = new List<Course>();
 
-            foreach (var row in dataTable.Rows)
-            {
-                resultList.Add(new Course((DataRow)row));
-            }
+			foreach (var row in dataTable.Rows)
+			{
+				resultList.Add(new Course((DataRow)row));
+			}
 
-            return Json(resultList);
-        }
+			return Json(resultList);
+		}
 
-        [HttpGet]
-        public IHttpActionResult GetCoursesByTag([FromUri]string tagName)
-        {
-            // call DAL directly because it doesnt not return a single entity
-            var queryExecutor = new SqlQueryExecutor();
+		[HttpGet]
+		public IHttpActionResult GetCoursesByTag([FromUri]string tagName)
+		{
+			// call DAL directly because it doesnt not return a single entity
+			var queryExecutor = new SqlQueryExecutor();
 
-            var parameters = new Dictionary<string, object>();
-            parameters.Add("tagName", tagName);
+			var parameters = new Dictionary<string, object>();
+			parameters.Add("tagName", tagName);
 
-            var dataTable = queryExecutor.ExecuteStoredProcReturnDataTable("dbo.GetCoursesByTag", parameters);
+			var dataTable = queryExecutor.ExecuteStoredProcReturnDataTable("dbo.GetCoursesByTag", parameters);
 
-            var resultList = new List<Course>();
+			var resultList = new List<Course>();
 
-            foreach (var row in dataTable.Rows)
-            {
-                resultList.Add(new Course((DataRow)row));
-            }
+			foreach (var row in dataTable.Rows)
+			{
+				resultList.Add(new Course((DataRow)row));
+			}
 
-            return Json(resultList);
-        }
+			return Json(resultList);
+		}
 
-        // POST: api/Users
-        [HttpPost]
+		[HttpGet]
+		[Route("courses/latest")]
+		public IHttpActionResult GetLatestCourse()
+		{
+			var queryBuilder = new SqlQueryBuilder();
+			var queryExecutor = new SqlQueryExecutor();
+
+			queryBuilder.AddFreeSql("select Top (1) * from courses order by CreationDate desc");
+
+			var dataTable = queryExecutor.ExecuteSqlReturnDataTable(queryBuilder.GetQuery());
+
+			var course = new Course((DataRow)dataTable.Rows[0]);
+
+			return Json(course);
+		}
+
+		// POST: api/Users
+		[HttpPost]
 		public IHttpActionResult Post([FromBody]Course course)
 		{
 			var result = _repository.Insert(course);
