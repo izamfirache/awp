@@ -1,45 +1,55 @@
 ﻿
 .title-section {
-    position: relative;
-    float: left;
-    width: 20%;
-    height: 100%;
-    padding: 39px;
-    font-size: 25px;
+	position: relative;
+	float: left;
+	width: 20%;
+	height: 100%;
+	padding: 39px;
+	font-size: 25px;
 }
 
 .login-section {
-    width: 40%;
-    height: 105px;
-    float: left;
-    margin-left: 6%;
+	width: 40%;
+	height: 105px;
+	float: left;
+	margin-left: 6%;
 }
 
 .tabs-section {
-    height: 100%;
-    float: left;
-    width: 30%;
+	height: 100%;
+	float: left;
+	width: 30%;
 }
 
-.header-element{
-    color: white;
-    float: left;
-    padding-right: 5px;
-}
-.header-element:hover {
-    text-decoration: none;
-    color: white;
-    height: 100%;
+.header-element {
+	color: white;
+	float: left;
+	padding-right: 5px;
 }
 
-.tab-container{
-    float: left;
-    width: 17%;
-    height: 100%;
-    color: white;
-    padding:15px;
-    font-size:15px;
+	.header-element:hover {
+		text-decoration: none;
+		color: white;
+		height: 100%;
+	}
+
+.tab-container {
+	float: left;
+	width: 17%;
+	height: 100%;
+	color: white;
+	padding: 15px;
+	font-size: 15px;
 }
-.tab-container:hover {
-    background-color: #eeeeee;
+
+	.tab-container:hover {
+		background-color: #eeeeee;
+	}
+
+.avatar-wrapper {
+	width: 40px;
+}
+
+.avatar{
+	vertical-align: middle;
 }
