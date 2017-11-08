@@ -8,7 +8,8 @@
 			<li>
 				<div class="avatar-wrapper">
 					@{ 
-						var imageUrl = "http://localhost:12345/api/users/" + Session["LoggedInUserId"] + "/avatar";
+						var baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+						var imageUrl = baseUrl + "/api/users/" + Session["LoggedInUserId"] + "/avatar";
 					}
 					<img src="@imageUrl" class="avatar img-circle img-responsive">
 				</div>
