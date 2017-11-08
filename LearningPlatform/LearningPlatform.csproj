@@ -298,6 +298,10 @@
       <Project>{225f2579-e5ca-4a2f-87f6-154156514a17}</Project>
       <Name>LearningPlatform.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LearningPlatform.Helpers\LearningPlatform.Helpers.csproj">
+      <Project>{23a3cfb4-1ec3-4479-a2e1-36434c820f7d}</Project>
+      <Name>LearningPlatform.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

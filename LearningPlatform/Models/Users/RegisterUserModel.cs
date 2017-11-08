@@ -23,5 +23,7 @@ namespace LearningPlatform.Models.Users
 		[Required]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
+
+		public HttpPostedFileBase Avatar { get; set; }
 	}
 }
