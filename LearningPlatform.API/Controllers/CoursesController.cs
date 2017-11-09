@@ -13,10 +13,18 @@ namespace LearningPlatform.API.Controllers
 	public class CoursesController : ApiController
 	{
 		private DataRepository<Course> _repository;
+		private DataRepository<Tag> _tagRepository;
+		private DataRepository<CourseTag> _courseTagRepository;
+		private DataRepository<CourseRating> _courseRatingsRepository;
 
 		public CoursesController()
 		{
-			_repository = new DataRepository<Course>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
+			var connectionString = Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine);
+
+			_repository = new DataRepository<Course>(connectionString);
+			_tagRepository = new DataRepository<Tag>(connectionString);
+			_courseTagRepository = new DataRepository<CourseTag>(connectionString);
+			_courseRatingsRepository = new DataRepository<CourseRating>(connectionString);
 		}
 
 		// GET: api/Users
@@ -82,7 +90,7 @@ namespace LearningPlatform.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("courses/latest")]
+		[Route("Courses/latest")]
 		public IHttpActionResult GetLatestCourse()
 		{
 			var queryBuilder = new SqlQueryBuilder();
@@ -97,20 +105,111 @@ namespace LearningPlatform.API.Controllers
 			return Json(course);
 		}
 
-		// POST: api/Users
+		[HttpGet]
+		[Route("Courses/featured")]
+		public IHttpActionResult GetFeaturedCourses()
+		{
+			return Json(_repository.GetByProperty("IsFeatured", 1));
+		}
+
+		[HttpGet]
+		[Route("Courses/{courseId}/tags")]
+		public IHttpActionResult GetTagsForCourse(int courseId)
+		{
+			var courseTags = _courseTagRepository.GetByProperty("CourseId", courseId);
+			var tags = new List<Tag>();
+
+			foreach (var courseTag in courseTags)
+			{
+				tags.Add(_tagRepository.GetById(courseTag.TagId));
+			}
+
+			return Json(tags);
+		}
+
 		[HttpPost]
 		public IHttpActionResult Post([FromBody]Course course)
 		{
+			course.CreationDate = DateTime.Now;
+			course.UpdateDate = DateTime.Now;
 			var result = _repository.Insert(course);
 
-			if (result == 1)
+			if (result != 1)
 			{
-				return Ok();
+				return BadRequest("Could not add course");
 			}
-			else
+
+			if (course.Tags.Count > 0)
 			{
-				return BadRequest();
+				foreach (var tag in course.Tags)
+				{
+					var existingTag = _tagRepository.GetByProperty("Name", tag.Name).ToList().FirstOrDefault();
+
+					if(existingTag == null)
+					{
+						_tagRepository.Insert(new Tag()
+						{
+							Name = tag.Name
+						});
+
+						existingTag = _tagRepository.GetByProperty("Name", tag.Name).ToList().FirstOrDefault();
+					}
+
+					var addedCourse = _repository.GetByProperty("Name", course.Name).ToList().FirstOrDefault();
+
+					_courseTagRepository.Insert(new CourseTag()
+					{
+						CourseId = addedCourse.Id,
+						TagId = existingTag.Id
+					});
+				}
 			}
+
+			return Ok();
+		}
+
+		[HttpGet]
+		[Route("Courses/highestRated")]
+		public IHttpActionResult GetHighestRatedCourse()
+		{
+			var query = @"
+									select top (5) 
+										c.Id
+										, c.Name
+										, c.Description
+										, c.CreationDate
+										, c.UpdateDate
+										, c.IsFeatured
+										, round(AVG(Cast(cr.Rating as Float)), 2) as Rating 
+									from dbo.Courses c 
+									inner join dbo.CoursesRatings cr on cr.CourseId = c.Id 
+									group by 
+										c.Id
+										, c.Name
+										, c.Description
+										, c.CreationDate
+										, c.UpdateDate
+										, c.IsFeatured 
+									order by Rating desc";
+
+			var queryBuilder = new SqlQueryBuilder();
+			var queryExecutor = new SqlQueryExecutor();
+
+			queryBuilder.AddFreeSql(query);
+
+			var dataTable = queryExecutor.ExecuteSqlReturnDataTable(queryBuilder.GetQuery());
+
+			var coursesWithRating = new List<Course>();
+
+			foreach (DataRow row in dataTable.Rows)
+			{
+				var course = new Course(row);
+				course.Rating = Double.Parse(row["Rating"].ToString());
+
+				coursesWithRating.Add(course);
+			}
+
+			return Json(coursesWithRating);
 		}
 
 		// PUT: api/Users/5

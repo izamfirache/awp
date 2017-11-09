@@ -81,6 +81,21 @@ namespace LearningPlatform.DAL
 			return GetListFromDataTableRows(results);
 		}
 
+		public IEnumerable<T> GetByProprieties(IDictionary<string, int> proprieties)
+		{
+			var queryBuilder = new SqlQueryBuilder();
+
+			queryBuilder.AddSelect(_databaseTableName);
+
+			foreach (var item in proprieties)
+			{
+				queryBuilder.AddWhere($"{item.Key} = {item.Value}");
+			}
+
+			var results = _queryExecutor.ExecuteSqlReturnDataTable(queryBuilder.GetQuery());
+			return GetListFromDataTableRows(results);
+		}
+
 		// Get all rows of a table
 		public IEnumerable<T> GetAll()
 		{			

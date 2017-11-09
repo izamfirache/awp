@@ -13,7 +13,6 @@ namespace LearningPlatform.Models.Courses
         public List<string> Tags { get; set; }
         public string Author { get; set; }
         public DateTime PublishDate { get; set; }
-
         public bool Featured { get; set; }
     }
 }
