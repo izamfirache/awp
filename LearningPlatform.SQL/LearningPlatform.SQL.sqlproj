@@ -71,6 +71,7 @@
     <Build Include="dbo\Tables\Users.sql" />
     <Build Include="dbo\Stored Procedures\GetCoursesByOwnerId.sql" />
     <Build Include="dbo\Stored Procedures\GetCoursesByTag.sql" />
+    <Build Include="dbo\Tables\CoursesRatings.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

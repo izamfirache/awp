@@ -201,6 +201,7 @@
     <Compile Include="Models\CoursesListPageModel.cs" />
     <Compile Include="Models\Courses\Course.cs" />
     <Compile Include="Models\Courses\CourseCollection.cs" />
+    <Compile Include="Models\Homepage\IndexPageModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Users\EditProfileUserModel.cs" />
@@ -297,6 +298,10 @@
     <ProjectReference Include="..\LearningPlatform.Core\LearningPlatform.Core.csproj">
       <Project>{225f2579-e5ca-4a2f-87f6-154156514a17}</Project>
       <Name>LearningPlatform.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LearningPlatform.Helpers\LearningPlatform.Helpers.csproj">
+      <Project>{23a3cfb4-1ec3-4479-a2e1-36434c820f7d}</Project>
+      <Name>LearningPlatform.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

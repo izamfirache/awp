@@ -7,66 +7,140 @@
  *********************************/
 
 .home-page-intro {
-    width: 80%;
-    padding: 0 20px 25px;
-    margin: auto;
-    color: #333;
-    border: 1px solid #000;
-    border-radius: 8px;
-    background-color: #eee;
+	width: 80%;
+	padding: 0 20px 25px;
+	margin: auto;
+	color: #333;
+	border: 1px solid #000;
+	border-radius: 8px;
+	background-color: #eee;
 }
+
+/*********************************
+ * Home page latest course
+ *********************************/
+
+.latest-course {
+	width: 80%;
+	padding: 5px 20px 25px;
+	margin: auto;
+	margin-top: 20px;
+	color: #333;
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.latest-course-info {
+	overflow: hidden;
+}
+
+.latest-course-thumbnail {
+	position: relative;
+	height: auto;
+	border: solid;
+	border-width: 1px;
+}
+
+.latest-course-details {
+	position: relative;
+}
+
+.latest-course-tag {
+	padding: 5px;
+}
+
+.latest-course-details-div {
+	padding: 5px;
+}
+
+.latest-course-details-label {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+	color: #333;
+	font-size: 16px;
+	color: black;
+	vertical-align: central;
+}
+
+.latest-course-details-text {
+	font-size: 1em;
+	font-weight: 100;
+	color: #333;
+}
+
+.tag-link {
+	display: block;
+	min-width: 5em;
+	padding: 0.5em;
+	font: 14px "PT Sans", sans-serif;
+	color: #4d94cc;
+	line-height: normal;
+	text-align: center;
+	border: 1px solid #4d94cc;
+	border-radius: 50px;
+	transition: color 0.2s ease-out;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.tag-link:hover {
+	color: white;
+	background-color: #4d94cc;
+}
+
 
 /*********************************
  * General courses box styles
  *********************************/
-
 .courses-container {
-    margin-top: 3em;
+	margin-top: 3em;
 }
 
 @media only screen and (max-width: 991px) {
-    .courses-box-wrapper + .courses-box-wrapper {
-        margin-top: 2em;
-    }
+	.courses-box-wrapper + .courses-box-wrapper {
+		margin-top: 2em;
+	}
 }
 
 .courses-box {
-    border: 1px solid #000;
+	border: 1px solid #000;
 }
 
 .courses-title {
-    font-size: 20px;
-    text-align: center;
-    padding: 12px 0;
-    color: white;
-    border-bottom: 2px solid #2c5e58;
-    background-color: #36736C;
+	font-size: 20px;
+	text-align: center;
+	padding: 12px 0;
+	color: white;
+	border-bottom: 2px solid #2c5e58;
+	background-color: #36736C;
 }
 
 .courses-list {
-    overflow-y: auto;
-    max-height: 1200px;
+	overflow-y: auto;
+	max-height: 1200px;
 }
 
 .course-item {
-    font-size: 15px;
-    cursor: pointer;
-    padding: 5px 15px;
-    background-color: #eee;
+	font-size: 15px;
+	cursor: pointer;
+	padding: 5px 15px;
+	background-color: #eee;
 }
 
-.course-item + .course-item {
-    border-top: 1px solid #ddd;
-}
+	.course-item + .course-item {
+		border-top: 1px solid #ddd;
+	}
 
-    .course-item:hover {
-        color: #fafafa;
-        background-color: #1398B2;
-    }
+	.course-item:hover {
+		color: #fafafa;
+		background-color: #1398B2;
+	}
 
-    .course-item:hover .course-item-date {
-        border-left: 2px solid #fff;
-    }
+		.course-item:hover .course-item-date {
+			border-left: 2px solid #fff;
+		}
 
 /*********************************
  * Particular courses box styles

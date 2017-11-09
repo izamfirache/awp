@@ -1,49 +1,90 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+	ViewBag.Title = "Home Page";
 }
 
-@model LearningPlatform.Models.Courses.CourseCollection
+@model LearningPlatform.Models.Homepage.IndexPageModel
 
 <div class="home-page-intro">
-    <h2>Intro</h2>
-    <div>
-        This is a site for software engineers. It covers a lot of topics related to Computer Science.
-        If you want to contribute to this free site please contact me.
-    </div>
+	<h2>Intro</h2>
+	<div>
+		This is a site for software engineers. It covers a lot of topics related to Computer Science.
+		If you want to contribute to this free site please contact me.
+	</div>
+</div>
+
+<div class="latest-course">
+	<div>
+		<h2>Latest course:</h2>
+	</div>
+	<div class="latest-course-info">
+		<div class="latest-course-thumbnail col-md-6">
+			<h2>Course Thumbnail</h2>
+		</div>
+		<div class="latest-course-details col-md-6">
+			<div class="latest-course-details-div">
+				<div>
+					<label class="latest-course-details-label">Name</label>
+				</div>
+				<div>
+					<label class="latest-course-details-text">@Model.LatestCourse.Name</label>
+				</div>
+			</div>
+			<div class="latest-course-details-div">
+				<div>
+					<label class="latest-course-details-label">Description</label>
+				</div>
+				<div>
+					<label class="latest-course-details-text">@Model.LatestCourse.Description</label>
+				</div>
+			</div>
+			<div class="valign-center latest-course-details-div ">
+				<div>
+					<label class="latest-course-details-label">Tags</label>
+				</div>				
+				@foreach (var tag in Model.LatestCourse.Tags)
+				{
+					<div class="latest-course-tag">
+						<a class="tag-link">@tag.Name</a>
+						@*<button type="button" class="btn btn-info">@tag.Name</button>*@
+					</div>
+				}
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="courses-container row">
-    <div class="courses-box-wrapper col-md-6">
-        <div class="courses-box courses-featured">
-            <div class="courses-title">Featured Courses</div>
-            <div class="courses-list">
-                @foreach (LearningPlatform.Models.Courses.Course course in Model.FeaturedCourses)
-                 {
-                    <div class="course-item" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        <div class="valign-center row">
-                            <div class="course-item-title col-sm-9">@Html.DisplayFor(m => course.Title)</div>
-                            <div class="course-item-date col-sm-3">@Html.DisplayFor(m => course.PublishDate)</div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+	<div class="courses-box-wrapper col-md-6">
+		<div class="courses-box courses-featured">
+			<div class="courses-title">Featured Courses</div>
+			<div class="courses-list">
+				@foreach (var course in Model.FeaturedCourses)
+				{
+					<div class="course-item" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+						<div class="valign-center row">
+							<div class="course-item-title col-sm-9">@Html.DisplayFor(m => course.Name)</div>
+							<div class="course-item-date col-sm-3">@Html.DisplayFor(m => course.CreationDate)</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
 
-    <div class="courses-box-wrapper col-md-6">
-        <div class="courses-box courses-new">
-            <div class="courses-title">New Courses</div>
-            <div class="courses-list">
-                @foreach (LearningPlatform.Models.Courses.Course course in Model.NewCourses)
-                {
-                    <div class="course-item" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        <div class="valign-center row">
-                            <div class="course-item-title col-sm-9">@Html.DisplayFor(m => course.Title)</div>
-                            <div class="course-item-date col-sm-3">@Html.DisplayFor(m => course.PublishDate)</div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+	<div class="courses-box-wrapper col-md-6">
+		<div class="courses-box courses-new">
+			<div class="courses-title">Highest Rated Courses</div>
+			<div class="courses-list">
+				@foreach (var course in Model.HighestRatedCourses)
+				{
+					<div class="course-item" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+						<div class="valign-center row">
+							<div class="course-item-title col-sm-9">@Html.DisplayFor(m => course.Name)</div>
+							<div class="course-item-date col-sm-3">@Html.DisplayFor(m => course.Rating)</div>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
 </div>

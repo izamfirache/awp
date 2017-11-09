@@ -15,6 +15,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Web.Security;
 using LearningPlatform.Http;
+using System.IO;
+using LearningPlatform.Helpers;
 
 namespace LearningPlatform.Controllers
 {
@@ -187,12 +189,20 @@ namespace LearningPlatform.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new User(model.Username, model.Password, model.Email);
+				string avatarData = string.Empty;
+
+				if(model.Avatar != null)
+				{
+					MemoryStream memoryStream = new MemoryStream();
+					model.Avatar.InputStream.CopyTo(memoryStream);
+					avatarData = memoryStream.ToArray().ByteArrayToString();
+				}				
+
+				var user = new User(model.Username, model.Password, model.Email, avatarData);
 
 				var httpClient = new HttpClient();
-
-				string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
-				var request = new HttpRequestMessage(HttpMethod.Post, baseUrl + "api/users");
+				
+				var request = new HttpRequestMessage(HttpMethod.Post, Request.GetBaseUrl() + "api/users");
 				var serializedObject = JsonConvert.SerializeObject(user);
 				request.Content = new StringContent(serializedObject, System.Text.Encoding.UTF8, "application/json");
 				var result = await httpClient.SendAsync(request);				
@@ -204,7 +214,7 @@ namespace LearningPlatform.Controllers
 
 					FormsAuthentication.SetAuthCookie(user.Username, false);
 
-					//Session["LoggedInUser"] = resultUser;
+					Session["LoggedInUserId"] = resultUser.Id;
 					return RedirectToAction("Index", "Home");
 				}
 				else

@@ -14,6 +14,9 @@ namespace LearningPlatform.Core.Entities
 		public string Description { get; set; }
 		public DateTime CreationDate { get; set; }
 		public DateTime UpdateDate { get; set; }
+		public int IsFeatured { get; set; }
+		public double Rating { get; set; }
+		public List<Tag> Tags { get; set; }
 
 		public Course()
 		{
@@ -27,6 +30,7 @@ namespace LearningPlatform.Core.Entities
 			Description = row["Description"].ToString();
 			CreationDate = DateTime.Parse(row["CreationDate"].ToString());
 			UpdateDate = DateTime.Parse(row["UpdateDate"].ToString());
+			IsFeatured = Int32.Parse(row["IsFeatured"].ToString());
 		}
 
 		public override string GetDatabaseTableName()
@@ -38,7 +42,7 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($"('{Name}', '{Description}', '{CreationDate.ToString()}', '{UpdateDate}')");
+			stringBuilder.Append($"('{Name}', '{Description}', '{CreationDate.ToString()}', '{UpdateDate}', {IsFeatured})");
 
 			return stringBuilder.ToString();
 		}
@@ -47,14 +51,14 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', CreationDate =  '{CreationDate.ToString()}', UpdateDate = '{UpdateDate}' ");
+			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', UpdateDate = '{UpdateDate}', IsFeatured = {IsFeatured} ");
 
 			return stringBuilder.ToString();
 		}
 
 		public override string GetInsertFields()
 		{
-			return "(Name, Description, CreationDate, UpdateDate)";
+			return "(Name, Description, CreationDate, UpdateDate, IsFeatured)";
 		}
 	}
 }

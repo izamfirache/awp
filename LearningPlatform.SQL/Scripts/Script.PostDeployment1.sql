@@ -47,17 +47,17 @@ GO
 
 MERGE INTO [dbo].[Courses] AS Target USING(VALUES 
 
-(1,N'.net Framework. C# fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(2,N'Object Oriented Programing. Java fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(3,N'Procedural programming.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(4,N'C++ used in the OO way.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(6,N'Javascript fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(7,N'Functional Programming aspects. Prolog.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(8,N'Haskell for begginers.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(9,N'Ruby fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-,(10,N'HTML and CSS advanced.',N'','20171101 12:57:24.000','20171101 12:57:24.000')
-) AS Source ([Id],[Name],[Description],[CreationDate],[UpdateDate])
+(1,N'.net Framework. C# fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
+,(2,N'Object Oriented Programing. Java fundamentals.',N'Introductory course in Object Oriented Programing. Covers concepts and best practices.','20171101 12:57:24.000','20171101 12:57:24.000',0)
+,(3,N'Procedural programming.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
+,(4,N'C++ used in the OO way.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
+,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
+,(6,N'Javascript fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
+,(7,N'Functional Programming aspects. Prolog.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
+,(8,N'Haskell for begginers.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
+,(9,N'Ruby fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
+,(10,N'HTML and CSS advanced.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
+) AS Source ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured])
  ON 
 Target.[Id] = Source.[Id] 
 
@@ -66,15 +66,18 @@ Target.[Id] = Source.[Id]
 ,[Description] = Source.[Description] 
 ,[CreationDate] = Source.[CreationDate] 
 ,[UpdateDate] = Source.[UpdateDate] 
+,[IsFeatured] = Source.[IsFeatured] 
 
  WHEN NOT MATCHED BY TARGET THEN 
-INSERT ([Id],[Name],[Description],[CreationDate],[UpdateDate])
-VALUES ([Id],[Name],[Description],[CreationDate],[UpdateDate])
+INSERT ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured])
+VALUES ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
 
 SET IDENTITY_INSERT [dbo].[Courses] OFF;
 GO
+
+
 
 SET IDENTITY_INSERT [dbo].[ResponsibilityTypes] ON;
 GO
@@ -205,3 +208,46 @@ VALUES ([Id],[CourseId],[TagId])
 
 SET IDENTITY_INSERT [dbo].[CoursesTags] OFF;
 GO
+
+/*** MERGE-Statement for table [dbo].[CoursesRatings] ***/
+
+SET IDENTITY_INSERT [dbo].[CoursesRatings] ON;
+GO
+
+MERGE INTO [dbo].[CoursesRatings] AS Target USING(VALUES 
+
+(1,1,1,4,'20171109 13:46:48.000')
+,(2,1,2,5,'20171109 13:46:48.000')
+,(3,1,3,4,'20171109 13:46:48.000')
+,(5,2,1,2,'20171109 13:46:48.000')
+,(6,2,2,5,'20171109 13:46:48.000')
+,(7,2,3,4,'20171109 13:46:48.000')
+,(8,3,1,5,'20171109 13:46:48.000')
+,(9,3,2,4,'20171109 13:46:48.000')
+,(10,3,3,2,'20171109 13:46:48.000')
+,(11,4,1,3,'20171109 13:46:48.000')
+,(12,4,2,3,'20171109 13:46:48.000')
+,(13,4,3,4,'20171109 13:46:48.000')
+,(14,5,1,4,'20171109 13:46:48.000')
+,(15,5,2,3,'20171109 13:46:48.000')
+,(16,5,3,4,'20171109 13:46:48.000')
+,(17,6,2,4,'20171109 13:55:19.000')
+) AS Source ([Id],[CourseId],[UserId],[Rating],[RatingDate])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[CourseId] = Source.[CourseId] 
+,[UserId] = Source.[UserId] 
+,[Rating] = Source.[Rating] 
+,[RatingDate] = Source.[RatingDate] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[CourseId],[UserId],[Rating],[RatingDate])
+VALUES ([Id],[CourseId],[UserId],[Rating],[RatingDate])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[CoursesRatings] OFF;
+GO
+
