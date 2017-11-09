@@ -51,7 +51,7 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', CreationDate =  '{CreationDate.ToString()}', UpdateDate = '{UpdateDate}', IsFeatured = {IsFeatured} ");
+			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', UpdateDate = '{UpdateDate}', IsFeatured = {IsFeatured} ");
 
 			return stringBuilder.ToString();
 		}
