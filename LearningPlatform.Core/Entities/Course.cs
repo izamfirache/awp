@@ -17,6 +17,7 @@ namespace LearningPlatform.Core.Entities
 		public int IsFeatured { get; set; }
 		public double Rating { get; set; }
 		public List<Tag> Tags { get; set; }
+		public string Thumbnail { get; set; }
 
 		public Course()
 		{

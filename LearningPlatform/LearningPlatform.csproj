@@ -201,6 +201,7 @@
     <Compile Include="Models\CoursesListPageModel.cs" />
     <Compile Include="Models\Courses\Course.cs" />
     <Compile Include="Models\Courses\CourseCollection.cs" />
+    <Compile Include="Models\Courses\RegisterCourse.cs" />
     <Compile Include="Models\Homepage\IndexPageModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
