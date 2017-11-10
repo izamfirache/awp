@@ -36,13 +36,14 @@
 
 .latest-course-thumbnail {
 	position: relative;
-	height: auto;
 	border: solid;
 	border-width: 1px;
 }
 
 .latest-course-details {
+	margin: 20px;
 	position: relative;
+	width: 50%;
 }
 
 .latest-course-tag {
@@ -69,6 +70,16 @@
 	color: #333;
 }
 
+.latest-course-details-text-name {
+	font-weight: 600;
+	font-size: 1.1em;
+}
+
+.latest-course-details-text-description {
+	font-weight: 400;
+	color: #333
+}
+
 .tag-link {
 	display: block;
 	min-width: 5em;
@@ -88,6 +99,7 @@
 .tag-link:hover {
 	color: white;
 	background-color: #4d94cc;
+	cursor:pointer;
 }
 
 
