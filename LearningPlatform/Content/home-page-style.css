@@ -11,30 +11,30 @@
 	margin: auto;
 }
 
-    .latest-course-section h3 {
-        font-size: 27px;
-        margin-bottom: 0.75em;
-    }
+		.latest-course-section h3 {
+				font-size: 27px;
+				margin-bottom: 0.75em;
+		}
 
 .latest-course-thumbnail img {
-    margin: auto;
-    background-color: rgba(44, 96, 243, 0.05);
+		margin: auto;
+		background-color: rgba(44, 96, 243, 0.05);
 }
 
 .latest-course-details {
-    margin-top: 1.5em;
+		margin-top: 1.5em;
 }
 
 @media only screen and (min-width: 768px) {
-    .latest-course-details {
-        padding: 0 25px;
-        margin-top: 0;
-    }
+		.latest-course-details {
+				padding: 0 25px;
+				margin-top: 0;
+		}
 }
 
 .latest-course-title {
-    font-size: 1.2em;
-    margin-bottom: 1em;
+		font-size: 1.2em;
+		margin-bottom: 1em;
 }
 
 .latest-course-tags {
