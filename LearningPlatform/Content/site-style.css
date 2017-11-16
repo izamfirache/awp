@@ -8,10 +8,17 @@
     padding: 0;
 }
 
+.navbar {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.navbar-nav > li > a {
+    line-height: 40px;
+}
+
 /***********************
  * Header styles
  ***********************/
-
 /* On hover effect */
 .navbar-brand span {
     position: relative;
@@ -57,6 +64,61 @@
         transform-origin: 0% 100%;
     }
 
+.navbar-login {
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.navbar-login > * {
+    margin-right: 3px;
+}
+
+/***********************
+ * Banner styles
+ ***********************/
+
+.hero-image {
+    position: relative;
+    padding: 2em 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media only screen and (min-width: 768px) {
+    .hero-image {
+        padding: 0;
+        height: 50vh;
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-text {
+    display: inline-block;
+    font-size: 3em;
+}
+
+@media only screen and (min-width: 768px) {
+    .banner-text {
+        padding: 0 0.5em 0.2em;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    }
+}
+
+#banner + .container {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
 /***********************
  * Page Content styles
  ***********************/
@@ -80,6 +142,7 @@
 /***********************
  * Footer styles
  ***********************/
+
 .page-footer {
     padding-top: 20px;
     color: #fafafa;
@@ -114,17 +177,109 @@
 }
 
 /***********************
+ * Elements
+ ***********************/
+
+.card {
+    padding: 20px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.filter-button {
+    display: inline-block;
+    min-width: 5em;
+    padding: 0.5em;
+    font: 14px "PT Sans", sans-serif;
+    color: #4d94cc;
+    text-align: center;
+    border: 1px solid #4d94cc;
+    border-radius: 50px;
+    transition: color 0.2s ease-out;
+    box-sizing: border-box;
+}
+    
+    .filter-button.small {
+        min-width: 4em;
+        font-size: 12px;
+    }
+
+    .filter-button:hover {
+        color: white;
+        background-color: #4d94cc;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/***********************
  * Utility classes
  ***********************/
+
+.valign-wrapper {
+    display: flex;
+    align-items: center;
+}
 
 .full-width {
     width: 100%;
 }
 
+.text-bold {
+    font-weight: bold;
+}
 
-@media only screen and (min-width: 992px) {
-    .valign-center {
-        display: flex;
-        align-items: center;
-    }
+.text-light {
+    font-weight: 300;
+}
+
+.z-front {
+    z-index: 100;
+}
+
+.z-back {
+    z-index: -100;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-pad-top {
+    padding-top: 0;
+}
+
+.no-pad-bottom {
+    padding-bottom: 0;
+}
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+/***********************
+ * Effects
+ ***********************/
+
+.grain-effect {
+    background-image: url(data:image/png;base64,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);
+}
+
+.darken-effect {
+    background-color: rgba(51, 51, 51, 0.1);
+}
+
+.grayscale-30 {
+    -webkit-filter: grayscale(30%);
+    filter: grayscale(30%);
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
 }

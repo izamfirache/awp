@@ -27,7 +27,8 @@ namespace LearningPlatform
                       "~/Content/bootstrap.css"));
             
             bundles.Add(new StyleBundle("~/Content/styles").Include(
-                      "~/Content/*-style.css"));
+                      "~/Content/*-style.css",
+                      "~/Content/colors.css"));
         }
     }
 }

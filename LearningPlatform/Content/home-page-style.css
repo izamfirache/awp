@@ -3,109 +3,48 @@
  */
 
 /*********************************
- * Intro description
- *********************************/
-
-.home-page-intro {
-	width: 80%;
-	padding: 0 20px 25px;
-	margin: auto;
-	color: #333;
-	border: 1px solid #000;
-	border-radius: 8px;
-	background-color: #eee;
-}
-
-/*********************************
  * Home page latest course
  *********************************/
 
-.latest-course {
+.latest-course-section {
 	width: 80%;
-	padding: 5px 20px 25px;
 	margin: auto;
-	margin-top: 20px;
-	color: #333;
-	background-color: #FFFFFF;
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
-.latest-course-info {
-	overflow: hidden;
-}
+    .latest-course-section h3 {
+        font-size: 27px;
+        margin-bottom: 0.75em;
+    }
 
-.latest-course-thumbnail {
-	position: relative;
-	border: solid;
-	border-width: 1px;
+.latest-course-thumbnail img {
+    margin: auto;
+    background-color: rgba(44, 96, 243, 0.05);
 }
 
 .latest-course-details {
-	margin: 20px;
-	position: relative;
-	width: 50%;
+    margin-top: 1.5em;
 }
 
-.latest-course-tag {
-	padding: 5px;
+@media only screen and (min-width: 768px) {
+    .latest-course-details {
+        padding: 0 25px;
+        margin-top: 0;
+    }
 }
 
-.latest-course-details-div {
-	padding: 5px;
+.latest-course-title {
+    font-size: 1.2em;
+    margin-bottom: 1em;
 }
 
-.latest-course-details-label {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 0.5em;
-	color: #333;
-	font-size: 16px;
-	color: black;
-	vertical-align: central;
+.latest-course-tags {
+	margin-top: 2em;
 }
-
-.latest-course-details-text {
-	font-size: 1em;
-	font-weight: 100;
-	color: #333;
-}
-
-.latest-course-details-text-name {
-	font-weight: 600;
-	font-size: 1.1em;
-}
-
-.latest-course-details-text-description {
-	font-weight: 400;
-	color: #333
-}
-
-.tag-link {
-	display: block;
-	min-width: 5em;
-	padding: 0.5em;
-	font: 14px "PT Sans", sans-serif;
-	color: #4d94cc;
-	line-height: normal;
-	text-align: center;
-	border: 1px solid #4d94cc;
-	border-radius: 50px;
-	transition: color 0.2s ease-out;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.tag-link:hover {
-	color: white;
-	background-color: #4d94cc;
-	cursor:pointer;
-}
-
 
 /*********************************
  * General courses box styles
  *********************************/
+
 .courses-container {
 	margin-top: 3em;
 }

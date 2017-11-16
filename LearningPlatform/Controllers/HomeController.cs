@@ -38,8 +38,8 @@ namespace LearningPlatform.Controllers
 			var latestCourseTagResult = httpClient.SendAsync(latestCourseTagsRequest);
 			model.LatestCourse.Tags = JsonConvert.DeserializeObject<List<Tag>>(latestCourseTagResult.Result.Content.ReadAsStringAsync().Result);
 
-			return View(model);
-		}
+			return View("Index", "~/Views/Shared/_LayoutSansContainer.cshtml", model);
+        }
 
 		public ActionResult About()
 		{
