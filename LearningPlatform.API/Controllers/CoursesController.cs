@@ -38,11 +38,11 @@ namespace LearningPlatform.API.Controllers
 			return Json(_repository.GetAll());
 		}
 
-		// GET: api/Users/5
-		[HttpGet]
-		public IHttpActionResult GetCourseById(int id)
+        [HttpGet]
+        [Route("courses/{courseId}")]
+        public IHttpActionResult GetCourseById(int courseId)
 		{
-			return Json(_repository.GetById(id));
+			return Json(_repository.GetById(courseId));
 		}
 
 		[HttpGet]
@@ -210,6 +210,7 @@ namespace LearningPlatform.API.Controllers
 										, c.CreationDate
 										, c.UpdateDate
 										, c.IsFeatured
+                                        , c.ContentHtml
 										, round(AVG(Cast(cr.Rating as Float)), 2) as Rating 
 									from dbo.Courses c 
 									inner join dbo.CoursesRatings cr on cr.CourseId = c.Id 
@@ -219,7 +220,8 @@ namespace LearningPlatform.API.Controllers
 										, c.Description
 										, c.CreationDate
 										, c.UpdateDate
-										, c.IsFeatured 
+										, c.IsFeatured
+                                        , c.ContentHtml
 									order by Rating desc";
 
 			var queryBuilder = new SqlQueryBuilder();

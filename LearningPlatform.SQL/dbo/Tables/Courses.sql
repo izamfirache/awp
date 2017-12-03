@@ -5,5 +5,6 @@
 		[Description] NVARCHAR(MAX) NULL, 
 		[CreationDate] DATETIME NULL, 
 		[UpdateDate] DATETIME NULL, 
-		[IsFeatured] INT NULL
+		[IsFeatured] INT NULL,
+		[ContentHtml] NVARCHAR(MAX) NULL
 )

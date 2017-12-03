@@ -18,6 +18,7 @@ namespace LearningPlatform.Core.Entities
 		public double Rating { get; set; }
 		public List<Tag> Tags { get; set; }
 		public string Thumbnail { get; set; }
+        public string ContentHtml { get; set; }
 
 		public Course()
 		{
@@ -32,7 +33,8 @@ namespace LearningPlatform.Core.Entities
 			CreationDate = DateTime.Parse(row["CreationDate"].ToString());
 			UpdateDate = DateTime.Parse(row["UpdateDate"].ToString());
 			IsFeatured = Int32.Parse(row["IsFeatured"].ToString());
-		}
+            ContentHtml = row["ContentHtml"].ToString();
+        }
 
 		public override string GetDatabaseTableName()
 		{

@@ -1,11 +1,12 @@
-﻿using LearningPlatform.Models.Courses;
+﻿using LearningPlatform.Core.Entities;
+using LearningPlatform.Models.Courses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearningPlatform.Models
+namespace LearningPlatform.Models.Courses
 {
     public class CoursesListPageModel
     {

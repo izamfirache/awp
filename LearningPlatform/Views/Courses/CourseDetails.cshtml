@@ -2,32 +2,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model LearningPlatform.Models.Courses.Course
-<div class="course-details">
-    <div class="course-info">
-        <div class="course-info-title">@Html.DisplayFor(m => Model.Title)</div>
-
-        @if (Model.Featured == true)
-        {
-            <div class="course-featured">Featured</div>
-        }
-        else
-        {
-            <div class="course-featured">New</div>
-        }
-
-        <div class="course-date">Published on: @Html.DisplayFor(m => Model.PublishDate)</div>
-    </div>
-
-    <div class="course-tags">
-        <div class="course-tag-title"> Tags </div>
-        <div class="course-tag-tags">
-            @foreach (var tag in Model.Tags)
+@model LearningPlatform.Models.Courses.CourseDetailsPageModel
+<div style="height:100%; display:grid;">
+    <div class="course-details">
+        <div class="course-info">
+            <div class="course-info-title">@Html.DisplayFor(m => Model.CurrentCourse.Name)</div>
+            @if (Model.CurrentCourse.IsFeatured == 1)
             {
-                <div class="course-tag-container">@Html.DisplayFor(m => tag)</div>
+                <div class="course-featured">Featured</div>
             }
+            else
+            {
+                <div class="course-featured">New</div>
+            }
+            <div class="course-date">Published on: @Html.DisplayFor(m => Model.CurrentCourse.CreationDate)</div>
+        </div>
+        @if (Model.CurrentCourse.Tags != null)
+        {
+            <div class="course-tags">
+                <div class="course-tag-title"> Tags </div>
+                <div class="course-tag-tags">
+                    @foreach (var tag in Model.CurrentCourse.Tags)
+                {
+                        <div class="course-tag-container">@Html.DisplayFor(m => tag.Name)</div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="course-content">
+        <div style="width:100%; height:70%; background-color: gray;">
+            @Html.Raw(Model.CurrentCourse.ContentHtml);
         </div>
     </div>
 </div>
-
-<div class="course-content"></div>

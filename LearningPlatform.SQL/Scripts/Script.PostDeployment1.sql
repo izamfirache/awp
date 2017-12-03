@@ -47,20 +47,56 @@ GO
 
 MERGE INTO [dbo].[Courses] AS Target USING(VALUES 
 
-(1,N'.net Framework. C# fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
-,(2,N'Object Oriented Programing. Java fundamentals.',N'Introductory course in Object Oriented Programing. Covers concepts and best practices.','20171101 12:57:24.000','20171101 12:57:24.000',0)
-,(3,N'Procedural programming.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
-,(4,N'C++ used in the OO way.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
-,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
-,(6,N'Javascript fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
-,(7,N'Functional Programming aspects. Prolog.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
-,(8,N'Haskell for begginers.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
-,(9,N'Ruby fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0)
-,(10,N'HTML and CSS advanced.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1)
-,(13,N'Code Yourself! An Introduction to Programming',N'This course will teach you how to program in Scratch, an easy to use visual programming language. More importantly, it will introduce you to the fundamental principles of computing and it will help you think like a software engineer.','20171109 17:39:41.000','20171109 17:39:42.000',0)
-,(14,N'An Introduction to Programming',N'This is a description','20171109 17:43:15.000','20171109 17:43:15.000',0)
-,(15,N'An Introduction to Java Programming',N'This is the best description that there could be','20171110 12:45:24.000','20171110 12:45:25.000',0)
-) AS Source ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured])
+(1,N'.net Framework. C# fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, 
+N'<div style="height:200px; background-color:yellow;">
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+	<p>Here will be the introduction. This is the best course in the world. Yeeeeee.</p>
+</div>
+<hr/>
+<h1>Some random video. Awsome. </h1>
+<div style="width: 100%; height:500px;">
+	<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k">
+	</iframe>
+</div>
+<hr />
+<div style="height:200px; background-color:red;">
+	<p>This section is allocated for images and code snippets. Laaaaame. </p>
+	<p>This section is allocated for images and code snippets. Laaaaame. </p>
+	<p>This section is allocated for images and code snippets. Laaaaame. </p>
+	<p>This section is allocated for images and code snippets. Laaaaame. </p>
+	<p>This section is allocated for images and code snippets. Laaaaame. </p>
+</div>
+<hr />
+<h1>Some random image. Awsome. </h1>
+<div style="width: 100%; height:400px;">
+	<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg" alt="Nature">
+</div>
+<hr />
+<div style="height:200px; background-color:blue;">
+	<p>This section is allocated for videos. This should be interesting. </p>
+	<p>This section is allocated for videos. This should be interesting. </p>
+	<p>This section is allocated for videos. This should be interesting. </p>
+	<p>This section is allocated for videos. This should be interesting. </p>
+	<p>This section is allocated for videos. This should be interesting. </p>
+</div>')
+,(2,N'Object Oriented Programing. Java fundamentals.',N'Introductory course in Object Oriented Programing. Covers concepts and best practices.','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
+,(3,N'Procedural programming.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
+,(4,N'C++ used in the OO way.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, N'')
+,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, N'')
+,(6,N'Javascript fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
+,(7,N'Functional Programming aspects. Prolog.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
+,(8,N'Haskell for begginers.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
+,(9,N'Ruby fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
+,(10,N'HTML and CSS advanced.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, N'')
+,(13,N'Code Yourself! An Introduction to Programming',N'This course will teach you how to program in Scratch, an easy to use visual programming language. More importantly, it will introduce you to the fundamental principles of computing and it will help you think like a software engineer.','20171109 17:39:41.000','20171109 17:39:42.000',0, N'')
+,(14,N'An Introduction to Programming',N'This is a description','20171109 17:43:15.000','20171109 17:43:15.000',0, N'')
+,(15,N'An Introduction to Java Programming',N'This is the best description that there could be','20171110 12:45:24.000','20171110 12:45:25.000',0, N'')
+) AS Source ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured], [ContentHtml])
  ON 
 Target.[Id] = Source.[Id] 
 
@@ -70,10 +106,11 @@ Target.[Id] = Source.[Id]
 ,[CreationDate] = Source.[CreationDate] 
 ,[UpdateDate] = Source.[UpdateDate] 
 ,[IsFeatured] = Source.[IsFeatured] 
+,[ContentHtml] = Source.[ContentHtml]
 
  WHEN NOT MATCHED BY TARGET THEN 
-INSERT ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured])
-VALUES ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured])
+INSERT ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured],[ContentHtml])
+VALUES ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured],[ContentHtml])
  -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
 ;
 

@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model LearningPlatform.Models.CoursesListPageModel
+@model LearningPlatform.Models.Courses.CoursesListPageModel
 
 <div class="courses-list-page">
 
@@ -26,25 +26,18 @@
         </div>
 
         <div class="courses-list">
-            @foreach (LearningPlatform.Models.Courses.Course course in Model.Courses)
+            @foreach (LearningPlatform.Core.Entities.Course course in Model.Courses)
             {
                 <hr class="course-separator" />
 
                 <div class="course-row" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                    <div class="course-title-container">@Html.DisplayFor(m => course.Title)</div>
-                    <div class="course-date-container">@Html.DisplayFor(m => course.PublishDate)</div>
+                    <div class="course-title-container">@Html.DisplayFor(m => course.Name)</div>
+                    <div class="course-date-container">@Html.DisplayFor(m => course.CreationDate)</div>
                 </div>
             }
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    function GetFilteredCourses() {
-        alert('working');
-        document.location.href = '/Courses/GetFilteredCourses?filter=' + @Model.Filter;
-    }
-</script>
 
 
 
