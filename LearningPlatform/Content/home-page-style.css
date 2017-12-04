@@ -69,8 +69,9 @@
 }
 
 .courses-list {
-	overflow-y: auto;
-	max-height: 1200px;
+    overflow-y: auto;
+    max-height: 1200px;
+    width: 100%;
 }
 
 .course-item {
