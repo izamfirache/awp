@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseBuilderController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -198,6 +199,7 @@
     </Compile>
     <Compile Include="Http\BadRequestResponse.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Courses\CourseBuilderPageModel.cs" />
     <Compile Include="Models\Courses\CoursesListPageModel.cs" />
     <Compile Include="Models\Courses\CourseDetailsPageModel.cs" />
     <Compile Include="Models\Courses\RegisterCourse.cs" />
@@ -278,6 +280,7 @@
     <Content Include="Views\Courses\CourseDetails.cshtml" />
     <Content Include="Views\Shared\_LoginModalPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutSansContainer.cshtml" />
+    <Content Include="Views\CourseBuilder\CourseBuilder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

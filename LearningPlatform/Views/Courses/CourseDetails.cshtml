@@ -3,7 +3,7 @@
 }
 
 @model LearningPlatform.Models.Courses.CourseDetailsPageModel
-<div style="height:100%; display:grid;">
+<div class="course-details-container">
     <div class="course-details">
         <div class="course-info">
             <div class="course-info-title">@Html.DisplayFor(m => Model.CurrentCourse.Name)</div>
@@ -31,7 +31,7 @@
         }
     </div>
     <div class="course-content">
-        <div style="width:100%; height:70%; background-color: gray;">
+        <div class="course-contenthtml-container">
             @Html.Raw(Model.CurrentCourse.ContentHtml);
         </div>
     </div>

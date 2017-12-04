@@ -161,8 +161,8 @@ namespace LearningPlatform.API.Controllers
 			{
 				return BadRequest("Could not add course");
 			}
-
-			if (course.Tags.Count > 0)
+            
+			if (course.Tags != null && course.Tags.Count > 0)
 			{
 				foreach (var tag in course.Tags)
 				{

@@ -45,7 +45,7 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($"('{Name}', '{Description}', '{CreationDate.ToString()}', '{UpdateDate}', {IsFeatured})");
+			stringBuilder.Append($"('{Name}', '{Description}', '{CreationDate.ToString()}', '{UpdateDate}', {IsFeatured}, '{ContentHtml}')");
 
 			return stringBuilder.ToString();
 		}
@@ -54,14 +54,14 @@ namespace LearningPlatform.Core.Entities
 		{
 			var stringBuilder = new StringBuilder();
 
-			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', UpdateDate = '{UpdateDate}', IsFeatured = {IsFeatured} ");
+			stringBuilder.Append($" Name = '{Name}', Description = '{Description}', UpdateDate = '{UpdateDate}', IsFeatured = {IsFeatured}, ContentHtml = '{ContentHtml}' ");
 
 			return stringBuilder.ToString();
 		}
 
 		public override string GetInsertFields()
 		{
-			return "(Name, Description, CreationDate, UpdateDate, IsFeatured)";
+			return "(Name, Description, CreationDate, UpdateDate, IsFeatured, ContentHtml)";
 		}
 	}
 }
