@@ -124,11 +124,11 @@
     float: right;
     padding: 13px;
     background-color: darkgrey;
-    padding-left: 105px;
+    /*padding-left: 105px;*/
 }
 
 .course-builder-container-header-buildoptions-option {
-    width: 100px;
+    width: 89px;
     height: 74px;
     margin-right: 20px;
     border-radius: 15px;

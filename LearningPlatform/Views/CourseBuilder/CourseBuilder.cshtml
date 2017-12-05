@@ -32,6 +32,12 @@
                      onclick="AddImage()">
                     <p>Add image.</p>
                 </div>
+                <div class="course-builder-container-header-buildoptions-option" data-toggle="modal" data-target="#adduielement-modal">
+                    @*<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#login-modal">
+                        Modal test
+                    </button>*@
+                    <p>Modal test.</p>
+                </div>
             </div>
         </div>
 
@@ -52,6 +58,7 @@
         <input class="course-builder-container-savecourse" type="submit" value="Save course" />
     </div>
 }
+@Html.Partial("_AddCourseUiElementPartial", new LearningPlatform.Models.Courses.CourseBuilderPageModel())
 
 @*@*TODO: MOVE THIS INTO A SEPARATE JS FILE*@
 <script type="text/javascript">

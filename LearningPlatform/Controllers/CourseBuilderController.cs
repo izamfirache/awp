@@ -24,7 +24,8 @@ namespace LearningPlatform.Controllers
         [ValidateInput(false)] // TODO: IMPLEMENT A CUSTOM SANITIZER ON POST REQUESTS.
         public async Task<ActionResult> AddNewCourse(CourseBuilderPageModel coursebuilderPageModel)
         {
-            coursebuilderPageModel.CurrentCourse.Id = new Random().Next(1000, 10000); // TODO: Use GUID's for CourseId
+            // TODO: Use GUID's for CourseId
+            coursebuilderPageModel.CurrentCourse.Id = new Random().Next(1000, 10000); 
             
             // save the new course in the database
             var httpClient = new HttpClient();
@@ -47,6 +48,19 @@ namespace LearningPlatform.Controllers
             {
                 throw new Exception("There was a problem while saving the new course.");
             }
+        }
+
+        public ActionResult AddUiElementToCourse(CourseBuilderPageModel newUiElementPageModel)
+        {
+            var model = new CourseBuilderPageModel
+            {
+                CurrentCourse = new Course()
+            };
+            model.CurrentCourse.Name = newUiElementPageModel.CurrentCourse.Name;
+            model.CurrentCourse.Description = newUiElementPageModel.CurrentCourse.Description;
+            model.CurrentCourse.ContentHtml += newUiElementPageModel.CurrentCourse.ContentHtml;
+
+            return View("CourseBuilder", model);
         }
     }
 }

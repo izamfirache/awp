@@ -281,6 +281,7 @@
     <Content Include="Views\Shared\_LoginModalPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutSansContainer.cshtml" />
     <Content Include="Views\CourseBuilder\CourseBuilder.cshtml" />
+    <Content Include="Views\CourseBuilder\_AddCourseUiElementPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
