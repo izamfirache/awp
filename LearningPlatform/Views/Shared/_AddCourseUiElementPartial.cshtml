@@ -1,0 +1,95 @@
+﻿@model LearningPlatform.Models.Courses.CourseBuilderPageModel
+
+@{
+    ViewBag.Title = "_AddCourseUiElementPartial";
+}
+
+<h2>_AddCourseUiElementPartial</h2>
+
+
+@using (Html.BeginForm("AddUiElementToCourse", "CourseBuilder", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="modal fade" id="adduielement-modal" tabindex="-1" role="dialog" aria-labelledby="adduielementModalLabel" aria-hidden="true">
+        <div class="adduielement-modal-content modal-dialog modal-dialog">
+            <div class="adduielement-modal-content modal-content">
+                
+                <div class="adduielement-modal-header modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="adduielement-modal-header-title">
+                        <h4>Add the html for a new UI element.</h4>
+                    </div>
+
+                    <div class="adduielement-modal-header-options">
+                        <button type="button" onclick="AddParagraph()" value="Add paragraph"
+                                class="adduielement-modal-header-option btn btn-primary">
+                            Add paragraph
+                        </button>
+                        <button type="button" onclick="AddVideo()" value="Add video"
+                                class="adduielement-modal-header-option btn btn-primary">
+                            Add video
+                        </button>
+                        <button type="button" onclick="AddImage()" value="Add image"
+                                class="adduielement-modal-header-option btn btn-primary">
+                            Add image
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <div class="adduielement-modal-body modal-body">
+                    <div class="course-builder-container-coursecontent">
+
+                        @Html.TextAreaFor(m => m.CurrentCourse.ContentHtml,
+                           new
+                           {
+                               @placeholder = "Insert here the HTML code for the new UI element.",
+                               @id = "addui-courseContentHtml",
+                               @class = "course-builder-container-contenthtml form-control"
+                           })
+
+                        <div onclick="ClearCourseHtmlContent()" class="course-builder-container-clearcontent">
+                            <p class="course-builder-container-clearcontent-text">Clear</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adduielement-modal-footer modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-12 text-right">
+                            <input type="submit" value="Add" class="btn btn-primary clearfix" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@*TODO: MOVE THIS INTO A SEPARATE JS FILE*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.getElementById('addui-courseContentHtml').value = '';
+    });
+    function AddParagraph() {
+        var harcodedParagraph = '<div style="width: 100%; height:250px; background-color:red;">\r\t<p>This is a new paragraph.</p>\r </div>\r';
+        document.getElementById('addui-courseContentHtml').value += harcodedParagraph;
+        UpdateModelCurrentCourseContentHTML();
+    }
+
+    function AddImage() {
+        var harcodedImage = '<div style="width: 100%; height:250px; background-color:blue;">\r\t<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg" alt="Nature">\r </div>\r';
+        document.getElementById('addui-courseContentHtml').value += harcodedImage;
+    }
+
+    function AddVideo() {
+        var harcodedVideo = '<div style="width: 100%; height:250px; background-color:green;">\r\t<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>\r </div>\r';
+        document.getElementById('addui-courseContentHtml').value += harcodedVideo;
+    }
+
+    function ClearCourseHtmlContent() {
+        document.getElementById('addui-courseContentHtml').value = '';
+    }
+</script>

@@ -50,6 +50,7 @@ namespace LearningPlatform.Controllers
             }
         }
 
+        [ValidateInput(false)] // TODO: IMPLEMENT A CUSTOM SANITIZER ON POST REQUESTS.
         public ActionResult AddUiElementToCourse(CourseBuilderPageModel newUiElementPageModel)
         {
             var model = new CourseBuilderPageModel

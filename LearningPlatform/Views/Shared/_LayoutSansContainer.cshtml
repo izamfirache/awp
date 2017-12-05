@@ -68,6 +68,7 @@
         </div>
     </footer><!-- /#footer -->
     @Html.Partial("_LoginModalPartial", new LearningPlatform.Models.Users.LoginUserModel())
+    @Html.Partial("_AddCourseUiElementPartial", new LearningPlatform.Models.Courses.CourseBuilderPageModel())
     @RenderSection("scripts", required: false)
 </body>
 </html>
