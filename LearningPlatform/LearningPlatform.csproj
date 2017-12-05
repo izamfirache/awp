@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=61c49a1a9e79cc28, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlSanitizer.4.0.181\lib\net45\HtmlSanitizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -197,6 +203,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlSanitizerHelper\HtmlSanitizerAttribute.cs" />
     <Compile Include="Http\BadRequestResponse.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Courses\CourseBuilderPageModel.cs" />
@@ -242,7 +249,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -296,7 +305,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>

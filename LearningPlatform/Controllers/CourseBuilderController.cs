@@ -1,4 +1,5 @@
 ﻿using LearningPlatform.Core.Entities;
+using LearningPlatform.HtmlSanitizerHelper;
 using LearningPlatform.Models.Courses;
 using Newtonsoft.Json;
 using System;
@@ -21,7 +22,8 @@ namespace LearningPlatform.Controllers
         }
 
         // POST: CourseBuilder
-        [ValidateInput(false)] // TODO: IMPLEMENT A CUSTOM SANITIZER ON POST REQUESTS.
+        [ValidateInput(false)]
+        [HtmlSanitizer]
         public async Task<ActionResult> AddNewCourse(CourseBuilderPageModel coursebuilderPageModel)
         {
             // TODO: Use GUID's for CourseId
