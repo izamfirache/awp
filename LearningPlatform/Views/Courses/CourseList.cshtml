@@ -10,11 +10,13 @@
 
         <div class="search-group">
 
-            <div class="search-option-dropdown" onclick="location.href='@Url.Action("GetFilteredCourses", "Courses", new { filter = "date"})'">
-                Sort by Publish Date
-            </div> 
+            <button type="button" value="Add paragraph"
+                    class="search-option-dropdown btn btn-primary"
+                    onclick="location.href='@Url.Action("GetFilteredCoursesByDate", "Courses")'">
+                Sort by date
+            </button>
 
-            @Html.TextBoxFor(m => Model.Filter, new { @class = "search-course" })
+            @Html.TextBoxFor(m => Model.Filter, new { placeholder = "Search course", @id="search-course-textbox", @class = "search-course", @onchange = "onchangeevent();" })
         </div>
         </div>
 
@@ -38,6 +40,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function onchangeevent() {
+        var searchBy = document.getElementById('search-course-textbox').value;
+        location.href = '@Url.Action("SearchCourses", "Courses")?filter=' + searchBy;
+    }
+</script>
 
 
 

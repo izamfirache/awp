@@ -10,7 +10,7 @@
     width: 98%;
     float: right;
     margin-right: 167px;
-    margin-bottom: 5px;
+    margin-bottom: 14px;
 }
 
 .course-row {
@@ -70,29 +70,29 @@
     float: right;
     margin-top: 8px;
     height: 34px;
-    background-color: #eee;
-    border-radius: 15px;
     padding: 5px;
-    border: 1px solid black;
 }
 .search-option-dropdown:hover {
     cursor:pointer;
 }
 
 .search-course {
-    width: 190px;
+    width: 180px;
     float: right;
     height: 34px;
-    margin-right: 5px;
+    margin-right: 12px;
     margin-top: 8px;
 }
 
 .search-group {
-    width: 31%;
+    width: 40%;
     height: 100%;
     float: right;
-    border-radius:15px;
-    border:1px solid black;
+    border-radius: 15px;
+    float: left;
+    margin-left: 143px;
+    /* margin-left: 34px; */
+    /* border: 1px solid black; */
 }
 
 

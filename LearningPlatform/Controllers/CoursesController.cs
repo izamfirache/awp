@@ -32,8 +32,8 @@ namespace LearningPlatform.Controllers
 
             var httpClient = new HttpClient();
             var currentCourseRequest = new HttpRequestMessage(
-                HttpMethod.Get, 
-                Request.GetBaseUrl() + 
+                HttpMethod.Get,
+                Request.GetBaseUrl() +
                 string.Format("api/courses/{0}", courseId));
 
             var result = httpClient.SendAsync(currentCourseRequest);
@@ -43,28 +43,33 @@ namespace LearningPlatform.Controllers
             return View("CourseDetails", courseDetailsPageModel);
         }
 
-        //public ActionResult GetFilteredCourses(string filter)
-        //{
-        //    var newModel = new CoursesListPageModel
-        //    {
-        //        SortOptions = model.SortOptions,
-        //        SelectedSortOptions = model.SelectedSortOptions,
-        //        Filter = model.Filter
-        //    };
+        public ActionResult GetFilteredCoursesByDate()
+        {
+            var newModel = new CoursesListPageModel();
+            var courses = GetLatestCourses();
+            newModel.Courses = courses.OrderByDescending(c => c.CreationDate).ToList();
 
-        //    if(filter == "title")
-        //    {
-        //        newModel.Courses = model.Courses.Where(c => c.Title.Contains(filter)).ToList();
-        //    }else if(filter == "date")
-        //    {
-        //        newModel.Courses = model.Courses.OrderByDescending(c => c.PublishDate).ToList();
-        //    }
-        //    else
-        //    {
-        //        return View("CourseList", model);
-        //    }
+            return View("CourseList", newModel);
+        }
 
-        //    return View("CourseList", newModel);
-        //}
+        public ActionResult SearchCourses(string filter)
+        {
+            var newModel = new CoursesListPageModel();
+            var courses = GetLatestCourses();
+            newModel.Courses = courses.Where(c => c.Name.ToLower().Contains(filter)).ToList();
+
+            return View("CourseList", newModel);
+        }
+
+        public List<Course> GetLatestCourses()
+        {
+            var httpClient = new HttpClient();
+            var currentCourseRequest = new HttpRequestMessage(HttpMethod.Get, Request.GetBaseUrl() + "api/courses");
+            var result = httpClient.SendAsync(currentCourseRequest);
+            var courses = JsonConvert.DeserializeObject<List<Course>>
+                (result.Result.Content.ReadAsStringAsync().Result);
+
+            return courses;
+        }
     }
 }
