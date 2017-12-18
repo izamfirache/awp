@@ -23,11 +23,15 @@ namespace LearningPlatform
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                    "~/Scripts/site.js"));
+
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/bootstrap.css"));
             
             bundles.Add(new StyleBundle("~/Content/styles").Include(
                       "~/Content/*-style.css",
+                      "~/Content/util.css",
                       "~/Content/colors.css"));
         }
     }

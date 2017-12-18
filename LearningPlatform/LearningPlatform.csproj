@@ -226,6 +226,7 @@
     <Content Include="Content\colors.css" />
     <Content Include="Content\course-details-style.css" />
     <Content Include="Content\courses-page-style.css" />
+    <Content Include="Content\util.css" />
     <Content Include="Content\header-style.css" />
     <Content Include="Content\home-page-style.css" />
     <Content Include="Content\login-style.css" />
@@ -249,6 +250,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

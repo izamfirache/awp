@@ -5,3 +5,7 @@
 .text-white {
     color: #fff;
 }
+
+.bg-blue {
+    background-color: rgba(77, 148, 204, 0.25);
+}

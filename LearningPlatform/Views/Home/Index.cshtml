@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
 @model LearningPlatform.Models.Homepage.IndexPageModel
@@ -26,10 +26,10 @@
                         var baseUrl = Request.GetBaseUrl();
                         var imageUrl = baseUrl + "/api/courses/" + Model.LatestCourse.Id + "/thumbnail";
                     }
-                    <img src="@imageUrl" class="img-responsive">
+                    <img src="@imageUrl" class="img-responsive pointer">
                 </div>
-                <div class="latest-course-details col-x2-12 col-sm-9">
-                    <div class="latest-course-title text-bold">@Model.LatestCourse.Name</div>
+                <div class="latest-course-details col-xs-12 col-sm-9">
+                    <div class="latest-course-title text-bold pointer">@Model.LatestCourse.Name</div>
                     <div class="latest-course-description">@Model.LatestCourse.Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien lacus. Nullam arcu sapien, facilisis eu dui a, iaculis vehicula dolor. Nullam at nisl erat. Quisque iaculis facilisis iaculis. Duis auctor ante lectus, vitae scelerisque enim tempor eget. Donec aliquam rutrum eros nec euismod. Curabitur vitae egestas mauris.</div>
                     <div class="latest-course-tags pull-right">
                         <span class="text-bold">Tags:</span>
@@ -42,40 +42,71 @@
             </div>
         </div>
     </div>
+</div>
 
-    <div class="courses-container row">
-        <div class="courses-box-wrapper col-md-6">
-            <div class="courses-box courses-featured">
-                <div class="courses-title">Featured Courses</div>
-                <div class="courses-list">
+<div class="courses-featured bg-blue">
+    <div class="container">
+        <!-- Featured Courses carousel section -->
+        <div class="courses-container row">
+            <h3 class="courses-title col-xs-12">Featured Courses</h3>
+
+            <div id="featuredCourses" class="carousel slide multi-item-carousel" data-interval="false">
+                <div class="carousel-inner">
+                    @{ var count = 0; }
                     @foreach (var course in Model.FeaturedCourses)
                     {
-                        <div class="course-item" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                            <div class="valign-wrapper row">
-                                <div class="course-item-title col-sm-9">@Html.DisplayFor(m => course.Name)</div>
-                                <div class="course-item-date col-sm-3">@Html.DisplayFor(m => course.CreationDate)</div>
+                        <div class="item @(count++ == 0 ? "active" : "")">
+                            <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+                                <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+                                    <img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">
+                                    <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
+                                    <div class="course-date">@String.Format("{0:dd MMM yyyy}", course.CreationDate)</div>
+                                </div>
                             </div>
                         </div>
                     }
                 </div>
+                <a class="left carousel-control" href="#featuredCourses" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#featuredCourses" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
             </div>
         </div>
+        <!-- End Featured Courses carousel section -->
+    </div>
+</div>
 
-        <div class="courses-box-wrapper col-md-6">
-            <div class="courses-box courses-new">
-                <div class="courses-title">Highest Rated Courses</div>
-                <div class="courses-list">
-                    @foreach (var course in Model.HighestRatedCourses)
-                    {
-                        <div class="course-item" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                            <div class="valign-wrapper row">
-                                <div class="course-item-title col-sm-9">@Html.DisplayFor(m => course.Name)</div>
-                                <div class="course-item-date col-sm-3">@Html.DisplayFor(m => course.Rating)</div>
+<div class="courses-rated">
+    <div class="container">
+        <!-- Highest Rated Courses section -->
+        <div class="courses-container row">
+            <h3 class="courses-title col-xs-12">Highest Rated Courses</h3>
+
+            @{ count = 0; }
+            @foreach (var course in Model.HighestRatedCourses)
+            {
+                if (count++ == 5)
+                {
+                    // Display only the first 5 highest rated courses
+                    break;
+                }
+
+                <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+                    <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+                        <img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">
+                        <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
+
+                        @{ var meterWidth = course.Rating / 5.0 * 100; }
+                        <div class="row">
+                            <span class="rating-label col-xs-3">Rating:</span>
+                            <div class="col-xs-9">
+                                <div class="rating-meter-container">
+                                    <a class="rating-meter col-xs-8" title="@course.Rating.ToString("0.00")" style="width: @meterWidth%"></a>
+                                </div>
                             </div>
                         </div>
-                    }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
+        <!-- End Highest Rated Courses section -->
     </div>
 </div>

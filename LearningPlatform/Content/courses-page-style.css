@@ -21,19 +21,20 @@
     padding-left: 40px;
     font-size: 17px;
 }
-.course-row:hover {
-    background-color: #1398B2;
-}
+
+    .course-row:hover {
+        background-color: #1398B2;
+    }
 
 .course-separator {
     border-top: 1px solid black;
-    margin-top:0;
-    margin-bottom:0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.class-list-header{
-    width:100%;
-    height:5%;
+.class-list-header {
+    width: 100%;
+    height: 5%;
 }
 
 .courses-name-header {
@@ -53,16 +54,16 @@
     font-size: 20px;
 }
 
-.course-title-container{
-    width:65%;
-    height:100%;
-    float:left;
+.course-title-container {
+    width: 65%;
+    height: 100%;
+    float: left;
 }
 
 .course-date-container {
     width: 30%;
     height: 100%;
-    float:left;
+    float: left;
 }
 
 .search-option-dropdown {
@@ -72,9 +73,10 @@
     height: 34px;
     padding: 5px;
 }
-.search-option-dropdown:hover {
-    cursor:pointer;
-}
+
+    .search-option-dropdown:hover {
+        cursor: pointer;
+    }
 
 .search-course {
     width: 180px;
@@ -96,3 +98,66 @@
 }
 
 
+/**
+ *  Styles applying to courses listings
+ */
+
+/*********************************
+ * General courses box styles
+ *********************************/
+
+.courses-container {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.courses-title {
+    margin-bottom: 20px;
+}
+
+.course-box {
+    margin: 0.5em 0 1em;
+}
+
+.course-box .course-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0.5em 0;
+}
+
+.course-box .course-date {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+
+/*****************************/
+.courses-list {
+    overflow-y: auto;
+    max-height: 1200px;
+    width: 100%;
+}
+
+.course-item {
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: #eee;
+}
+
+    .course-item + .course-item {
+        border-top: 1px solid #ddd;
+    }
+
+    .course-item:hover {
+        color: #fafafa;
+        background-color: #1398B2;
+    }
+
+        .course-item:hover .course-item-date {
+            border-left: 2px solid #fff;
+        }
+
+/*********************************
+ * Particular courses box styles
+ *********************************/

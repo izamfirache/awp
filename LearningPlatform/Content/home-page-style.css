@@ -7,93 +7,110 @@
  *********************************/
 
 .latest-course-section {
-	width: 80%;
-	margin: auto;
+    width: 80%;
+    margin: auto;
 }
 
-		.latest-course-section h3 {
-				font-size: 27px;
-				margin-bottom: 0.75em;
-		}
+    .latest-course-section h3 {
+        font-size: 27px;
+        margin-bottom: 0.75em;
+    }
 
 .latest-course-thumbnail img {
-		margin: auto;
-		background-color: rgba(44, 96, 243, 0.05);
+    margin: auto;
+    background-color: rgba(44, 96, 243, 0.05);
 }
 
 .latest-course-details {
-		margin-top: 1.5em;
+    margin-top: 1.5em;
 }
 
 @media only screen and (min-width: 768px) {
-		.latest-course-details {
-				padding: 0 25px;
-				margin-top: 0;
-		}
+    .latest-course-details {
+        padding: 0 25px;
+        margin-top: 0;
+    }
 }
 
 .latest-course-title {
-		font-size: 1.2em;
-		margin-bottom: 1em;
+    font-size: 1.2em;
+    margin-bottom: 1em;
 }
 
 .latest-course-tags {
-	margin-top: 2em;
+    margin-top: 2em;
 }
 
 /*********************************
- * General courses box styles
+ * Home page multi-item carousel
  *********************************/
 
-.courses-container {
-	margin-top: 3em;
+.multi-item-carousel .carousel-control {
+    width: 4%;
+    background-image: none;
 }
 
-@media only screen and (max-width: 991px) {
-	.courses-box-wrapper + .courses-box-wrapper {
-		margin-top: 2em;
-	}
+.carousel-control .glyphicon {
+    transform: translate(0, -150%);
 }
 
-.courses-box {
-	border: 1px solid #000;
+@media all and (min-width: 1200px) {
+    .carousel-control.left .glyphicon {
+        transform: translate(-200%, -150%);
+    }
+
+    .carousel-control.right .glyphicon {
+        transform: translate(150%, -150%);
+    }
 }
 
-.courses-title {
-	font-size: 20px;
-	text-align: center;
-	padding: 12px 0;
-	color: white;
-	border-bottom: 2px solid #2c5e58;
-	background-color: #36736C;
+.multi-item-carousel .cloned-item-1,
+.multi-item-carousel .cloned-item-2,
+.multi-item-carousel .cloned-item-3 {
+    display: none;
 }
 
-.courses-list {
-    overflow-y: auto;
-    max-height: 1200px;
-    width: 100%;
+@media all and (min-width: 768px) {
+    .multi-item-carousel .carousel-inner > .active.left,
+    .multi-item-carousel .carousel-inner > .prev {
+        left: -50%;
+    }
+
+    .multi-item-carousel .carousel-inner > .active.right,
+    .multi-item-carousel .carousel-inner > .next {
+        left: 50%;
+    }
+
+    .multi-item-carousel .carousel-inner > .left,
+    .multi-item-carousel .carousel-inner > .prev.right,
+    .multi-item-carousel .carousel-inner > .active {
+        left: 0;
+    }
+
+    .multi-item-carousel .carousel-inner .cloned-item-1 {
+        display: block;
+    }
 }
 
-.course-item {
-	font-size: 15px;
-	cursor: pointer;
-	padding: 5px 15px;
-	background-color: #eee;
+@media all and (min-width: 992px) {
+    .multi-item-carousel .carousel-inner > .active.left,
+    .multi-item-carousel .carousel-inner > .prev {
+        left: -25%;
+    }
+
+    .multi-item-carousel .carousel-inner > .active.right,
+    .multi-item-carousel .carousel-inner > .next {
+        left: 25%;
+    }
+
+    .multi-item-carousel .carousel-inner > .left,
+    .multi-item-carousel .carousel-inner > .prev.right,
+    .multi-item-carousel .carousel-inner > .active {
+        left: 0;
+    }
+
+    .multi-item-carousel .carousel-inner .cloned-item-2,
+    .multi-item-carousel .carousel-inner .cloned-item-3{
+        display: block;
+    }
 }
-
-	.course-item + .course-item {
-		border-top: 1px solid #ddd;
-	}
-
-	.course-item:hover {
-		color: #fafafa;
-		background-color: #1398B2;
-	}
-
-		.course-item:hover .course-item-date {
-			border-left: 2px solid #fff;
-		}
-
-/*********************************
- * Particular courses box styles
- *********************************/
