@@ -1,52 +1,85 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model LearningPlatform.Models.Courses.CourseDetailsPageModel
+
+@{
+    ViewBag.Title = Model.CurrentCourse.Name;
 }
 
-@model LearningPlatform.Models.Courses.CourseDetailsPageModel
-
-@*all means not found, don't question it*@
-@if (Model.UserCourseStatus != LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.All)
-{
-    <div style="background-color: green">
-        <h2>Current status: @Model.UserCourseStatus</h2>
-        @if(Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Completed)
-        {
-            <h2>Rate this course: </h2>
-        }
-    </div>
-}
-
+<!-- Course Details -->
 <div class="course-details-container">
-    <div class="course-details">
-        <div class="course-info">
-            <div class="course-info-title">@Html.DisplayFor(m => Model.CurrentCourse.Name)</div>
-            @if (Model.CurrentCourse.IsFeatured == 1)
-            {
-                <div class="course-featured">Featured</div>
-            }
-            else
-            {
-                <div class="course-featured">New</div>
-            }
-            <div class="course-date">Published on: @Html.DisplayFor(m => Model.CurrentCourse.CreationDate)</div>
-        </div>
-        @if (Model.CurrentCourse.Tags != null)
-        {
-            <div class="course-tags">
-                <div class="course-tag-title"> Tags </div>
-                <div class="course-tag-tags">
-                    @foreach (var tag in Model.CurrentCourse.Tags)
-                {
-                        <div class="course-tag-container">@Html.DisplayFor(m => tag.Name)</div>
+
+    <!-- Course Details Header-->
+    <div class="course-details-header">
+        <div class="row">
+            <div class="col-xs-12 col-md-5 pull-right">
+                <div class="course-ribbon bg-blue">
+                    <img class="course-image img-responsive" src="../Content/images/fractal_wallpaper.png">
+                    <div class="course-date text-right">Published on @String.Format("{0:dd MMM yyyy}", Model.CurrentCourse.CreationDate)</div>
+
+                    @if (Model.CurrentCourse.IsFeatured == 1)
+                    {
+                        <div class="ribbon-text-large text-center">Featured Course</div>
+                    }
+                    @* TODO: Course Rating is always 0. *@
+                    <div>Rating: @Model.CurrentCourse.Rating.ToString("0.00")</div>
+
+                    @* UserEnrollmentTypeEnum.All means not found, don't question it *@
+                    @*  > I don't even want to know *@
+                    @if (Model.UserCourseStatus != LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.All)
+                    {
+                        <div>Status: @Model.UserCourseStatus</div>
+                        if (Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Completed)
+                        {
+                            <div class="text-center">Rate this course</div>
+                            <div>Rating scale</div>
+                        }
                     }
                 </div>
             </div>
-        }
-    </div>
-    <div class="course-content">
-        <div class="course-contenthtml-container">
-            @Html.Raw(Model.CurrentCourse.ContentHtml);
+            <div class="course-header-info col-xs-12 col-md-7 pull-left">
+                <h2 class="course-title">@Html.DisplayFor(m => Model.CurrentCourse.Name)</h2>
+                <div class="field-label">Description</div>
+                <div class="description">@Html.DisplayFor(m => Model.CurrentCourse.Description)</div>
+            </div>
+        </div>
+    </div><!-- /.course-details-header -->
+
+    @* TODO: If Topics exists *@
+    <!-- Course Details Topics -->
+    <div class="course-details-topics">
+        <h3>Course Topics</h3>
+        <hr />
+        
+        <div id="accordion" class="panel-group">
+            @* TODO: Iterate through all the Topics here *@
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#topic1">Topic Title 1</a>
+                    </h4>
+                </div>
+                <div id="topic1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="topic-description">Description goes here</div>
+                        <div class="field-label">Resources</div>
+                        <div class="topic-resource"><a href="https://www.google.com">Our resource goes here</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#topic2">Topic Title 2</a>
+                    </h4>
+                </div>
+                <div id="topic2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="topic-description">Description goes here</div>
+                        <div class="field-label">Resources</div>
+                        <div class="topic-resource"><a href="https://www.google.com">Our resource goes here</a></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
+</div><!-- /.course-details-container -->
