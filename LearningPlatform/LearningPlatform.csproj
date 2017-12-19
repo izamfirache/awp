@@ -223,8 +223,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colors.css" />
-    <Content Include="Content\course-details-style.css" />
-    <Content Include="Content\courses-page-style.css" />
+    <Content Include="Content\course-style.css" />
+    <Content Include="Content\courses-listing-style.css" />
     <Content Include="Content\util.css" />
     <Content Include="Content\header-style.css" />
     <Content Include="Content\home-page-style.css" />
