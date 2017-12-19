@@ -24,20 +24,6 @@
 				<li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
 			</ul>
 		</div>
-
-		@*<ul class="nav navbar-nav">
-				<li>
-					<div class="avatar-wrapper">
-						@{
-							var baseUrl = Request.GetBaseUrl();
-							var imageUrl = baseUrl + "/api/users/" + Session["LoggedInUserId"] + "/avatar";
-						}
-						<img src="@imageUrl" class="avatar img-circle img-responsive">
-					</div>
-				</li>
-				<li>@Html.ActionLink(User.Identity.Name, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-				<li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
-			</ul>*@
 	}
 }
 else

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "";
 }
 
 @model LearningPlatform.Models.Homepage.IndexPageModel
@@ -80,15 +80,8 @@
         <div class="courses-container row">
             <h3 class="courses-title col-xs-12">Highest Rated Courses</h3>
 
-            @{ count = 0; }
             @foreach (var course in Model.HighestRatedCourses)
             {
-                if (count++ == 5)
-                {
-                    // Display only the first 5 highest rated courses
-                    break;
-                }
-
                 <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
                     <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
                         <img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">
