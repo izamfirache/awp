@@ -203,14 +203,14 @@ namespace LearningPlatform.API.Controllers
 		public IHttpActionResult GetHighestRatedCourse()
 		{
 			var query = @"
-									select top (5) 
+									select top (4) 
 										c.Id
 										, c.Name
 										, c.Description
 										, c.CreationDate
 										, c.UpdateDate
 										, c.IsFeatured
-                                        , c.ContentHtml
+                    , c.ContentHtml
 										, round(AVG(Cast(cr.Rating as Float)), 2) as Rating 
 									from dbo.Courses c 
 									inner join dbo.CoursesRatings cr on cr.CourseId = c.Id 
@@ -221,7 +221,7 @@ namespace LearningPlatform.API.Controllers
 										, c.CreationDate
 										, c.UpdateDate
 										, c.IsFeatured
-                                        , c.ContentHtml
+                    , c.ContentHtml
 									order by Rating desc";
 
 			var queryBuilder = new SqlQueryBuilder();
