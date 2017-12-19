@@ -82,11 +82,11 @@
     display: grid;
 }
 
-.course-tag-container{
-    font-size:20px;
-    font-weight:bolder;
-    padding:10px;
-    float:left;
+.course-tag-container {
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px;
+    float: left;
 }
 
 /*********************************
@@ -95,6 +95,10 @@
 
 #courseDescription {
     min-height: 250px;
+}
+
+.course-builder-container > h3 {
+    margin-bottom: 1.5em;
 }
 
 .course-builder-container .btn {
@@ -109,6 +113,26 @@
     margin-bottom: 2em;
 }
 
+#course-builder-topics {
+    width: 90%;
+    margin: auto;
+}
+
+.course-builder-topic {
+    padding: 2em;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+    .course-builder-topic .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .course-builder-topic .form-control + .form-control {
+        margin-top: 0.5em;
+    }
+
+/********************************/
 .adduielement-modal-content {
     width: 75%;
     height: 81%;
@@ -116,10 +140,10 @@
     margin-left: 12%;
 }
 
-.adduielement-modal-content modal-dialog {
-    height: 100%;
-    width: 100%;
-}
+    .adduielement-modal-content modal-dialog {
+        height: 100%;
+        width: 100%;
+    }
 
 .adduielement-modal-header {
     height: 10%;
@@ -134,10 +158,12 @@
 .adduielement-modal-footer {
     height: 10%;
 }
-.adduielement-modal-header-title{
-    width:50%;
-    float:left;
+
+.adduielement-modal-header-title {
+    width: 50%;
+    float: left;
 }
+
 .adduielement-modal-header-options {
     width: 45%;
     float: right;

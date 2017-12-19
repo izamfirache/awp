@@ -229,3 +229,7 @@
     height: 100%;
     background-color: #4d94cc;
 }
+
+.btn.pull-right + .btn.pull-right {
+    margin-right: 5px;
+}
