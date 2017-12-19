@@ -58,7 +58,15 @@
                         <div class="item @(count++ == 0 ? "active" : "")">
                             <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
                                 <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                                    <img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">
+                                    @{
+                                        var courseBaseUrl = Request.GetBaseUrl();
+                                        var courseImageUrl = baseUrl + "api/courses/" + course.Id + "/thumbnail";
+                                    }
+                                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
+                                        <img src="Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
+                                    </object>
+
+                                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
                                     <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                                     <div class="course-date">@String.Format("{0:dd MMM yyyy}", course.CreationDate)</div>
                                 </div>
@@ -84,7 +92,16 @@
             {
                 <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
                     <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        <img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">
+                        @{
+                            var courseBaseUrl = Request.GetBaseUrl();
+                            var courseImageUrl = baseUrl + "api/courses/" + course.Id + "/thumbnail";
+                        }
+
+                        <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
+                            <img src="Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
+                        </object>
+
+                        @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
                         <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
 
                         @{ var meterWidth = course.Rating / 5.0 * 100; }
@@ -98,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-            }
+                            }
         </div>
         <!-- End Highest Rated Courses section -->
     </div>
