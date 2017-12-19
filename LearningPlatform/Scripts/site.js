@@ -1,4 +1,9 @@
-﻿/* Multi Item carousel */
+﻿/* Utility functions */
+function clearFormElementById(id) {
+    document.getElementById(id).value = '';
+}
+
+/* Multi Item carousel */
 $(document).ready(function () {
     $('.multi-item-carousel .item').each(function () {
         var itemToClone = $(this);

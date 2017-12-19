@@ -1,66 +1,48 @@
 ﻿@model LearningPlatform.Models.Courses.CourseBuilderPageModel
 
 @{
-    ViewBag.Title = "CourseBuilder";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Course Builder";
 }
 
 @using (Html.BeginForm("AddNewCourse", "CourseBuilder", FormMethod.Post))
 {
+    <!-- Course Builder -->
     <div class="course-builder-container">
 
-        <div class="course-builder-container-header">
-            <div class="course-builder-container-header-coursemetadata">
-                <div class="course-builder-container-header-coursemetadata-title">
-                    @Html.TextBoxFor(m => m.CurrentCourse.Name, new { @id = "courseTitle", placeholder = "Course title", @class = "form-control" })
+        <!-- Course Builder Header -->
+        <div class="course-builder-header">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CurrentCourse.Name, "Title", htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.CurrentCourse.Name, null, new { @placeholder = "Course title", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.CurrentCourse.Name, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div class="course-builder-container-header-coursemetadata-description">
-                    @Html.TextBoxFor(m => m.CurrentCourse.Description, new { @id = "courseDescription", placeholder = "Course description", @class = "form-control" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CurrentCourse.Description, htmlAttributes: new { @class = "control-label col-md-1" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(m => m.CurrentCourse.Description, new { @id = "courseDescription", @placeholder = "Provide a general description about the course", @class = "form-control" })
+                    </div>
                 </div>
             </div>
-            <div class="course-builder-container-header-buildoptions">
-                <button type="button" value="Add paragraph"
-                        class="course-builder-container-header-buildoptions-option btn btn-primary"
-                        data-toggle="modal" data-target="#adduielement-modal">
-                    Add paragraph
-                </button>
-                <button type="button" value="Add video"
-                        class="course-builder-container-header-buildoptions-option btn btn-primary"
-                        data-toggle="modal" data-target="#adduielement-modal">
-                    Add video
-                </button>
-                <button type="button" value="Add image"
-                        class="course-builder-container-header-buildoptions-option btn btn-primary"
-                        data-toggle="modal" data-target="#adduielement-modal">
-                    Add image
-                </button>
+        </div><!-- /.course-builder-header -->
 
-            </div>
-        </div>
+        <!-- Course Builder Topics Container -->
+        <div class="course-builder-topics-container clearfix">
+            <h3>Add Topics</h3>
+            <div>Topics are a good way to structure your course into various sections.</div>
+            <hr />
 
-        <div class="course-builder-container-coursecontent">
+            <div class="course-builder-topics"></div>
 
-            @Html.TextAreaFor(m => m.CurrentCourse.ContentHtml,
-               new {
-                   @placeholder = "Insert here the HTML code for the new course.",
-                   @id = "courseContentHtml",
-                   @class = "course-builder-container-contenthtml form-control"
-               })
-            
-            <button type="button" value="Clear" onclick="ClearCourseHtmlContent()"
-                    class="course-builder-container-clearcontent btn btn-primary">
-                Clear
-            </button>
-        </div>
+            <button type="button" value="Add Topic" class="btn btn-primary pull-right">Add Topic</button>
+        </div><!-- /.course-builder-topics-container -->
 
-        <input class="course-builder-container-savecourse btn btn-primary" type="submit" value="Save course" />
-    </div>
+        <!-- Course Builder Controls -->
+        <div class="course-builder-controls clearfix">
+            <input id="courseBuilderSave" class="btn btn-info pull-right" type="submit" value="Save course" />
+        </div><!-- /.course-builder-controls -->
+
+    </div><!-- /.course-builder-container -->
 }
-
-
-@*TODO: MOVE THIS INTO A SEPARATE JS FILE*@
-<script type="text/javascript">
-    function ClearCourseHtmlContent() {
-        document.getElementById('courseContentHtml').value = '';
-    }
-</script>
