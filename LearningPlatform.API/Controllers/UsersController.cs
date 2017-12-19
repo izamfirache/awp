@@ -64,29 +64,29 @@ namespace LearningPlatform.API.Controllers
         [Route("users/{userId}/enrollment")]
         public IHttpActionResult GetEnrolledCourses(int userId, [FromUri]string type)
         {
-            UserEnrollmentType enrollmentType;
+            UserEnrollmentTypeEnum enrollmentType;
 
             switch (type)
             {
                 case "pending":
-                    enrollmentType = UserEnrollmentType.Pending;
+                    enrollmentType = UserEnrollmentTypeEnum.Pending;
                     break;
                 case "active":
-                    enrollmentType = UserEnrollmentType.Active;
+                    enrollmentType = UserEnrollmentTypeEnum.Active;
                     break;
                 case "completed":
-                    enrollmentType = UserEnrollmentType.Completed;
+                    enrollmentType = UserEnrollmentTypeEnum.Completed;
                     break;
                 default:
-                    enrollmentType = UserEnrollmentType.All;
+                    enrollmentType = UserEnrollmentTypeEnum.All;
                     break;
             }
 
             var enrollments = _userEnrollmentRepositry.GetByProperty("UserId", userId);
 
-            if (enrollmentType != UserEnrollmentType.All)
+            if (enrollmentType != UserEnrollmentTypeEnum.All)
             {
-                enrollments = enrollments.Where(e => e.UserEnrollmentTypeId == enrollmentType);
+                enrollments = enrollments.Where(e => e.UserEnrollmentType == enrollmentType);
             }
 
             var enrolledCourses = new List<Course>();

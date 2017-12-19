@@ -11,7 +11,7 @@ namespace LearningPlatform.Core.Entities
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public UserEnrollmentType UserEnrollmentTypeId { get; set; }
+        public UserEnrollmentTypeEnum UserEnrollmentType { get; set; }
         public int CourseId { get; set; }
 
         public UserEnrollment()
@@ -23,7 +23,7 @@ namespace LearningPlatform.Core.Entities
         {
             Id = Int32.Parse(row["Id"].ToString());
             UserId = Int32.Parse(row["UserId"].ToString());
-            UserEnrollmentTypeId = (UserEnrollmentType)Int32.Parse(row["UserEnrollmentTypeId"].ToString());
+            UserEnrollmentType = (UserEnrollmentTypeEnum)Int32.Parse(row["UserEnrollmentTypeId"].ToString());
             CourseId = Int32.Parse(row["CourseId"].ToString());
         }
 
@@ -41,7 +41,7 @@ namespace LearningPlatform.Core.Entities
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append($"('{UserId}', '{UserEnrollmentTypeId}', '{CourseId}')");
+            stringBuilder.Append($"('{UserId}', '{UserEnrollmentType}', '{CourseId}')");
 
             return stringBuilder.ToString();
         }
@@ -50,13 +50,13 @@ namespace LearningPlatform.Core.Entities
         {
             var stringBuilder = new StringBuilder();
 
-            stringBuilder.Append($" UserId = '{UserId}', UserEnrollmentTypeId = '{UserEnrollmentTypeId}', CourseId = '{CourseId}' ");
+            stringBuilder.Append($" UserId = {UserId}, UserEnrollmentTypeId = {UserEnrollmentType}, CourseId = {CourseId} ");
 
             return stringBuilder.ToString();
         }
     }
 
-    public enum UserEnrollmentType
+    public enum UserEnrollmentTypeEnum
     {
         All,
         Pending,

@@ -19,8 +19,8 @@ namespace LearningPlatform.API.Controllers
 				private DataRepository<CourseTag> _courseTagRepository;
 				private DataRepository<CourseRating> _courseRatingsRepository;
 				private DataRepository<CourseThumbnail> _courseThumbnailsRepository;
-        private DataRepository<CourseTopic> _courseTopicRepository;
-        private DataRepository<CourseTopicLink> _courseTopicLinksRepository;
+				private DataRepository<CourseTopic> _courseTopicRepository;
+				private DataRepository<CourseTopicLink> _courseTopicLinksRepository;
 
 				public CoursesController()
 				{
@@ -29,11 +29,11 @@ namespace LearningPlatform.API.Controllers
 						_repository = new DataRepository<Course>(connectionString);
 						_tagRepository = new DataRepository<Tag>(connectionString);
 						_courseTagRepository = new DataRepository<CourseTag>(connectionString);
-            _courseTopicRepository = new DataRepository<CourseTopic>(connectionString);
-            _courseRatingsRepository = new DataRepository<CourseRating>(connectionString);
-            _courseTopicLinksRepository = new DataRepository<CourseTopicLink>(connectionString);
-            _courseThumbnailsRepository = new DataRepository<CourseThumbnail>(connectionString);
-        }
+						_courseTopicRepository = new DataRepository<CourseTopic>(connectionString);
+						_courseRatingsRepository = new DataRepository<CourseRating>(connectionString);
+						_courseTopicLinksRepository = new DataRepository<CourseTopicLink>(connectionString);
+						_courseThumbnailsRepository = new DataRepository<CourseThumbnail>(connectionString);
+				}
 
 				// GET: api/Users
 				[HttpGet]
@@ -135,29 +135,29 @@ namespace LearningPlatform.API.Controllers
 						return Json(tags);
 				}
 
-        [HttpGet]
-        [Route("Courses/{courseId}/topics")]
-        public IHttpActionResult GetTopicsForCourse(int courseId)
-        {
-            var courseTopics = _courseTopicRepository.GetByProperty("CourseId", courseId);
+				[HttpGet]
+				[Route("Courses/{courseId}/topics")]
+				public IHttpActionResult GetTopicsForCourse(int courseId)
+				{
+						var courseTopics = _courseTopicRepository.GetByProperty("CourseId", courseId);
 
-            foreach(var courseTopic in courseTopics)
-            {
-                courseTopic.CourseTopicLinks = _courseTopicLinksRepository.GetByProperty("CourseTopicId", courseTopic.Id).ToList();
-            }
+						foreach(var courseTopic in courseTopics)
+						{
+								courseTopic.CourseTopicLinks = _courseTopicLinksRepository.GetByProperty("CourseTopicId", courseTopic.Id).ToList();
+						}
 
-            return Json(_courseTopicRepository.GetByProperty("CourseId", courseId));
-        }
+						return Json(_courseTopicRepository.GetByProperty("CourseId", courseId));
+				}
 
-        [HttpPost]
-        [Route("Courses/{courseId}/topics")]
-        public IHttpActionResult GetTopicsForCourse(int courseId, [FromBody]List<CourseTopic> value)
-        {
-            value.ForEach(v => _courseTopicRepository.Insert(v));
-            return Ok();
-        }
+				[HttpPost]
+				[Route("Courses/{courseId}/topics")]
+				public IHttpActionResult GetTopicsForCourse(int courseId, [FromBody]List<CourseTopic> value)
+				{
+						value.ForEach(v => _courseTopicRepository.Insert(v));
+						return Ok();
+				}
 
-        [HttpGet]
+				[HttpGet]
 				[Route("Courses/{courseId}/thumbnail")]
 				public HttpResponseMessage GetCourseAvatar(int courseId)
 				{
@@ -168,11 +168,19 @@ namespace LearningPlatform.API.Controllers
 								return new HttpResponseMessage(HttpStatusCode.NotFound);
 						}
 
-						var thumbnail = _courseThumbnailsRepository.GetByProperty("CourseId", courseId).FirstOrDefault().Thumbnail;
-						var imageStream = thumbnail.StringToByteArray().ToStream();
-						var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StreamContent(imageStream) };
-						response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
-						return response;
+						var thumbnail = _courseThumbnailsRepository.GetByProperty("CourseId", courseId)?.FirstOrDefault()?.Thumbnail;
+
+						if(thumbnail != null)
+						{
+								var imageStream = thumbnail.StringToByteArray().ToStream();
+								var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StreamContent(imageStream) };
+								response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+								return response;
+						}
+						else
+						{
+								return new HttpResponseMessage(HttpStatusCode.NotFound);
+						}						
 				}
 
 				[HttpPost]

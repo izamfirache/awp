@@ -3,6 +3,19 @@
 }
 
 @model LearningPlatform.Models.Courses.CourseDetailsPageModel
+
+@*all means not found, don't question it*@
+@if (Model.UserCourseStatus != LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.All)
+{
+    <div style="background-color: green">
+        <h2>Current status: @Model.UserCourseStatus</h2>
+        @if(Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Completed)
+        {
+            <h2>Rate this course: </h2>
+        }
+    </div>
+}
+
 <div class="course-details-container">
     <div class="course-details">
         <div class="course-info">
@@ -36,3 +49,4 @@
         </div>
     </div>
 </div>
+

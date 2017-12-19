@@ -40,6 +40,19 @@ namespace LearningPlatform.Controllers
             courseDetailsPageModel.CurrentCourse = JsonConvert.DeserializeObject<Course>
                 (result.Result.Content.ReadAsStringAsync().Result);
 
+            var enrollmentRequest = new HttpRequestMessage(
+                HttpMethod.Get,
+                Request.GetBaseUrl() + string.Format("api/userenrollment?userId={0}&courseId={1}", Session["LoggedInUserId"], courseId)
+                );
+
+            var enrollmentResult = httpClient.SendAsync(enrollmentRequest).Result;
+
+            if (enrollmentResult.IsSuccessStatusCode)
+            {
+                var enrollment = JsonConvert.DeserializeObject<UserEnrollment>(enrollmentResult.Content.ReadAsStringAsync().Result);
+                courseDetailsPageModel.UserCourseStatus = enrollment.UserEnrollmentType;
+            }           
+
             return View("CourseDetails", courseDetailsPageModel);
         }
 

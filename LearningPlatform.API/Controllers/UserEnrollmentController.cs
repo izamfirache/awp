@@ -21,30 +21,44 @@ namespace LearningPlatform.API.Controllers
         }
 
         // GET: api/UserEnrollment
-        public IEnumerable<string> Get()
+        [HttpGet]                
+        public IHttpActionResult Get([FromUri]int userId, [FromUri]int courseId)
         {
-            return new string[] { "value1", "value2" };
-        }
+            var conditions = new Dictionary<string, int>();
+            conditions.Add("UserId", userId);
+            conditions.Add("CourseId", courseId);
 
-        // GET: api/UserEnrollment/5
-        public string Get(int id)
-        {
-            return "value";
+            var result = _userEnrollmentRepository.GetByProprieties(conditions).LastOrDefault();
+
+            if(result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Json(result);
+            }            
         }
 
         // POST: api/UserEnrollment
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]UserEnrollment value)
         {
-        }
-
-        // PUT: api/UserEnrollment/5
-        public void Put(int id, [FromBody]string value)
-        {
+            _userEnrollmentRepository.Insert(value);
+            return Ok();
         }
 
         // DELETE: api/UserEnrollment/5
-        public void Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult Delete([FromUri]int userId, [FromUri]int courseId)
         {
+            var conditions = new Dictionary<string, int>();
+            conditions.Add("UserId", userId);
+            conditions.Add("CourseId", courseId);
+
+            var userEnrollmentsToDelete = _userEnrollmentRepository.GetByProprieties(conditions);
+            userEnrollmentsToDelete.ToList().ForEach(e => _userEnrollmentRepository.Delete(e.Id));
+            return Ok();
         }
     }
 }
