@@ -58,8 +58,7 @@
                         <div class="item @(count++ == 0 ? "active" : "")">
                             <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
                                 <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                                    @{
-                                        var courseBaseUrl = Request.GetBaseUrl();
+                                    @{                                        
                                         var courseImageUrl = baseUrl + "api/courses/" + course.Id + "/thumbnail";
                                     }
                                     <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
@@ -93,7 +92,6 @@
                 <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
                     <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
                         @{
-                            var courseBaseUrl = Request.GetBaseUrl();
                             var courseImageUrl = baseUrl + "api/courses/" + course.Id + "/thumbnail";
                         }
 

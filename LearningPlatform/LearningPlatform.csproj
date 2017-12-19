@@ -214,6 +214,7 @@
     <Compile Include="Models\Users\EditProfileUserModel.cs" />
     <Compile Include="Models\Users\LoggedInUserModel.cs" />
     <Compile Include="Models\Users\LoginUserModel.cs" />
+    <Compile Include="Models\Users\MyDashboardModel.cs" />
     <Compile Include="Models\Users\RegisterUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

@@ -17,6 +17,7 @@ using System.Web.Security;
 using LearningPlatform.Http;
 using System.IO;
 using LearningPlatform.Helpers;
+using System.Collections.Generic;
 
 namespace LearningPlatform.Controllers
 {
@@ -151,7 +152,25 @@ namespace LearningPlatform.Controllers
         [HttpGet]
         public ActionResult MyDashBoard()
         {
-            return View();
+            var model = new MyDashboardModel();
+
+            var httpClient = new HttpClient();
+            var pendingCourseRequest = new HttpRequestMessage(HttpMethod.Get, Request.GetBaseUrl() + "api/users/" + Session["LoggedInUserId"] + "/enrollment?type=pending");
+            var pendingCoursesResult = httpClient.SendAsync(pendingCourseRequest);
+
+            var activeCoursesRequest = new HttpRequestMessage(HttpMethod.Get, Request.GetBaseUrl() + "api/users/" + Session["LoggedInUserId"] + "/enrollment?type=active");
+            var activeCoursesResult = httpClient.SendAsync(activeCoursesRequest);
+
+            var completedCoursesRequest = new HttpRequestMessage(HttpMethod.Get, Request.GetBaseUrl() + "api/users/" + Session["LoggedInUserId"] + "/enrollment?type=completed");
+            var completedCoursesResult = httpClient.SendAsync(completedCoursesRequest);
+
+            Task.WaitAll(new Task[] { pendingCoursesResult, activeCoursesResult, completedCoursesResult });
+
+            model.PendingCourses = JsonConvert.DeserializeObject<List<Course>>(pendingCoursesResult.Result.Content.ReadAsStringAsync().Result);
+            model.ActiveCourses = JsonConvert.DeserializeObject<List<Course>>(activeCoursesResult.Result.Content.ReadAsStringAsync().Result);
+            model.CompletedCourses = JsonConvert.DeserializeObject<List<Course>>(completedCoursesResult.Result.Content.ReadAsStringAsync().Result);
+
+            return View(model);
         }
 
         [HttpGet]
