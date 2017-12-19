@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - .learning platform</title>
+    <title>@ViewBag.Title @(!String.IsNullOrEmpty(ViewBag.Title) ? "-" : "") Learning Platform</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/styles")
     
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
 </head>
 <body>
     <header id="header" class="page-header">
