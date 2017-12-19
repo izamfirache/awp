@@ -6,7 +6,7 @@ Post-Deployment Script Template
  Example:      :r .\myfile.sql								
  Use SQLCMD syntax to reference a variable in the post-deployment script.		
  Example:      :setvar TableName MyTable							
-               SELECT * FROM [$(TableName)]					
+							 SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
 
@@ -318,4 +318,126 @@ VALUES ([Id],[CourseId],[Thumbnail])
 SET IDENTITY_INSERT [dbo].[CoursesThumbnails] OFF;
 GO
 
+
+/*** MERGE-Statement for table [dbo].[UserEnrollmentTypes] ***/
+
+SET IDENTITY_INSERT [dbo].[UserEnrollmentTypes] ON;
+GO
+
+MERGE INTO [dbo].[UserEnrollmentTypes] AS Target USING(VALUES 
+
+(1,N'Pending',N'User is to start the course in the future')
+,(2,N'Active',N'User is currently enrolled in this course')
+,(3,N'Completed',N'User completed this course')
+) AS Source ([Id],[Name],[Description])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[Name] = Source.[Name] 
+,[Description] = Source.[Description] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[Name],[Description])
+VALUES ([Id],[Name],[Description])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[UserEnrollmentTypes] OFF;
+GO
+
+/*** MERGE-Statement for table [dbo].[UserEnrollments] ***/
+
+SET IDENTITY_INSERT [dbo].[UserEnrollments] ON;
+GO
+
+MERGE INTO [dbo].[UserEnrollments] AS Target USING(VALUES 
+
+(1,1,2,5)
+,(2,1,2,13)
+,(3,1,1,6)
+,(4,1,3,2)
+,(5,2,2,5)
+,(6,2,2,13)
+,(7,2,1,6)
+,(8,2,3,2)
+,(9,3,2,5)
+,(10,3,2,13)
+,(11,3,1,6)
+,(12,3,3,2)
+) AS Source ([Id],[UserId],[UserEnrollmentTypeId],[CourseId])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[UserId] = Source.[UserId] 
+,[UserEnrollmentTypeId] = Source.[UserEnrollmentTypeId] 
+,[CourseId] = Source.[CourseId] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[UserId],[UserEnrollmentTypeId],[CourseId])
+VALUES ([Id],[UserId],[UserEnrollmentTypeId],[CourseId])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[UserEnrollments] OFF;
+GO
+
+/*** MERGE-Statement for table [dbo].[CourseTopics] ***/
+
+SET IDENTITY_INSERT [dbo].[CourseTopics] ON;
+GO
+
+MERGE INTO [dbo].[CourseTopics] AS Target USING(VALUES 
+
+(1,N'This is the first topic',N'This is the first description',1)
+,(2,N'This is the 2nd topic',N'This is the 2nd description',1)
+,(3,N'This is the 3rd topic',N'This is the 3rd description',1)
+) AS Source ([Id],[TopicName],[TopicDescription],[CourseId])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[TopicName] = Source.[TopicName] 
+,[TopicDescription] = Source.[TopicDescription] 
+,[CourseId] = Source.[CourseId] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[TopicName],[TopicDescription],[CourseId])
+VALUES ([Id],[TopicName],[TopicDescription],[CourseId])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[CourseTopics] OFF;
+GO
+
+
+
+/*** MERGE-Statement for table [dbo].[CourseTopicsLinks] ***/
+
+SET IDENTITY_INSERT [dbo].[CourseTopicsLinks] ON;
+GO
+
+MERGE INTO [dbo].[CourseTopicsLinks] AS Target USING(VALUES 
+
+(1,N'First Link',N'http://google.com',1)
+,(2,N'2nd Link',N'http://yahoo.com',1)
+,(3,N'2nd Link',N'http://bing.com',2)
+) AS Source ([Id],[Name],[Link],[CourseTopicId])
+ ON 
+Target.[Id] = Source.[Id] 
+
+ WHEN MATCHED THEN UPDATE SET 
+[Name] = Source.[Name] 
+,[Link] = Source.[Link] 
+,[CourseTopicId] = Source.[CourseTopicId] 
+
+ WHEN NOT MATCHED BY TARGET THEN 
+INSERT ([Id],[Name],[Link],[CourseTopicId])
+VALUES ([Id],[Name],[Link],[CourseTopicId])
+ -- WHEN NOT MATCHED BY SOURCE THEN DELETE  -- uncomment this line to support deletes, too!
+;
+
+SET IDENTITY_INSERT [dbo].[CourseTopicsLinks] OFF;
+GO
 

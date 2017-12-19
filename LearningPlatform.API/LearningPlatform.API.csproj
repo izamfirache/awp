@@ -181,6 +181,7 @@
     <Compile Include="Controllers\CourseRatingsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CourseTagController.cs" />
+    <Compile Include="Controllers\CourseTopicsController.cs" />
     <Compile Include="Controllers\ResponsibilityController.cs" />
     <Compile Include="Controllers\ResponsibilityTypesController.cs" />
     <Compile Include="Controllers\TagsController.cs" />

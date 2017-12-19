@@ -43,6 +43,8 @@
     <Compile Include="Entities\Course.cs" />
     <Compile Include="Entities\CourseTag.cs" />
     <Compile Include="Entities\CourseThumbnail.cs" />
+    <Compile Include="Entities\CourseTopic.cs" />
+    <Compile Include="Entities\CourseTopicLink.cs" />
     <Compile Include="Entities\DatabaseEntity.cs" />
     <Compile Include="Entities\CourseRating.cs" />
     <Compile Include="Entities\Responsibility.cs" />

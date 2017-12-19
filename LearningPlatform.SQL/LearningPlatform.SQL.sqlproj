@@ -73,6 +73,10 @@
     <Build Include="dbo\Stored Procedures\GetCoursesByTag.sql" />
     <Build Include="dbo\Tables\CoursesRatings.sql" />
     <Build Include="dbo\Tables\CoursesThumbnails.sql" />
+    <Build Include="dbo\Tables\UserEnrollmentTypes.sql" />
+    <Build Include="dbo\Tables\UserEnrollments.sql" />
+    <Build Include="dbo\Tables\CourseTopics.sql" />
+    <Build Include="dbo\Tables\CourseTopicsLinks.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
