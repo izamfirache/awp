@@ -13,7 +13,6 @@ namespace LearningPlatform.API.Controllers
     public class CourseRatingsController : ApiController
     {
         private DataRepository<CourseRating> _repository;
-        private DataRepository<Course> _courseRepository;
 
         public CourseRatingsController()
         {
