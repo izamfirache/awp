@@ -86,7 +86,7 @@ N'<div style="height:200px; background-color:yellow;">
 ,(2,N'Object Oriented Programing. Java fundamentals.',N'Introductory course in Object Oriented Programing. Covers concepts and best practices.','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
 ,(3,N'Procedural programming.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
 ,(4,N'C++ used in the OO way.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, N'')
-,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, N'')
+,(5,N'Python advanced aspects.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
 ,(6,N'Javascript fundamentals.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
 ,(7,N'Functional Programming aspects. Prolog.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
 ,(8,N'Haskell for begginers.',N'','20171101 12:57:24.000','20171101 12:57:24.000',0, N'')
@@ -94,7 +94,7 @@ N'<div style="height:200px; background-color:yellow;">
 ,(10,N'HTML and CSS advanced.',N'','20171101 12:57:24.000','20171101 12:57:24.000',1, N'')
 ,(13,N'Code Yourself! An Introduction to Programming',N'This course will teach you how to program in Scratch, an easy to use visual programming language. More importantly, it will introduce you to the fundamental principles of computing and it will help you think like a software engineer.','20171109 17:39:41.000','20171109 17:39:42.000',0, N'')
 ,(14,N'An Introduction to Programming',N'This is a description','20171109 17:43:15.000','20171109 17:43:15.000',0, N'')
-,(15,N'An Introduction to Java Programming',N'This is the best description that there could be','20171110 12:45:24.000','20171110 12:45:25.000',0, N'')
+,(15,N'An Introduction to Java Programming',N'This is the best description that there could be','20171110 12:45:24.000','20171110 12:45:25.000',1, N'')
 ) AS Source ([Id],[Name],[Description],[CreationDate],[UpdateDate],[IsFeatured], [ContentHtml])
  ON 
 Target.[Id] = Source.[Id] 

@@ -51,6 +51,7 @@
     <Compile Include="Entities\ResponsibilityType.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserEnrollment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

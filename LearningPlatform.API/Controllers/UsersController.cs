@@ -13,149 +13,192 @@ using System.Web.Http;
 
 namespace LearningPlatform.API.Controllers
 {
-	public class UsersController : ApiController
-	{
-		private DataRepository<User> _repository;
+    public class UsersController : ApiController
+    {
+        private DataRepository<User> _repository;
+        private DataRepository<UserEnrollment> _userEnrollmentRepositry;
+        private DataRepository<Course> _coursesRepository;
 
-		public UsersController()
-		{
-			_repository = new DataRepository<User>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
-		}
+        public UsersController()
+        {
+            _repository = new DataRepository<User>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
+            _userEnrollmentRepositry = new DataRepository<UserEnrollment>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
+            _coursesRepository = new DataRepository<Course>(Environment.GetEnvironmentVariable("AWP_DB", EnvironmentVariableTarget.Machine));
+        }
 
-		// GET: api/Users
-		[HttpGet]
-		public IHttpActionResult Get()
-		{
-			return Json(_repository.GetAll());
-		}
+        // GET: api/Users
+        [HttpGet]
+        public IHttpActionResult Get()
+        {
+            return Json(_repository.GetAll());
+        }
 
-		// GET: api/Users/5
-		[HttpGet]
-		public IHttpActionResult Get(int id)
-		{
-			return Json(_repository.GetById(id));
-		}
+        // GET: api/Users/5
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            return Json(_repository.GetById(id));
+        }
 
-		[HttpGet]
-		[Route("users/{id}/avatar")]
-		public HttpResponseMessage GetAvatar(int id)
-		{
-			var user = _repository.GetById(id);
+        [HttpGet]
+        [Route("users/{id}/avatar")]
+        public HttpResponseMessage GetAvatar(int id)
+        {
+            var user = _repository.GetById(id);
 
-			if (user == null)
-			{
-				return new HttpResponseMessage(HttpStatusCode.NotFound);
-			}
+            if (user == null)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
 
-			var avatar = _repository.GetById(id).Avatar;
+            var avatar = _repository.GetById(id).Avatar;
 
-			var imageStream = avatar.StringToByteArray().ToStream();
-			var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StreamContent(imageStream) };
-			//response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-			response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
-			return response;
-		}
+            var imageStream = avatar.StringToByteArray().ToStream();
+            var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = new StreamContent(imageStream) };
+            //response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpeg");
+            return response;
+        }        
 
-		// POST: api/Users
-		[HttpPost]
-		public IHttpActionResult Post([FromBody]User user)
-		{
-			var checkExistingUser = _repository.GetByProperty("Username", user.Username);
+        [HttpGet]
+        [Route("users/{userId}/enrollment")]
+        public IHttpActionResult GetEnrolledCourses(int userId, [FromUri]string type)
+        {
+            UserEnrollmentType enrollmentType;
 
-			if (checkExistingUser?.Count() > 0)
-			{
-				return BadRequest("Username already used");
-			}
+            switch (type)
+            {
+                case "pending":
+                    enrollmentType = UserEnrollmentType.Pending;
+                    break;
+                case "active":
+                    enrollmentType = UserEnrollmentType.Active;
+                    break;
+                case "completed":
+                    enrollmentType = UserEnrollmentType.Completed;
+                    break;
+                default:
+                    enrollmentType = UserEnrollmentType.All;
+                    break;
+            }
 
-			var checkExistingEmail = _repository.GetByProperty("Email", user.Email);
+            var enrollments = _userEnrollmentRepositry.GetByProperty("UserId", userId);
 
-			if (checkExistingEmail?.Count() > 0)
-			{
-				return BadRequest("Email already used");
-			}
+            if (enrollmentType != UserEnrollmentType.All)
+            {
+                enrollments = enrollments.Where(e => e.UserEnrollmentTypeId == enrollmentType);
+            }
 
-			var result = _repository.Insert(user);
+            var enrolledCourses = new List<Course>();
 
-			if (result == 1)
-			{
-				var createdUser = _repository.GetByProperty("Username", user.Username).FirstOrDefault();
-				return Ok(createdUser);
-			}
-			else
-			{
-				return BadRequest("Could not create user");
-			}
-		}
+            foreach (var enrollment in enrollments)
+            {
+                enrolledCourses.Add(_coursesRepository.GetById(enrollment.CourseId));
+            }
 
-		[HttpPost]
-		[Route("users/token")]
-		public IHttpActionResult Token([FromBody]User user)
-		{
-			var dictionary = new Dictionary<string, string>();
+            return Json(enrolledCourses);
+        }
 
-			dictionary.Add("Username", user.Username);
-			dictionary.Add("Password", user.Password);
+        // POST: api/Users
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]User user)
+        {
+            var checkExistingUser = _repository.GetByProperty("Username", user.Username);
 
-			var results = _repository.GetByProprieties(dictionary);
+            if (checkExistingUser?.Count() > 0)
+            {
+                return BadRequest("Username already used");
+            }
 
-			if (results.Count() == 1)
-			{
-				return Json(results.ElementAt(0));
-			}
-			else
-			{
-				return BadRequest();
-			}
-		}
+            var checkExistingEmail = _repository.GetByProperty("Email", user.Email);
 
-		// PUT: api/Users/5
-		[HttpPut]
-		public IHttpActionResult Put(int id, [FromBody]User value)
-		{
-			var existingUser = _repository.GetById(id);
+            if (checkExistingEmail?.Count() > 0)
+            {
+                return BadRequest("Email already used");
+            }
 
-			if (existingUser != null)
-			{
-				var result = _repository.Update(id, value);
+            var result = _repository.Insert(user);
 
-				if (result == 1)
-				{
-					return Ok();
-				}
-				else
-				{
-					return BadRequest();
-				}
-			}
-			else
-			{
-				return NotFound();
-			}
-		}
+            if (result == 1)
+            {
+                var createdUser = _repository.GetByProperty("Username", user.Username).FirstOrDefault();
+                return Ok(createdUser);
+            }
+            else
+            {
+                return BadRequest("Could not create user");
+            }
+        }
 
-		// DELETE: api/Users/5
-		[HttpDelete]
-		public IHttpActionResult Delete(int id)
-		{
-			var existingUser = _repository.GetById(id);
+        [HttpPost]
+        [Route("users/token")]
+        public IHttpActionResult Token([FromBody]User user)
+        {
+            var dictionary = new Dictionary<string, string>();
 
-			if (existingUser != null)
-			{
-				var result = _repository.Delete(id);
+            dictionary.Add("Username", user.Username);
+            dictionary.Add("Password", user.Password);
 
-				if (result == 1)
-				{
-					return Ok();
-				}
-				else
-				{
-					return BadRequest();
-				}
-			}
-			else
-			{
-				return NotFound();
-			}
-		}
-	}
+            var results = _repository.GetByProprieties(dictionary);
+
+            if (results.Count() == 1)
+            {
+                return Json(results.ElementAt(0));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        // PUT: api/Users/5
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]User value)
+        {
+            var existingUser = _repository.GetById(id);
+
+            if (existingUser != null)
+            {
+                var result = _repository.Update(id, value);
+
+                if (result == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        // DELETE: api/Users/5
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            var existingUser = _repository.GetById(id);
+
+            if (existingUser != null)
+            {
+                var result = _repository.Delete(id);
+
+                if (result == 1)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+    }
 }
