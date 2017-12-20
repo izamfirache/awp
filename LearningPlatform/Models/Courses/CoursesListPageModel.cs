@@ -16,5 +16,9 @@ namespace LearningPlatform.Models.Courses
         public string SelectedSortOptions { get; set; }
 
         public string Filter { get; set; }
+
+        public List<Tag> Tags { get; set; }
+
+        public int SelectedTagId { get; set; }
     }
 }

@@ -23,6 +23,14 @@ namespace LearningPlatform.Controllers
             var result = httpClient.SendAsync(currentCourseRequest);
             model.Courses = JsonConvert.DeserializeObject<List<Course>>
                 (result.Result.Content.ReadAsStringAsync().Result);
+
+            // get the tags
+            var url = Request.GetBaseUrl() + "api/tags";
+            var getTagsRequest =  new HttpRequestMessage(HttpMethod.Get, url);
+            var getTagsRequestResult = httpClient.SendAsync(getTagsRequest);
+            model.Tags = JsonConvert.DeserializeObject<List<Tag>>
+                (getTagsRequestResult.Result.Content.ReadAsStringAsync().Result);
+
             return View("CourseList", model);
         }
 
@@ -61,6 +69,7 @@ namespace LearningPlatform.Controllers
             var newModel = new CoursesListPageModel();
             var courses = GetLatestCourses();
             newModel.Courses = courses.OrderByDescending(c => c.CreationDate).ToList();
+            newModel.Tags = GetTags();
 
             return View("CourseList", newModel);
         }
@@ -70,6 +79,7 @@ namespace LearningPlatform.Controllers
             var newModel = new CoursesListPageModel();
             var courses = GetLatestCourses();
             newModel.Courses = courses.Where(c => c.Name.ToLower().Contains(filter)).ToList();
+            newModel.Tags = GetTags();
 
             return View("CourseList", newModel);
         }
@@ -83,6 +93,33 @@ namespace LearningPlatform.Controllers
                 (result.Result.Content.ReadAsStringAsync().Result);
 
             return courses;
+        }
+
+        public ActionResult SearchCoursesByTags(string tag)
+        {
+            var newModel = new CoursesListPageModel();
+
+            var httpClient = new HttpClient();
+            var url = Request.GetBaseUrl() + string.Format("api/courses?tagName={0}", tag);
+            var getCoursesByTagsRequest = new HttpRequestMessage(HttpMethod.Get, url);
+            var getCoursesByTagsRequestResult = httpClient.SendAsync(getCoursesByTagsRequest);
+
+            newModel.Courses = JsonConvert.DeserializeObject<List<Course>>
+                (getCoursesByTagsRequestResult.Result.Content.ReadAsStringAsync().Result);
+            newModel.Tags = GetTags();
+
+            return View("CourseList", newModel);
+        }
+
+        private List<Tag> GetTags()
+        {
+            // get the tags
+            var httpClient = new HttpClient();
+            var tagsurl = Request.GetBaseUrl() + "api/tags";
+            var getTagsRequest = new HttpRequestMessage(HttpMethod.Get, tagsurl);
+            var getTagsRequestResult = httpClient.SendAsync(getTagsRequest);
+            return JsonConvert.DeserializeObject<List<Tag>>
+                (getTagsRequestResult.Result.Content.ReadAsStringAsync().Result);
         }
     }
 }

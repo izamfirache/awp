@@ -13,6 +13,9 @@
             </button>
 
             @Html.TextBoxFor(m => Model.Filter, new { placeholder = "Search course", @id="search-course-textbox", @class = "search-course", @onchange = "onchangeevent();" })
+            
+            @Html.DropDownListFor(m => m.SelectedTagId, new SelectList(Model.Tags, "Id", "Name"), "Search by tag", new { @class = "search-course", @onchange = "searchbytags();", @id="tags-dropdown" })
+            
         </div>
         </div>
 
@@ -41,6 +44,11 @@
     function onchangeevent() {
         var searchBy = document.getElementById('search-course-textbox').value;
         location.href = '@Url.Action("SearchCourses", "Courses")?filter=' + searchBy;
+    }
+    function searchbytags() {
+        
+        var selectedTag = $("#tags-dropdown option:selected").text();
+        location.href = '@Url.Action("SearchCoursesByTags", "Courses")?tag=' + selectedTag;
     }
 </script>
 
