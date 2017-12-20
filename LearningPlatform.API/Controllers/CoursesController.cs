@@ -244,15 +244,6 @@ namespace LearningPlatform.API.Controllers
 				}
 			}
 
-			if (course.Thumbnail != null)
-			{
-				_courseThumbnailsRepository.Insert(new CourseThumbnail()
-				{
-					CourseId = addedCourse.Id,
-					Thumbnail = course.Thumbnail
-				});
-			}
-
 			return Ok();
 		}
 
