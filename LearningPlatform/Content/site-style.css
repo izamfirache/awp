@@ -140,10 +140,10 @@
 		margin: auto;
 }
 
-/* Limit Register form input box width */
-.form-horizontal.constrained .col-md-10 {
-		max-width: 500px;
-}
+    /* Limit Register form input box width */
+    .form-horizontal.constrained .col-md-10 {
+		    max-width: 500px;
+    }
 
 /* Inline Edit Profile avatar input */
 .edit-profile .avatar + input {

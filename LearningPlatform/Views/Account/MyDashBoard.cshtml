@@ -18,12 +18,8 @@
                         var courseBaseUrl = Request.GetBaseUrl();
                         var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
                     }
+                    <img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
 
-                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
-                        <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
-                    </object>
-
-                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
                     <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                 </div>
             </div>
@@ -44,12 +40,8 @@
                         var courseBaseUrl = Request.GetBaseUrl();
                         var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
                     }
+                    <img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
 
-                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
-                        <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
-                    </object>
-
-                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
                     <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                 </div>
             </div>
@@ -70,12 +62,8 @@
                         var courseBaseUrl = Request.GetBaseUrl();
                         var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
                     }
-
-                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
-                        <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
-                    </object>
-
-                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
+                    <img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
+                    
                     <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                 </div>
             </div>

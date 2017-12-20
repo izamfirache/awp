@@ -294,7 +294,7 @@
     <Content Include="Views\Shared\_LayoutSansContainer.cshtml" />
     <Content Include="Views\CourseBuilder\CourseBuilder.cshtml" />
     <Content Include="Views\Shared\_AddCourseUiElementPartial.cshtml" />
-    <Content Include="Views\Account\MyDashBoard.cshtml" />
+    <Content Include="Views\Account\MyDashboard.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Shared\_RatingScale.cshtml" />
   </ItemGroup>
