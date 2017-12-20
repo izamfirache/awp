@@ -5,7 +5,7 @@ function clearFormElementById(id) {
 
 function imageError(image) {
     image.onerror = "";
-    image.src = "http://localhost/Content/images/fractal_wallpaper.png";
+    image.src = "http://localhost:49986/Content/images/fractal_wallpaper.png";
     return true;
 }
 
