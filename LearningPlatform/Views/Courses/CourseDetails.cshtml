@@ -66,7 +66,10 @@
 						    <div class="panel-body">
 							    <div class="topic-description">@topic.TopicDescription</div>
 							    <div class="field-label">Resources</div>
-                                <div class="topic-resource"><a href="@topic.CourseTopicLinks.Link">@topic.CourseTopicLinks.Name</a></div>
+                                @if (topic.CourseTopicLinks != null)
+                                {
+                                    <div class="topic-resource"><a href="@topic.CourseTopicLinks.Link">@topic.CourseTopicLinks.Name</a></div>
+                                }                                
 						    </div>
 					    </div>
 				    </div>
