@@ -12,7 +12,10 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-5 pull-right">
 				<div class="course-ribbon bg-blue">
-					<img class="course-image img-responsive" src="../Content/images/fractal_wallpaper.png">
+					@{
+						var courseImageUrl = Request.GetBaseUrl() + "api/courses/" + Model.CurrentCourse.Id + "/thumbnail";
+					}
+					<img class="course-image img-responsive" src="@courseImageUrl" onerror="imageError(this);">
 					<div class="course-date text-right">Published on @String.Format("{0:dd MMM yyyy}", Model.CurrentCourse.CreationDate)</div>
 
 					@if (Model.CurrentCourse.IsFeatured == 1)

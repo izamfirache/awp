@@ -1,111 +1,110 @@
 ﻿@model LearningPlatform.Models.Homepage.IndexPageModel
 
 @{
-    ViewBag.Title = "";
+		ViewBag.Title = "";
 }
 
 <div id="banner" class="valign-wrapper hero-image" style="background-image: url('Content/images/fractal_wallpaper.png');">
-    <div class="container z-front text-center text-white text-shadow">
-        <div class="row">
-            <h2 class="banner-text">Courses the C#.heap way</h2>
-        </div>
-        <div class="row">
-            <h3 class="text-light">Browse through our diverse library of software engineering courses</h3>
-        </div>
-    </div>
-    <div class="hero-overlay grain-effect darken-effect"></div>
+		<div class="container z-front text-center text-white text-shadow">
+				<div class="row">
+						<h2 class="banner-text">Courses the C#.heap way</h2>
+				</div>
+				<div class="row">
+						<h3 class="text-light">Browse through our diverse library of software engineering courses</h3>
+				</div>
+		</div>
+		<div class="hero-overlay grain-effect darken-effect"></div>
 </div>
 
 <div class="container">
-    <div class="latest-course-section">
-        <h3 class="no-margin-top">Latest course</h3>
-        <div class="latest-course-info card">
-            <div class="row">
-                <div class="latest-course-thumbnail col-xs-12 col-sm-3">
-                    @{
-                        var baseUrl = Request.GetBaseUrl();
-                        var imageUrl = baseUrl + "/api/courses/" + Model.LatestCourse.Id + "/thumbnail";
-                    }
-                    <img src="@imageUrl" class="img-responsive pointer">
-                </div>
-                <div class="latest-course-details col-xs-12 col-sm-9">
-                    <div class="latest-course-title text-bold pointer">@Model.LatestCourse.Name</div>
-                    <div class="latest-course-description">@Model.LatestCourse.Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien lacus. Nullam arcu sapien, facilisis eu dui a, iaculis vehicula dolor. Nullam at nisl erat. Quisque iaculis facilisis iaculis. Duis auctor ante lectus, vitae scelerisque enim tempor eget. Donec aliquam rutrum eros nec euismod. Curabitur vitae egestas mauris.</div>
-                    <div class="latest-course-tags pull-right">
-                        <span class="text-bold">Tags:</span>
-                        @foreach (var tag in Model.LatestCourse.Tags)
-                        {
-                            <a class="filter-button small tag">@tag.Name</a>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="latest-course-section">
+				<h3 class="no-margin-top">Latest course</h3>
+				<div class="latest-course-info card">
+						<div class="row">
+								<div class="latest-course-thumbnail col-xs-12 col-sm-3">
+										@{
+											var latestCourseImgUrl = Request.GetBaseUrl() + "api/courses/" + Model.LatestCourse.Id + "/thumbnail";
+										}
+										<img class="course-image img-responsive hoverable" src="@latestCourseImgUrl" onerror="imageError(this);">
+								</div>
+								<div class="latest-course-details col-xs-12 col-sm-9">
+										<div class="latest-course-title text-bold pointer">@Model.LatestCourse.Name</div>
+										<div class="latest-course-description">@Model.LatestCourse.Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien lacus. Nullam arcu sapien, facilisis eu dui a, iaculis vehicula dolor. Nullam at nisl erat. Quisque iaculis facilisis iaculis. Duis auctor ante lectus, vitae scelerisque enim tempor eget. Donec aliquam rutrum eros nec euismod. Curabitur vitae egestas mauris.</div>
+										<div class="latest-course-tags pull-right">
+												<span class="text-bold">Tags:</span>
+												@foreach (var tag in Model.LatestCourse.Tags)
+												{
+														<a class="filter-button small tag">@tag.Name</a>
+												}
+										</div>
+								</div>
+						</div>
+				</div>
+		</div>
 </div>
 
 <div class="courses-featured bg-blue">
-    <div class="container">
-        <!-- Featured Courses carousel section -->
-        <div class="courses-container row">
-            <h3 class="courses-title col-xs-12">Featured Courses</h3>
+		<div class="container">
+				<!-- Featured Courses carousel section -->
+				<div class="courses-container row">
+						<h3 class="courses-title col-xs-12">Featured Courses</h3>
 
-            <div id="featuredCourses" class="carousel slide multi-item-carousel" data-interval="false">
-                <div class="carousel-inner">
-                    @{ var count = 0; }
-                    @foreach (var course in Model.FeaturedCourses)
-                    {
-                        <div class="item @(count++ == 0 ? "active" : "")">
-                            <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
-                                <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                                    @{                                        
-                                        var courseImageUrl = baseUrl + "api/courses/" + course.Id + "/thumbnail";
-                                    }
-                                    <img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
-                                    <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
-                                    <div class="course-date">@String.Format("{0:dd MMM yyyy}", course.CreationDate)</div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <a class="left carousel-control" href="#featuredCourses" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                <a class="right carousel-control" href="#featuredCourses" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-            </div>
-        </div>
-        <!-- End Featured Courses carousel section -->
-    </div>
+						<div id="featuredCourses" class="carousel slide multi-item-carousel" data-interval="false">
+								<div class="carousel-inner">
+										@{ var count = 0; }
+										@foreach (var course in Model.FeaturedCourses)
+										{
+												<div class="item @(count++ == 0 ? "active" : "")">
+														<div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+																<div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+																		@{                                        
+																				var courseImageUrl = Request.GetBaseUrl() + "api/courses/" + course.Id + "/thumbnail";
+																		}
+																		<img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
+																		<div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
+																		<div class="course-date">@String.Format("{0:dd MMM yyyy}", course.CreationDate)</div>
+																</div>
+														</div>
+												</div>
+										}
+								</div>
+								<a class="left carousel-control" href="#featuredCourses" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+								<a class="right carousel-control" href="#featuredCourses" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+						</div>
+				</div>
+				<!-- End Featured Courses carousel section -->
+		</div>
 </div>
 
 <div class="courses-rated">
-    <div class="container">
-        <!-- Highest Rated Courses section -->
-        <div class="courses-container row">
-            <h3 class="courses-title col-xs-12">Highest Rated Courses</h3>
+		<div class="container">
+				<!-- Highest Rated Courses section -->
+				<div class="courses-container row">
+						<h3 class="courses-title col-xs-12">Highest Rated Courses</h3>
 
-            @foreach (var course in Model.HighestRatedCourses)
-            {
-                <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
-                    <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        @{
-                            var courseImageUrl = baseUrl + "api/courses/" + course.Id + "/thumbnail";
-                        }
-                        <img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
-                        <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
+						@foreach (var course in Model.HighestRatedCourses)
+						{
+								<div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+										<div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+												@{
+														var courseImageUrl = Request.GetBaseUrl() + "api/courses/" + course.Id + "/thumbnail";
+												}
+												<img class="course-image img-responsive hoverable" src="@courseImageUrl" onerror="imageError(this);">
+												<div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
 
-                        @{ var meterWidth = course.Rating / 5.0 * 100; }
-                        <div class="row">
-                            <span class="rating-label col-xs-3">Rating:</span>
-                            <div class="col-xs-9">
-                                <div class="rating-meter-container">
-                                    <a class="rating-meter col-xs-8" title="@course.Rating.ToString("0.00")" style="width: @meterWidth%"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-        <!-- End Highest Rated Courses section -->
-    </div>
+												@{ var meterWidth = course.Rating / 5.0 * 100; }
+												<div class="row">
+														<span class="rating-label col-xs-3">Rating:</span>
+														<div class="col-xs-9">
+																<div class="rating-meter-container">
+																		<a class="rating-meter col-xs-8" title="@course.Rating.ToString("0.00")" style="width: @meterWidth%"></a>
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						}
+				</div>
+				<!-- End Highest Rated Courses section -->
+		</div>
 </div>
