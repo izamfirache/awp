@@ -125,6 +125,10 @@
  * Page Content styles
  ***********************/
 
+.page-title {
+    margin-bottom: 36px;
+}
+
 .page-content {
 		padding: 2em 0;
 		margin: 1em 0;
