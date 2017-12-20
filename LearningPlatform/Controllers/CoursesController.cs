@@ -107,6 +107,7 @@ namespace LearningPlatform.Controllers
             newModel.Courses = JsonConvert.DeserializeObject<List<Course>>
                 (getCoursesByTagsRequestResult.Result.Content.ReadAsStringAsync().Result);
             newModel.Tags = GetTags();
+            newModel.SelectedTagId = newModel.Tags.Where(t => t.Name == tag).FirstOrDefault().Id;
 
             return View("CourseList", newModel);
         }

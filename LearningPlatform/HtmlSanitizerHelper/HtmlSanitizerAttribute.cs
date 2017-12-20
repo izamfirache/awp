@@ -37,14 +37,6 @@ namespace LearningPlatform.HtmlSanitizerHelper
                         {
                             sanitizedValue = htmlSanitizer.Sanitize(item.Value.ToString());
                         }
-                        else if (type == typeof(CourseBuilderPageModel))
-                        {
-                            var course = (CourseBuilderPageModel)item.Value;
-                            if (course.CurrentCourse.ContentHtml.Contains("<script>"))
-                            {
-                                throw new Exception("Invalid course content.");
-                            }
-                        }
                         else if (!type.IsPrimitive) // exclude primitive types (besides string type)
                         {
                             jsonValue = JsonConvert.SerializeObject(item.Value);
@@ -64,7 +56,15 @@ namespace LearningPlatform.HtmlSanitizerHelper
                     }
                 }
 
-                //filterContext.ActionParameters = sanitizedValues;
+                if (sanitizedValues.Count != 0)
+                {
+                    foreach (var sanitizedElement in sanitizedValues)
+                    {
+                        //var actualParameter = filterContext.ActionParameters.Where
+                        //    (c => c.Key == sanitizedElement.Key).FirstOrDefault();
+                        filterContext.ActionParameters[sanitizedElement.Key] = sanitizedElement.Value;
+                    }
+                }
             }
         }
     }

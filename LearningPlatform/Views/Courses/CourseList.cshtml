@@ -14,7 +14,7 @@
 
             @Html.TextBoxFor(m => Model.Filter, new { placeholder = "Search course", @id="search-course-textbox", @class = "search-course", @onchange = "onchangeevent();" })
             
-            @Html.DropDownListFor(m => m.SelectedTagId, new SelectList(Model.Tags, "Id", "Name"), "Search by tag", new { @class = "search-course", @onchange = "searchbytags();", @id="tags-dropdown" })
+            @Html.DropDownListFor(m => m.SelectedTagId, new SelectList(Model.Tags, "Id", "Name", Model.SelectedTagId), "Search by tag", new { @class = "search-course", @onchange = "searchbytags();", @id = "tags-dropdown" })
             
         </div>
         </div>

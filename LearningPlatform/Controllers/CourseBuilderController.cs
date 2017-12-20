@@ -25,7 +25,7 @@ namespace LearningPlatform.Controllers
 
 		// POST: CourseBuilder
 		[ValidateInput(false)]
-		//[HtmlSanitizer]
+		[HtmlSanitizer]
 		public async Task<ActionResult> AddNewCourse(CourseBuilderPageModel coursebuilderPageModel)
 		{
 			// TODO: Use GUID's for CourseId
