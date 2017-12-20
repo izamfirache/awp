@@ -25,17 +25,49 @@
 					@* TODO: Course Rating is always 0. *@
 					<div>Rating: @Model.CurrentCourse.Rating.ToString("0.00")</div>
 
-					@* UserEnrollmentTypeEnum.All means not found, don't question it *@
-					@*  > I don't even want to know *@
-					@if (Model.UserCourseStatus != LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.All)
-					{
-						<div>Status: @Model.UserCourseStatus</div>
-						if (Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Completed)
-						{
-							<div class="text-center">Rate this course</div>
-														@Html.Partial("_RatingScale")
-						}
-					}
+                    @if (Request.IsAuthenticated)   // User is authenticated
+                    {
+                        // Handle Course Action form
+                        //using (Html.BeginForm("HandleCourseAction", "Courses", FormMethod.Post, new { id = "course-action" }))
+                        //{
+                            //@Html.AntiForgeryToken()
+
+                            /* UserEnrollmentTypeEnum.All means not found, don't question it */
+					        /*  > I don't even want to know */
+
+                            if (Model.UserCourseStatus != LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.All)
+                            {
+                                // User has interacted with couse before
+						        <div>Status: @Model.UserCourseStatus</div>
+
+                                // User enrolled to the course
+                                if (Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Pending)
+                                {
+                                    <div class="btn btn-info btn-course-action">Start course</div>
+                                    //<input type="submit" value="Start Course" class="btn btn-info btn-course-action" />
+                                }
+                                // User started the course
+                                else if (Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Active)
+                                {
+                                    <div class="btn btn-success btn-course-action">Finish course</div>
+                                    //<input type="submit" value="Finish Course" onclick=" " class="btn btn-info btn-course-action" />
+                                }
+                                // User completed the course
+                                else if (Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Completed)
+                                {
+                                    // User did not rate the course
+							        <div class="text-center">Rate this course</div>
+							        @Html.Partial("_RatingScale")
+                                }
+                            }
+                            else
+                            {
+                                // User did not interact with the course before
+                                <div class="btn btn-primary btn-course-action">Enroll</div>
+                                //<input type="submit" value="Enroll" class="btn btn-info btn-course-action" />
+                            }
+                        //}
+                    }
 				</div>
 			</div>
 			<div class="course-header-info col-xs-12 col-md-7 pull-left">
