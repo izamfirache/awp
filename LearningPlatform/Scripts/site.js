@@ -4,8 +4,11 @@ function clearFormElementById(id) {
 }
 
 function imageError(image) {
+    var url = window.location.href.split('/');
+    var baseUrl = url[0] + '//' + url[2];
+
     image.onerror = "";
-    image.src = "http://localhost:12345/Content/images/fractal_wallpaper.png";
+    image.src = baseUrl + "/Content/images/fractal_wallpaper.png";
     return true;
 }
 
