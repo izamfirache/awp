@@ -115,3 +115,10 @@ $(document).ready(function () {
         }
     });
 });
+
+/* Trigger jQuery bar rating plugin */
+$(document).ready(function () {
+    $('#ratingScale').barrating({
+        theme: 'bars-movie'
+    });
+});

@@ -30,7 +30,7 @@
                         if (Model.UserCourseStatus == LearningPlatform.Core.Entities.UserEnrollmentTypeEnum.Completed)
                         {
                             <div class="text-center">Rate this course</div>
-                            <div>Rating scale</div>
+                            @Html.Partial("_RatingScale")
                         }
                     }
                 </div>
