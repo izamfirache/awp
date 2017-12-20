@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -34,6 +35,8 @@ namespace LearningPlatform.Controllers
             return View("CourseList", model);
         }
 
+        // GET: /Courses/GetCourse?courseId=#
+        [HttpGet]
         public ActionResult GetCourse(int courseId)
         {
             var courseDetailsPageModel = new CourseDetailsPageModel();

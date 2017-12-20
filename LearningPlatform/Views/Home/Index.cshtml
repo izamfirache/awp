@@ -30,7 +30,7 @@
                                         </a>
 								</div>
 								<div class="latest-course-details col-xs-12 col-sm-9">
-										<div class="latest-course-title text-bold pointer">@Model.LatestCourse.Name</div>
+										<div class="latest-course-title text-bold pointer" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = Model.LatestCourse.Id})'">@Model.LatestCourse.Name</div>
 										<div class="latest-course-description">@Model.LatestCourse.Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sapien lacus. Nullam arcu sapien, facilisis eu dui a, iaculis vehicula dolor. Nullam at nisl erat. Quisque iaculis facilisis iaculis. Duis auctor ante lectus, vitae scelerisque enim tempor eget. Donec aliquam rutrum eros nec euismod. Curabitur vitae egestas mauris.</div>
 										<div class="latest-course-tags pull-right">
 												<span class="text-bold">Tags:</span>
