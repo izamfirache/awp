@@ -13,11 +13,11 @@ namespace LearningPlatform.Core.Entities
 		public string TopicName { get; set; }
 		public string TopicDescription { get; set; }
 		public int CourseId { get; set; }
-		public List<CourseTopicLink> CourseTopicLinks { get; set; }
+		public CourseTopicLink CourseTopicLinks { get; set; }
 
 		public CourseTopic()
 		{
-			CourseTopicLinks = new List<CourseTopicLink>();
+			
 		}
 
 		public CourseTopic(DataRow row)
@@ -25,8 +25,7 @@ namespace LearningPlatform.Core.Entities
 			Id = Int32.Parse(row["Id"].ToString());
 			TopicName = row["TopicName"].ToString();
 			TopicDescription = row["TopicDescription"].ToString();
-			CourseId = Int32.Parse(row["Courseid"].ToString());
-			CourseTopicLinks = new List<CourseTopicLink>();
+            CourseId = Int32.Parse(row["Courseid"].ToString());			
 		}
 
 		public override string GetDatabaseTableName()

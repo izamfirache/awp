@@ -10,5 +10,6 @@ namespace LearningPlatform.Models.Courses
 	{
 		public Course CurrentCourse { get; set; }
 		public HttpPostedFileBase Thumbnail { get; set; }
+        public CourseTopic Topic { get; set; }
 	}
 }
