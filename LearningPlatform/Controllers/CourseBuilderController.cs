@@ -41,6 +41,7 @@ namespace LearningPlatform.Controllers
 			}
 
 			coursebuilderPageModel.CurrentCourse.Thumbnail = thumbnailData;
+            coursebuilderPageModel.CurrentCourse.CourseTopics.Add(coursebuilderPageModel.Topic);
 
 			// save the new course in the database
 			var httpClient = new HttpClient();

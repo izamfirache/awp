@@ -52,7 +52,7 @@ namespace LearningPlatform.API.Controllers
 
 			foreach(var courseTopic in course.CourseTopics)
 			{
-				courseTopic.CourseTopicLinks.AddRange(_courseTopicLinksRepository.GetByProperty("CourseTopicId", courseTopic.Id));
+				courseTopic.CourseTopicLinks = _courseTopicLinksRepository.GetByProperty("CourseTopicId", courseTopic.Id).FirstOrDefault();
 			}
 
 			var courseTags = _courseTagRepository.GetByProperty("CourseId", courseId);
@@ -158,7 +158,7 @@ namespace LearningPlatform.API.Controllers
 
 			foreach (var courseTopic in courseTopics)
 			{
-				courseTopic.CourseTopicLinks = _courseTopicLinksRepository.GetByProperty("CourseTopicId", courseTopic.Id).ToList();
+				courseTopic.CourseTopicLinks = _courseTopicLinksRepository.GetByProperty("CourseTopicId", courseTopic.Id).FirstOrDefault();
 			}
 
 			return Json(_courseTopicRepository.GetByProperty("CourseId", courseId));
@@ -219,6 +219,23 @@ namespace LearningPlatform.API.Controllers
 				};
 				_courseThumbnailsRepository.Insert(courseThumbnail);
 			}
+
+            foreach(var courseTopic in course.CourseTopics)
+            {
+                courseTopic.CourseId = addedCourse.Id;
+                _courseTopicRepository.Insert(courseTopic);
+
+                var dictionary = new Dictionary<string, string>();
+                dictionary.Add("TopicName" , courseTopic.TopicName);
+                dictionary.Add("TopicDescription", courseTopic.TopicDescription);
+
+                var addedCourseTopic = _courseTopicRepository.GetByProprieties(dictionary).FirstOrDefault();
+                if(courseTopic.CourseTopicLinks != null)
+                {
+                    courseTopic.CourseTopicLinks.CourseTopicId = addedCourseTopic.Id;
+                    _courseTopicLinksRepository.Insert(courseTopic.CourseTopicLinks);
+                }
+            }            
 
 			if (course.Tags != null && course.Tags.Count > 0)
 			{

@@ -98,10 +98,7 @@
 						    <div class="panel-body">
 							    <div class="topic-description">@topic.TopicDescription</div>
 							    <div class="field-label">Resources</div>
-							    @foreach (var resource in topic.CourseTopicLinks)
-                                {
-								    <div class="topic-resource"><a href="@resource.Link">@resource.Name</a></div>
-                                }							
+                                <div class="topic-resource"><a href="@topic.CourseTopicLinks.Link">@topic.CourseTopicLinks.Name</a></div>
 						    </div>
 					    </div>
 				    </div>
