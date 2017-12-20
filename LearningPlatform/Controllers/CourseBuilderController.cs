@@ -1,4 +1,5 @@
 ﻿using LearningPlatform.Core.Entities;
+using LearningPlatform.Helpers;
 using LearningPlatform.HtmlSanitizerHelper;
 using LearningPlatform.Models.Courses;
 using Newtonsoft.Json;
@@ -23,18 +24,17 @@ namespace LearningPlatform.Controllers
 
         // POST: CourseBuilder
         [ValidateInput(false)]
-        [HtmlSanitizer]
+        //[HtmlSanitizer]
         public async Task<ActionResult> AddNewCourse(CourseBuilderPageModel coursebuilderPageModel)
         {
             // TODO: Use GUID's for CourseId
-            coursebuilderPageModel.CurrentCourse.Id = new Random().Next(1000, 10000); 
+            //coursebuilderPageModel.CurrentCourse.Id = new Random().Next(1000, 10000); 
             
             // save the new course in the database
-            var httpClient = new HttpClient();
-            string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+            var httpClient = new HttpClient();            
             var addNewCourseRequest = new HttpRequestMessage(
                 HttpMethod.Post,
-                baseUrl + "api/courses");
+                Request.GetBaseUrl() + "api/courses");
             var serializedObject = JsonConvert.SerializeObject(coursebuilderPageModel.CurrentCourse);
             addNewCourseRequest.Content = new StringContent(serializedObject, System.Text.Encoding.UTF8, "application/json");
 
