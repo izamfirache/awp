@@ -86,15 +86,16 @@
 		    <hr />
 
 		    <div class="panel-group">
+                @{ var topicCount = 0; }
 			    @foreach (var topic in Model.CurrentCourse.CourseTopics)
                 {
 				    <div class="panel panel-default">
 					    <div class="panel-heading">
 						    <h4 class="panel-title">
-							    <a class="collapsible-toggle @(topic.Id > 1 ? "collapsed" : "")" data-toggle="collapse" href="#topic@(topic.Id)">@topic.TopicName</a>
+							    <a class="collapsible-toggle @(++topicCount > 1 ? "collapsed" : "")" data-toggle="collapse" href="#topic@(topicCount)">@topic.TopicName</a>
 						    </h4>
 					    </div>
-					    <div id="topic@(topic.Id)" class="panel-collapse collapse @(topic.Id == 1 ? "in" : "")">
+					    <div id="topic@(topicCount)" class="panel-collapse collapse @(topicCount == 1 ? "in" : "")">
 						    <div class="panel-body">
 							    <div class="topic-description">@topic.TopicDescription</div>
 							    <div class="field-label">Resources</div>
