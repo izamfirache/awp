@@ -9,10 +9,10 @@ namespace LearningPlatform.Core.Entities
 {
     public class CourseTopicLink : DatabaseEntity
     {
-        public int Id;
-        public string Name;
-        public string Link;
-        public int CourseTopicId;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Link { get; set; }
+        public int CourseTopicId { get; set; }
 
         public CourseTopicLink()
         {
