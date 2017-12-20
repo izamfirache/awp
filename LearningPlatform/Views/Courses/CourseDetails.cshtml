@@ -45,35 +45,37 @@
 			</div>
 		</div>
 	</div><!-- /.course-details-header -->
-	@* TODO: If Topics exists *@
-	<!-- Course Details Topics -->
-	<div class="course-details-topics">
-		<h3>Course Topics</h3>
-		<hr />
+    
+    @if (Model.CurrentCourse.CourseTopics.Count > 0)
+    {
+	    <!-- Course Details Topics -->
+	    <div class="course-details-topics">
+		    <h3>Course Topics</h3>
+		    <hr />
 
-		<div id="accordion" class="panel-group">
-			@* TODO: Iterate through all the Topics here *@
-			@foreach (var topic in Model.CurrentCourse.CourseTopics)
-			{
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#topic@(topic.Id)">@topic.TopicName</a>
-						</h4>
-					</div>
-					<div id="topic@(topic.Id)" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<div class="topic-description">@topic.TopicDescription</div>
-							<div class="field-label">Resources</div>
-							@foreach (var resource in topic.CourseTopicLinks)
-							{
-								<div class="topic-resource"><a href="@resource.Link">@resource.Name</a></div>
-							}							
-						</div>
-					</div>
-				</div>
-			}			
-		</div>
-	</div>
+		    <div class="panel-group">
+			    @foreach (var topic in Model.CurrentCourse.CourseTopics)
+                {
+				    <div class="panel panel-default">
+					    <div class="panel-heading">
+						    <h4 class="panel-title">
+							    <a class="collapsible-toggle @(topic.Id > 1 ? "collapsed" : "")" data-toggle="collapse" href="#topic@(topic.Id)">@topic.TopicName</a>
+						    </h4>
+					    </div>
+					    <div id="topic@(topic.Id)" class="panel-collapse collapse @(topic.Id == 1 ? "in" : "")">
+						    <div class="panel-body">
+							    <div class="topic-description">@topic.TopicDescription</div>
+							    <div class="field-label">Resources</div>
+							    @foreach (var resource in topic.CourseTopicLinks)
+                                {
+								    <div class="topic-resource"><a href="@resource.Link">@resource.Name</a></div>
+                                }							
+						    </div>
+					    </div>
+				    </div>
+                }			
+		    </div>
+	    </div><!-- /.course-details-topics -->
+    }
 
 </div><!-- /.course-details-container -->

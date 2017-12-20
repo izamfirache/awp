@@ -25,7 +25,9 @@
 										@{
 											var latestCourseImgUrl = Request.GetBaseUrl() + "api/courses/" + Model.LatestCourse.Id + "/thumbnail";
 										}
-										<img class="course-image img-responsive hoverable" src="@latestCourseImgUrl" onerror="imageError(this);">
+                                        <a href="Courses/GetCourse?courseId=@Model.LatestCourse.Id">
+                                                <img class="course-image img-responsive hoverable" src="@latestCourseImgUrl" onerror="imageError(this);">
+                                        </a>
 								</div>
 								<div class="latest-course-details col-xs-12 col-sm-9">
 										<div class="latest-course-title text-bold pointer">@Model.LatestCourse.Name</div>
