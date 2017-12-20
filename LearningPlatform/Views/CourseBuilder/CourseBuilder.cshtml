@@ -1,77 +1,82 @@
 ﻿@model LearningPlatform.Models.Courses.CourseBuilderPageModel
 
 @{
-    ViewBag.Title = "Course Builder";
+	ViewBag.Title = "Course Builder";
 }
 
-@using (Html.BeginForm("AddNewCourse", "CourseBuilder", FormMethod.Post))
+@using (Html.BeginForm("AddNewCourse", "CourseBuilder", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+	@Html.AntiForgeryToken()
 
-    <!-- Course Builder -->
-    <div class="course-builder-container">
-        <h3>Course Builder</h3>
+		<!-- Course Builder -->
+	<div class="course-builder-container">
+		<h3>Course Builder</h3>
 
-        <!-- Course Builder Header -->
-        <div class="course-builder-header">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    @Html.LabelFor(m => m.CurrentCourse.Name, "Title", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(m => m.CurrentCourse.Name, null, new { @placeholder = "Course title", @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.CurrentCourse.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.CurrentCourse.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-9">
-                        @Html.TextAreaFor(m => m.CurrentCourse.Description, new { @id = "courseDescription", @placeholder = "Provide a general description about the course", @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.CurrentCourse.Description, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.course-builder-header -->
+		<!-- Course Builder Header -->
+		<div class="course-builder-header">
+			<div class="form-horizontal">
+				<div class="form-group">
+					@Html.LabelFor(m => m.CurrentCourse.Name, "Title", htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(m => m.CurrentCourse.Name, null, new { @placeholder = "Course title", @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.CurrentCourse.Name, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(m => m.CurrentCourse.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(m => m.CurrentCourse.Description, new { @id = "courseDescription", @placeholder = "Provide a general description about the course", @class = "form-control" })
+						@Html.ValidationMessageFor(m => m.CurrentCourse.Description, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(m => m.Thumbnail, "Course thumbnail", new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.Thumbnail, new { type = "file", @class = "btn" })
+					</div>
+				</div>
 
-        <!-- Course Builder Topics Container -->
-        <div class="course-builder-topics-container clearfix">
-            <h3>Add Topics</h3>
-            <div>Topics are a good way to structure your course into various sections.</div>
-            <hr />
+			</div>
+		</div><!-- /.course-builder-header -->
+		<!-- Course Builder Topics Container -->
+		<div class="course-builder-topics-container clearfix">
+			<h3>Add Topics</h3>
+			<div>Topics are a good way to structure your course into various sections.</div>
+			<hr />
 
-            <div id="course-builder-topics">
-                <div class="course-builder-topic">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            @Html.Label("Title", htmlAttributes: new { @class = "control-label col-md-2"})
-                            <div class="col-md-10">
-                                @Html.TextBox("TopicTitle", null, htmlAttributes: new { @placeholder = "Topic Title", @class="form-control"})
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextArea("TopicDescription", htmlAttributes: new { @placeholder = "Provide a small topic description", @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Resource", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.TextBox("TopicResourceName", null, htmlAttributes: new { @placeholder = "Resource name", @class = "form-control" })
-                                @Html.TextBox("TopicResourceURL", null, htmlAttributes: new { @placeholder = "Resource URL", @class = "form-control" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<div id="course-builder-topics">
+				<div class="course-builder-topic">
+					<div class="form-horizontal">
+						<div class="form-group">
+							@Html.Label("Title", htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBox("TopicTitle", null, htmlAttributes: new { @placeholder = "Topic Title", @class = "form-control" })
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextArea("TopicDescription", htmlAttributes: new { @placeholder = "Provide a small topic description", @class = "form-control" })
+							</div>
+						</div>
+						<div class="form-group">
+							@Html.Label("Resource", htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								@Html.TextBox("TopicResourceName", null, htmlAttributes: new { @placeholder = "Resource name", @class = "form-control" })
+								@Html.TextBox("TopicResourceURL", null, htmlAttributes: new { @placeholder = "Resource URL", @class = "form-control" })
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <button id="addTopic" type="button" class="btn btn-primary pull-right" onclick="addCourseBuilderTopic()">Add Topic</button>    
-            <button id="removeTopic" type="button" class="btn btn-primary pull-right" style="display: none;" onclick="removeCourseBuilderTopic()">Remove Topic</button>
-        </div><!-- /.course-builder-topics-container -->
+			<button id="addTopic" type="button" class="btn btn-primary pull-right" onclick="addCourseBuilderTopic()">Add Topic</button>
+			<button id="removeTopic" type="button" class="btn btn-primary pull-right" style="display: none;" onclick="removeCourseBuilderTopic()">Remove Topic</button>
+		</div><!-- /.course-builder-topics-container -->
+		<!-- Course Builder Controls -->
+		<div class="course-builder-controls clearfix">
+			<input id="courseBuilderSave" class="btn btn-info pull-right" type="submit" value="Save course" />
+		</div><!-- /.course-builder-controls -->
 
-        <!-- Course Builder Controls -->
-        <div class="course-builder-controls clearfix">
-            <input id="courseBuilderSave" class="btn btn-info pull-right" type="submit" value="Save course" />
-        </div><!-- /.course-builder-controls -->
-
-    </div><!-- /.course-builder-container -->
-}
+	</div><!-- /.course-builder-container -->
+							}

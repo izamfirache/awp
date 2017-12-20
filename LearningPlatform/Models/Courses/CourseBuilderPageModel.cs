@@ -6,8 +6,9 @@ using System.Web;
 
 namespace LearningPlatform.Models.Courses
 {
-    public class CourseBuilderPageModel
-    {
-        public Course CurrentCourse { get; set; }
-    }
+	public class CourseBuilderPageModel
+	{
+		public Course CurrentCourse { get; set; }
+		public HttpPostedFileBase Thumbnail { get; set; }
+	}
 }
