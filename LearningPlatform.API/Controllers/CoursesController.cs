@@ -211,6 +211,15 @@ namespace LearningPlatform.API.Controllers
 				return BadRequest("Could not add course");
 			}
 
+			if(course.Thumbnail != null && course.Thumbnail != string.Empty)
+			{
+				var courseThumbnail = new CourseThumbnail(){
+					CourseId = addedCourse.Id,
+					Thumbnail = course.Thumbnail
+				};
+				_courseThumbnailsRepository.Insert(courseThumbnail);
+			}
+
 			if (course.Tags != null && course.Tags.Count > 0)
 			{
 				foreach (var tag in course.Tags)
