@@ -36,7 +36,7 @@
 												<span class="text-bold">Tags:</span>
 												@foreach (var tag in Model.LatestCourse.Tags)
 												{
-														<a class="filter-button small tag">@tag.Name</a>
+														<a class="filter-button small tag" href="/Courses/SearchCoursesByTags?tag=@tag.Name">@tag.Name</a>
 												}
 										</div>
 								</div>
