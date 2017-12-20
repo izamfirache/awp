@@ -3,6 +3,12 @@ function clearFormElementById(id) {
     document.getElementById(id).value = '';
 }
 
+function imageError(image) {
+    image.onerror = "";
+    image.src = "http://localhost/Content/images/fractal_wallpaper.png";
+    return true;
+}
+
 /* Add Course Builder Topic */
 function _constructCourseBuilderTopic() {
     var $topic = `
@@ -113,5 +119,36 @@ $(document).ready(function () {
                 .addClass('cloned-item-' + (i))
                 .appendTo($(this));
         }
+    });
+});
+
+/* Trigger jQuery bar rating plugin */
+$(document).ready(function () {
+    $('#ratingScale').barrating({
+        theme: 'bars-movie'
+    });
+});
+
+/* Trigger Course Box image resizing */
+function _courseBoxImageResize() {
+    $('.course-box .course-image').each(function () {
+        var parentWidth = $(this).parent().width();
+        var height = parentWidth * 9 / 16;
+
+        if (height > 0) {
+            $(this).css('width', parentWidth);
+            $(this).css('height', height); 
+        }
+    });
+}
+
+$(document).ready(function () {
+    /* Resize images on page load */
+    _courseBoxImageResize();
+    /* Resize images every time the browser window is resized */
+    $(window).resize(_courseBoxImageResize);
+    /* Resized images on carousel controls (timeout ensures resizing will happen after control action) */
+    $('.carousel-control').click(function () {
+        setTimeout(_courseBoxImageResize, 0);
     });
 });

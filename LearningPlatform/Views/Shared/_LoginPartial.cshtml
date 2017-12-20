@@ -4,8 +4,6 @@
     {
         @Html.AntiForgeryToken()
 
-
-
         <div class="dropdown nav navbar-nav">
             <ul class="dropdown-toggle nav navbar-nav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="dropdownMenu1">
                 <li>
@@ -26,25 +24,10 @@
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
             </ul>
         </div>
-
-
-
-        @*<ul class="nav navbar-nav">
-              <li>
-                <div class="avatar-wrapper">
-                  @{
-                    var baseUrl = Request.GetBaseUrl();
-                    var imageUrl = baseUrl + "/api/users/" + Session["LoggedInUserId"] + "/avatar";
-                  }
-                  <img src="@imageUrl" class="avatar img-circle img-responsive">
-                </div>
-              </li>
-              <li>@Html.ActionLink(User.Identity.Name, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-              <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
-            </ul>*@    }
-                            }
-                            else
-                            {
-                                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#login-modal">Sign In</button>
-                                @Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-default navbar-btn" })
-                            }
+    }
+}
+else
+{
+    <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#login-modal">Sign In</button>
+    @Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-default navbar-btn" })
+}

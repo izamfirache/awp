@@ -125,20 +125,29 @@
  * Page Content styles
  ***********************/
 
+.page-title {
+    margin-bottom: 36px;
+}
+
 .page-content {
 		padding: 2em 0;
 		margin: 1em 0;
 }
 
-/* Limit Register form width */
-.form-horizontal.register {
+/* Constrained form style */
+.form-horizontal.constrained {
 		max-width: 800px;
 		margin: auto;
 }
 
-/* Limit Register form input box width */
-.form-horizontal.register .col-md-10 {
-		max-width: 500px;
+    /* Limit Register form input box width */
+    .form-horizontal.constrained .col-md-10 {
+		    max-width: 500px;
+    }
+
+/* Inline Edit Profile avatar input */
+.edit-profile .avatar + input {
+    display: inline-block;
 }
 
 /***********************
@@ -179,6 +188,39 @@
 }
 
 /***********************
+ * Accordion panels
+ ***********************/
+
+.panel-group .panel {
+    border-radius: 2px;
+    margin-top: 25px;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 25px;
+}
+
+.panel-heading {
+    padding: 15px;
+}
+
+.panel-body {
+    padding-top: 25px;
+}
+
+/* Accordion panel glyphs */
+.panel-heading .accordion-toggle:after {
+    font-family: "Glyphicons Halflings";
+    content: "\e114";
+    float: right;
+    color: grey;
+}
+
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";
+}
+
+/***********************
  * Elements
  ***********************/
 
@@ -212,6 +254,10 @@
 				cursor: pointer;
 		}
 
+.field-label {
+    font-weight: bold;
+    margin: 0.75em auto 0.25em;
+}
 
 /* Rating bar */
 .rating-label {

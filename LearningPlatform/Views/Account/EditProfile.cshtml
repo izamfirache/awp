@@ -1,17 +1,21 @@
-﻿@{
-    ViewBag.Title = "EditProfile";
+﻿@model LearningPlatform.Models.Users.EditProfileUserModel
+@{
+    ViewBag.Title = "Edit Profile";
 }
 
-@model LearningPlatform.Models.Users.EditProfileUserModel
-
-@using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { @class = "form-horizontal constrained edit-profile", enctype = "multipart/form-data"}))
 {
-@Html.AntiForgeryToken()
-<!-- Login modal -->
-<div class="form-horizontal">
-    <div class="control-label text-left">
-        @Html.Label("Username: " + Model.Username)
-    </div>        
+    @Html.AntiForgeryToken()
+
+    <h3>@ViewBag.Title</h3>
+    <hr /><br>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Username, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Username, new { @readonly = "readonly", @class = "form-control", value = Model.Username })
+        </div>
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -21,17 +25,15 @@
         </div>
     </div>
 
-    <div class="avatar-wrapper">
-        @{
-            var baseUrl = Request.GetBaseUrl();
-            var imageUrl = baseUrl + "api/users/" + Session["LoggedInUserId"] + "/avatar";
-        }
-        <img src="@imageUrl" class="avatar img-circle img-responsive">
-    </div>
-
     <div class="form-group">
         @Html.LabelFor(m => m.NewAvatar, "Change avatar", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+            @{
+                var baseUrl = Request.GetBaseUrl();
+                var imageUrl = baseUrl + "api/users/" + Session["LoggedInUserId"] + "/avatar";
+            }
+            <img src="@imageUrl" class="avatar img-circle img-responsive">
+
             @Html.TextBoxFor(m => m.NewAvatar, new { type = "file", @class = "btn" })
         </div>
     </div>
@@ -61,10 +63,8 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-12 text-right">
+        <div class="col-md-offset-2 col-md-10 text-right">
             <input type="submit" value="Save changes" class="btn btn-primary clearfix" />
         </div>
     </div>
-</div>
 }
-
