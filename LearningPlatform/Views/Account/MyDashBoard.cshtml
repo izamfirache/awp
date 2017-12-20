@@ -1,95 +1,84 @@
 ﻿@{
-    ViewBag.Title = "MyDashBoard";
+    ViewBag.Title = "My Dashboard";
 }
 
-<h2>My Dashboard</h2>
+<h2 class="page-title">@ViewBag.Title</h2>
 
 @model LearningPlatform.Models.Users.MyDashboardModel
 
-<div class="courses-rated">
-    <div class="container">
-        <!-- Highest Rated Courses section -->
-        <div class="courses-container row">
-            <h3 class="courses-title col-xs-12">Your active courses</h3>
+<div class="courses-dashboard-active">
+    <div class="courses-container row">
+        <h3 class="courses-title col-xs-12">Your active courses</h3>
 
-            @foreach (var course in Model.ActiveCourses)
-            {
-                <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
-                    <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        @{
-                            var courseBaseUrl = Request.GetBaseUrl();
-                            var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
-                        }
+        @foreach (var course in Model.ActiveCourses)
+           {
+            <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+                <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+                    @{
+                        var courseBaseUrl = Request.GetBaseUrl();
+                        var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
+                    }
 
-                        <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
-                            <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
-                        </object>
+                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
+                        <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
+                    </object>
 
-                        @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
-                        <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>                        
-                    </div>
+                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
+                    <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                 </div>
-                            }
-        </div>
-        <!-- End Highest Rated Courses section -->
+            </div>
+         }
     </div>
 </div>
 
-<div class="courses-rated">
-    <div class="container">
-        <!-- Highest Rated Courses section -->
-        <div class="courses-container row">
-            <h3 class="courses-title col-xs-12">Your pending courses</h3>
+<hr />
+<div class="courses-dashboard-pending">
+    <div class="courses-container row">
+        <h3 class="courses-title col-xs-12">Your pending courses</h3>
 
-            @foreach (var course in Model.PendingCourses)
-            {
-                <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
-                    <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        @{
-                            var courseBaseUrl = Request.GetBaseUrl();
-                            var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
-                        }
+        @foreach (var course in Model.PendingCourses)
+          {
+            <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+                <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+                    @{
+                        var courseBaseUrl = Request.GetBaseUrl();
+                        var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
+                    }
 
-                        <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
-                            <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
-                        </object>
+                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
+                        <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
+                    </object>
 
-                        @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
-                        <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
-                    </div>
+                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
+                    <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                 </div>
-                            }
-        </div>
-        <!-- End Highest Rated Courses section -->
+            </div>
+          }
     </div>
 </div>
 
-<div class="courses-rated">
-    <div class="container">
-        <!-- Highest Rated Courses section -->
-        <div class="courses-container row">
-            <h3 class="courses-title col-xs-12">Your completed courses</h3>
+<hr />
+<div class="courses-dashboard-completed">
+    <div class="courses-container row">
+        <h3 class="courses-title col-xs-12">Your completed courses</h3>
 
-            @foreach (var course in Model.CompletedCourses)
-            {
-                <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
-                    <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
-                        @{
-                            var courseBaseUrl = Request.GetBaseUrl();
-                            var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
-                        }
+        @foreach (var course in Model.CompletedCourses)
+         {
+            <div class="course-box-wrapper col-xs-12 col-sm-6 col-md-3">
+                <div class="course-box" onclick="location.href='@Url.Action("GetCourse", "Courses", new { courseId = course.Id})'">
+                    @{
+                        var courseBaseUrl = Request.GetBaseUrl();
+                        var courseImageUrl = courseBaseUrl + "api/courses/" + course.Id + "/thumbnail";
+                    }
 
-                        <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
-                            <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
-                        </object>
+                    <object data="@courseImageUrl" type="image/png" class="course-image img-responsive hoverable">
+                        <img src="../Content/images/fractal_wallpaper.png" class="course-image img-responsive hoverable" />
+                    </object>
 
-                        @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
-                        <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
-                    </div>
+                    @*<img class="course-image img-responsive hoverable" src="Content/images/fractal_wallpaper.png">*@
+                    <div class="course-title pointer">@Html.DisplayFor(m => course.Name)</div>
                 </div>
-                            }
-        </div>
-        <!-- End Highest Rated Courses section -->
+            </div>
+         }
     </div>
 </div>
-

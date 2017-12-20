@@ -150,7 +150,7 @@ namespace LearningPlatform.Controllers
         }
 
         [HttpGet]
-        public ActionResult MyDashBoard()
+        public ActionResult MyDashboard()
         {
             var model = new MyDashboardModel();
 
